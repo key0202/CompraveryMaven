@@ -53,37 +53,26 @@
                       </Group>
                       <Group type="102" attributes="0">
                           <EmptySpace min="-2" pref="51" max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="0" attributes="0">
+                              <Component id="jLabel5" alignment="0" min="-2" max="-2" attributes="0"/>
+                              <Component id="jLabel1" alignment="0" min="-2" max="-2" attributes="0"/>
+                              <Component id="jLabel8" alignment="0" min="-2" max="-2" attributes="0"/>
+                              <Component id="jLabel2" alignment="0" min="-2" max="-2" attributes="0"/>
+                              <Component id="jLabel3" alignment="0" min="-2" max="-2" attributes="0"/>
+                              <Component id="jLabel4" alignment="0" min="-2" max="-2" attributes="0"/>
+                              <Component id="jLabel6" alignment="0" min="-2" max="-2" attributes="0"/>
+                              <Component id="jLabel7" alignment="0" min="-2" max="-2" attributes="0"/>
+                          </Group>
+                          <EmptySpace min="-2" pref="30" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                              <Group type="102" alignment="0" attributes="0">
-                                  <Group type="103" groupAlignment="0" attributes="0">
-                                      <Component id="jLabel6" alignment="0" min="-2" max="-2" attributes="0"/>
-                                      <Component id="jLabel7" alignment="0" min="-2" max="-2" attributes="0"/>
-                                  </Group>
-                                  <EmptySpace min="-2" pref="31" max="-2" attributes="0"/>
-                                  <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                                      <Component id="fechaInicio" pref="115" max="32767" attributes="0"/>
-                                      <Component id="fechaFinal" max="32767" attributes="0"/>
-                                  </Group>
-                              </Group>
-                              <Group type="102" alignment="0" attributes="0">
-                                  <Group type="103" groupAlignment="0" attributes="0">
-                                      <Component id="jLabel5" alignment="0" min="-2" max="-2" attributes="0"/>
-                                      <Component id="jLabel1" alignment="0" min="-2" max="-2" attributes="0"/>
-                                      <Component id="jLabel8" alignment="0" min="-2" max="-2" attributes="0"/>
-                                      <Component id="jLabel2" alignment="0" min="-2" max="-2" attributes="0"/>
-                                      <Component id="jLabel3" alignment="0" min="-2" max="-2" attributes="0"/>
-                                      <Component id="jLabel4" alignment="0" min="-2" max="-2" attributes="0"/>
-                                  </Group>
-                                  <EmptySpace min="-2" pref="47" max="-2" attributes="0"/>
-                                  <Group type="103" groupAlignment="0" attributes="0">
-                                      <Component id="txtNombre" max="32767" attributes="0"/>
-                                      <Component id="txtApellidos" max="32767" attributes="0"/>
-                                      <Component id="txtDNI" max="32767" attributes="0"/>
-                                      <Component id="jTextField4" max="32767" attributes="0"/>
-                                      <Component id="jTextField5" max="32767" attributes="0"/>
-                                      <Component id="jTextField6" max="32767" attributes="0"/>
-                                  </Group>
-                              </Group>
+                              <Component id="txtNombre" pref="116" max="32767" attributes="0"/>
+                              <Component id="txtApellidos" max="32767" attributes="0"/>
+                              <Component id="txtDNI" max="32767" attributes="0"/>
+                              <Component id="jTextField4" max="32767" attributes="0"/>
+                              <Component id="jTextField5" max="32767" attributes="0"/>
+                              <Component id="jTextField6" max="32767" attributes="0"/>
+                              <Component id="fechaFinal" alignment="0" max="32767" attributes="0"/>
+                              <Component id="fechaInicio" alignment="1" max="32767" attributes="0"/>
                           </Group>
                       </Group>
                   </Group>
@@ -131,17 +120,17 @@
                       <Component id="jLabel6" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="fechaInicio" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
-                  <EmptySpace type="separate" max="-2" attributes="0"/>
-                  <Group type="103" groupAlignment="1" attributes="0">
-                      <Component id="fechaFinal" min="-2" max="-2" attributes="0"/>
-                      <Component id="jLabel7" min="-2" max="-2" attributes="0"/>
+                  <EmptySpace min="-2" pref="12" max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="3" attributes="0">
+                      <Component id="jLabel7" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="fechaFinal" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
-                  <EmptySpace min="-2" pref="49" max="-2" attributes="0"/>
+                  <EmptySpace min="-2" pref="45" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                      <Component id="btnRegresar" pref="32" max="32767" attributes="0"/>
+                      <Component id="btnRegresar" max="32767" attributes="0"/>
                       <Component id="btnAgregar" max="32767" attributes="0"/>
                   </Group>
-                  <EmptySpace pref="21" max="32767" attributes="0"/>
+                  <EmptySpace pref="19" max="32767" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -197,10 +186,6 @@
             <Property name="text" type="java.lang.String" value="DNI"/>
           </Properties>
         </Component>
-        <Component class="org.jdesktop.swingx.JXDatePicker" name="fechaInicio">
-        </Component>
-        <Component class="org.jdesktop.swingx.JXDatePicker" name="fechaFinal">
-        </Component>
         <Component class="javax.swing.JTextField" name="txtNombre">
         </Component>
         <Component class="javax.swing.JTextField" name="txtApellidos">
@@ -254,6 +239,13 @@
             </Component>
           </SubComponents>
         </Container>
+        <Component class="org.jdesktop.swingx.JXDatePicker" name="fechaInicio">
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="fechaInicioActionPerformed"/>
+          </Events>
+        </Component>
+        <Component class="org.jdesktop.swingx.JXDatePicker" name="fechaFinal">
+        </Component>
       </SubComponents>
     </Container>
   </SubComponents>

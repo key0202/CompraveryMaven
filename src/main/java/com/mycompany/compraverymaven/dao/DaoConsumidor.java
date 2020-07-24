@@ -1,0 +1,48 @@
+package com.mycompany.compraverymaven.dao;
+
+import com.mycompany.compraverymaven.dto.*;
+import java.time.LocalDate;
+import java.util.List;
+
+public interface DaoConsumidor {
+
+    default Consumidor login(String usuario, String clave) {
+        throw new UnsupportedOperationException("No implementado");
+    }
+
+    default List<ProductoInventario> BuscarProducto(String nombre) {
+        throw new UnsupportedOperationException("No implementado");
+    }
+
+    default ProductoInventario verProducto(Integer posicion) {
+        throw new UnsupportedOperationException("No implementado");
+    }
+
+//Controlador
+    default void agregarProductoCarrito(Integer id, String nombre, Integer cantidad, Double precio) {
+        throw new UnsupportedOperationException("No implementado");
+    }
+
+//Metodo_InsertOrdenCompra
+    default Integer generarOrdenCompra(Integer id_consumidor, LocalDate fecha_compra, Double ImporteTotal) {
+        throw new UnsupportedOperationException("No implementado");
+    }
+
+//Metodo_DetallePedido//MetodoUpdate
+    default void generarPedido(Integer id_ProductoInventario, Integer id_ordenCompra, String nombre_producto, Integer cantidad, Oferta precio) {
+        throw new UnsupportedOperationException("No implementado");
+    }
+
+    default String historialCompra(LocalDate fech_init, LocalDate fech_fin, Integer id) {
+        throw new UnsupportedOperationException("No implementado");
+    }
+
+    default Consumidor cambiarClave(Persona usuario, String clave, String newclave) {
+        throw new UnsupportedOperationException("No implementado");
+    }
+
+    default Void registrarConsumidor(Consumidor consumidor) {
+        throw new UnsupportedOperationException("No implementado");
+    }
+
+}

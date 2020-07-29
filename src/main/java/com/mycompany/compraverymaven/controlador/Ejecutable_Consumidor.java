@@ -1,5 +1,5 @@
 package com.mycompany.compraverymaven.controlador;
 
-public class ControladorTrabajador {
+public class Ejecutable_Consumidor {
     
 }

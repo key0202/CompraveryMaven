@@ -54,7 +54,7 @@ public interface DaoTrabajador {
         throw new UnsupportedOperationException("No implementado");
     }
 
-    default Integer generar_compra_proveedor(String proveedor, LocalDate fecha_compra, Double importe) {
+    default Integer generar_compra_proveedor(Integer proveedor, LocalDate fecha_compra, Double importe) {
         throw new UnsupportedOperationException("No implementado");
     }
 

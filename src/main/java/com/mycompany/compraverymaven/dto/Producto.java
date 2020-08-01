@@ -10,6 +10,7 @@ public class Producto {
     private Blob imagen;
     private String categoria;
     private Proveedor proveedor;
+    
 
     public Producto() {
     }

@@ -1,6 +1,5 @@
 package com.mycompany.compraverymaven.vista;
 
-<<<<<<< HEAD
 import javax.swing.JButton;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
@@ -9,8 +8,8 @@ import javax.swing.JTextField;
  *
  * @author DAVID
  */
-=======
->>>>>>> 98da932b2b915b1f01946da66936d4a27fdc3ede
+
+
 public class Almacenero_Login extends javax.swing.JFrame {
 
     /**

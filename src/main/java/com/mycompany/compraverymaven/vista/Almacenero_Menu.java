@@ -1,14 +1,13 @@
 package com.mycompany.compraverymaven.vista;
 
-<<<<<<< HEAD
+
 import javax.swing.JDesktopPane;
 
 /**
  *
  * @author DAVID
  */
-=======
->>>>>>> 98da932b2b915b1f01946da66936d4a27fdc3ede
+
 public class Almacenero_Menu extends javax.swing.JFrame {
 
     /**

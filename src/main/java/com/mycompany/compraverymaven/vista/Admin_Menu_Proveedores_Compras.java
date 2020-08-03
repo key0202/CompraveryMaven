@@ -1,14 +1,10 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package com.mycompany.compraverymaven.vista;
 
-/**
- *
- * @author Mikeyla
- */
+import javax.swing.JButton;
+import javax.swing.JComboBox;
+import javax.swing.JLabel;
+import javax.swing.JTable;
+
 public class Admin_Menu_Proveedores_Compras extends javax.swing.JInternalFrame {
 
     /**
@@ -160,6 +156,46 @@ public class Admin_Menu_Proveedores_Compras extends javax.swing.JInternalFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    public JButton getBtnAgregar() {
+        return btnAgregar;
+    }
+
+    public JButton getBtnComprar() {
+        return btnComprar;
+    }
+
+    public JComboBox<String> getCmbCategoria() {
+        return cmbCategoria;
+    }
+
+    public JComboBox<String> getCmbProducto() {
+        return cmbProducto;
+    }
+
+    public JTable getTablaProductosCompras() {
+        return tablaProductosCompras;
+    }
+
+    public JLabel getTxtFechaCompra() {
+        return txtFechaCompra;
+    }
+
+    public JLabel getTxtNumeroOrdenCompra() {
+        return txtNumeroOrdenCompra;
+    }
+
+    public JLabel getTxtProveedor() {
+        return txtProveedor;
+    }
+
+    public JLabel getTxtRUC() {
+        return txtRUC;
+    }
+
+    public JLabel getTxtTotal() {
+        return txtTotal;
+    }
+    
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAgregar;

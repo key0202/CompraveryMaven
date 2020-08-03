@@ -84,7 +84,7 @@
         </Constraint>
       </Constraints>
     </Component>
-    <Component class="javax.swing.JLabel" name="jLabel_datos">
+    <Component class="javax.swing.JLabel" name="lblDatos">
       <Properties>
         <Property name="text" type="java.lang.String" value="jLabel7"/>
       </Properties>
@@ -94,7 +94,7 @@
         </Constraint>
       </Constraints>
     </Component>
-    <Component class="javax.swing.JLabel" name="jLabel_direccion">
+    <Component class="javax.swing.JLabel" name="lblDireccion">
       <Properties>
         <Property name="text" type="java.lang.String" value="jLabel8"/>
       </Properties>
@@ -104,7 +104,7 @@
         </Constraint>
       </Constraints>
     </Component>
-    <Component class="javax.swing.JLabel" name="jLabel_celular">
+    <Component class="javax.swing.JLabel" name="lblCelular">
       <Properties>
         <Property name="text" type="java.lang.String" value="jLabel9"/>
       </Properties>
@@ -114,7 +114,7 @@
         </Constraint>
       </Constraints>
     </Component>
-    <Component class="javax.swing.JLabel" name="jLabel_cargo">
+    <Component class="javax.swing.JLabel" name="lblCargo">
       <Properties>
         <Property name="text" type="java.lang.String" value="jLabel10"/>
       </Properties>
@@ -124,7 +124,7 @@
         </Constraint>
       </Constraints>
     </Component>
-    <Component class="javax.swing.JLabel" name="jLabel_dni">
+    <Component class="javax.swing.JLabel" name="lblDni">
       <Properties>
         <Property name="text" type="java.lang.String" value="jLabel11"/>
       </Properties>

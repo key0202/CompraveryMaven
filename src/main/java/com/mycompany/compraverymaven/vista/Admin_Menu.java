@@ -1,14 +1,8 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package com.mycompany.compraverymaven.vista;
 
-/**
- *
- * @author Mikeyla
- */
+import javax.swing.JButton;
+import javax.swing.JDesktopPane;
+
 public class Admin_Menu extends javax.swing.JFrame {
 
     /**
@@ -27,7 +21,7 @@ public class Admin_Menu extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jDesktopPane1 = new javax.swing.JDesktopPane();
+        jdpContenedor = new javax.swing.JDesktopPane();
         jPanel1 = new javax.swing.JPanel();
         btnPerfil = new javax.swing.JButton();
         btnAlmacen = new javax.swing.JButton();
@@ -41,14 +35,14 @@ public class Admin_Menu extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        javax.swing.GroupLayout jDesktopPane1Layout = new javax.swing.GroupLayout(jDesktopPane1);
-        jDesktopPane1.setLayout(jDesktopPane1Layout);
-        jDesktopPane1Layout.setHorizontalGroup(
-            jDesktopPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        javax.swing.GroupLayout jdpContenedorLayout = new javax.swing.GroupLayout(jdpContenedor);
+        jdpContenedor.setLayout(jdpContenedorLayout);
+        jdpContenedorLayout.setHorizontalGroup(
+            jdpContenedorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGap(0, 559, Short.MAX_VALUE)
         );
-        jDesktopPane1Layout.setVerticalGroup(
-            jDesktopPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        jdpContenedorLayout.setVerticalGroup(
+            jdpContenedorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGap(0, 0, Short.MAX_VALUE)
         );
 
@@ -94,11 +88,11 @@ public class Admin_Menu extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 249, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jDesktopPane1))
+                .addComponent(jdpContenedor))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jDesktopPane1)
+            .addComponent(jdpContenedor)
             .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 584, Short.MAX_VALUE)
         );
 
@@ -112,38 +106,52 @@ public class Admin_Menu extends javax.swing.JFrame {
     /**
      * @param args the command line arguments
      */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(Admin_Menu.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(Admin_Menu.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(Admin_Menu.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(Admin_Menu.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
 
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new Admin_Menu().setVisible(true);
-            }
-        });
+    public JButton getBtnAlmacen() {
+        return btnAlmacen;
     }
 
+    public JButton getBtnCompras() {
+        return btnCompras;
+    }
+
+    public JButton getBtnEmpleados() {
+        return btnEmpleados;
+    }
+
+    public JButton getBtnOfertas() {
+        return btnOfertas;
+    }
+
+    public JButton getBtnPedidosCliente() {
+        return btnPedidosCliente;
+    }
+
+    public JButton getBtnPerfil() {
+        return btnPerfil;
+    }
+
+    public JButton getBtnProductos() {
+        return btnProductos;
+    }
+
+    public JButton getBtnProveedores() {
+        return btnProveedores;
+    }
+
+    public JButton getBtnVentas() {
+        return btnVentas;
+    }
+
+    /**
+     * @param args the command line arguments
+     */
+    public JDesktopPane getJdpContenedor() {
+        return jdpContenedor;
+    }
+
+    
+    
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAlmacen;
     private javax.swing.JButton btnCompras;
@@ -154,7 +162,7 @@ public class Admin_Menu extends javax.swing.JFrame {
     private javax.swing.JButton btnProductos;
     private javax.swing.JButton btnProveedores;
     private javax.swing.JButton btnVentas;
-    private javax.swing.JDesktopPane jDesktopPane1;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JDesktopPane jdpContenedor;
     // End of variables declaration//GEN-END:variables
 }

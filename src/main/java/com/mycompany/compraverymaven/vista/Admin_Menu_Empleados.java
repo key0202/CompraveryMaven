@@ -1,14 +1,9 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package com.mycompany.compraverymaven.vista;
 
-/**
- *
- * @author Mikeyla
- */
+import javax.swing.JButton;
+import javax.swing.JComboBox;
+import javax.swing.JTable;
+
 public class Admin_Menu_Empleados extends javax.swing.JInternalFrame {
 
     /**
@@ -102,7 +97,19 @@ public class Admin_Menu_Empleados extends javax.swing.JInternalFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    public JButton getBtnAgregarEmpleado() {
+        return btnAgregarEmpleado;
+    }
 
+    public JComboBox<String> getCmbCargoEmpleado() {
+        return cmbCargoEmpleado;
+    }
+
+    public JTable getTablaEmpleados() {
+        return tablaEmpleados;
+    }
+
+    
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAgregarEmpleado;
     private javax.swing.JComboBox<String> cmbCargoEmpleado;

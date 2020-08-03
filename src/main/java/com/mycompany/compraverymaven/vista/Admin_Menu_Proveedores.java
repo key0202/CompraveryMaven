@@ -1,14 +1,9 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package com.mycompany.compraverymaven.vista;
 
-/**
- *
- * @author Mikeyla
- */
+import javax.swing.JButton;
+import javax.swing.JComboBox;
+import javax.swing.JTable;
+
 public class Admin_Menu_Proveedores extends javax.swing.JInternalFrame {
 
     /**
@@ -36,7 +31,6 @@ public class Admin_Menu_Proveedores extends javax.swing.JInternalFrame {
         jPanel3 = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
         btnAgregarProovedor = new javax.swing.JButton();
-        btnQuitarProveedor = new javax.swing.JButton();
 
         jPanel2.setBackground(new java.awt.Color(255, 255, 255));
         jPanel2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -88,15 +82,7 @@ public class Admin_Menu_Proveedores extends javax.swing.JInternalFrame {
         jPanel2.add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 550, -1));
 
         btnAgregarProovedor.setText("Añadir Proveedor");
-        jPanel2.add(btnAgregarProovedor, new org.netbeans.lib.awtextra.AbsoluteConstraints(52, 409, 171, 46));
-
-        btnQuitarProveedor.setText("Quitar Proveedor");
-        btnQuitarProveedor.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnQuitarProveedorActionPerformed(evt);
-            }
-        });
-        jPanel2.add(btnQuitarProveedor, new org.netbeans.lib.awtextra.AbsoluteConstraints(304, 409, 186, 46));
+        jPanel2.add(btnAgregarProovedor, new org.netbeans.lib.awtextra.AbsoluteConstraints(52, 409, 430, 46));
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -129,14 +115,23 @@ public class Admin_Menu_Proveedores extends javax.swing.JInternalFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void btnQuitarProveedorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnQuitarProveedorActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btnQuitarProveedorActionPerformed
+    public JButton getBtnAgregarProovedor() {
+        return btnAgregarProovedor;
+    }
 
+
+    public JComboBox<String> getCmbCategoria() {
+        return cmbCategoria;
+    }
+
+    public JTable getTablaProveedores() {
+        return tablaProveedores;
+    }
+
+    
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAgregarProovedor;
-    private javax.swing.JButton btnQuitarProveedor;
     private javax.swing.JComboBox<String> cmbCategoria;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;

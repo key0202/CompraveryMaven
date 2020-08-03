@@ -1,14 +1,10 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package com.mycompany.compraverymaven.vista;
 
-/**
- *
- * @author Mikeyla
- */
+import javax.swing.JButton;
+import javax.swing.JComboBox;
+import javax.swing.JTable;
+import org.jdesktop.swingx.JXDatePicker;
+
 public class Admin_Menu_Almacen extends javax.swing.JInternalFrame {
 
     /**
@@ -132,6 +128,34 @@ public class Admin_Menu_Almacen extends javax.swing.JInternalFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_cmbOperacionActionPerformed
 
+    public JButton getBtnBuscar() {
+        return btnBuscar;
+    }
+
+    public JButton getBtnGenerarReporte() {
+        return btnGenerarReporte;
+    }
+
+    public JComboBox<String> getCmbCategoria() {
+        return cmbCategoria;
+    }
+
+    public JComboBox<String> getCmbOperacion() {
+        return cmbOperacion;
+    }
+
+    public JXDatePicker getJdpFechaFinal() {
+        return jdpFechaFinal;
+    }
+
+    public JXDatePicker getJdpFechaInicial() {
+        return jdpFechaInicial;
+    }
+
+    public JTable getTablaReporte() {
+        return tablaReporte;
+    }
+    
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnBuscar;

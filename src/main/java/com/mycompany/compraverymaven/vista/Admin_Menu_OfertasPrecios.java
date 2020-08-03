@@ -1,14 +1,12 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package com.mycompany.compraverymaven.vista;
 
-/**
- *
- * @author Mikeyla
- */
+import javax.swing.JButton;
+import javax.swing.JComboBox;
+import javax.swing.JLabel;
+import javax.swing.JTable;
+import javax.swing.JTextField;
+import org.jdesktop.swingx.JXDatePicker;
+
 public class Admin_Menu_OfertasPrecios extends javax.swing.JInternalFrame {
 
     /**
@@ -140,6 +138,38 @@ public class Admin_Menu_OfertasPrecios extends javax.swing.JInternalFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    public JLabel getImagenProducto() {
+        return ImagenProducto;
+    }
+
+    public JButton getBtnGuardar() {
+        return btnGuardar;
+    }
+
+    public JButton getBtnGuardarOferta() {
+        return btnGuardarOferta;
+    }
+
+    public JComboBox<String> getCmbCategoria() {
+        return cmbCategoria;
+    }
+
+    public JXDatePicker getJdpFin() {
+        return jdpFin;
+    }
+
+    public JXDatePicker getJdpInicio() {
+        return jdpInicio;
+    }
+
+    public JTable getTablaProductos() {
+        return tablaProductos;
+    }
+
+    public JTextField getTxtPrecioOferta() {
+        return txtPrecioOferta;
+    }
+    
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel ImagenProducto;

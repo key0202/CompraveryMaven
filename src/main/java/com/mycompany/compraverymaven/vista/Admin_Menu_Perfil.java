@@ -1,14 +1,7 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package com.mycompany.compraverymaven.vista;
 
-/**
- *
- * @author DAVID
- */
+import javax.swing.JLabel;
+
 public class Admin_Menu_Perfil extends javax.swing.JInternalFrame {
 
     /**
@@ -33,11 +26,11 @@ public class Admin_Menu_Perfil extends javax.swing.JInternalFrame {
         jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
-        jLabel_datos = new javax.swing.JLabel();
-        jLabel_direccion = new javax.swing.JLabel();
-        jLabel_celular = new javax.swing.JLabel();
-        jLabel_cargo = new javax.swing.JLabel();
-        jLabel_dni = new javax.swing.JLabel();
+        lblDatos = new javax.swing.JLabel();
+        lblDireccion = new javax.swing.JLabel();
+        lblCelular = new javax.swing.JLabel();
+        lblCargo = new javax.swing.JLabel();
+        lblDni = new javax.swing.JLabel();
         admin_image = new javax.swing.JLabel();
 
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -61,20 +54,20 @@ public class Admin_Menu_Perfil extends javax.swing.JInternalFrame {
         jLabel6.setText("DNI:");
         getContentPane().add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 400, -1, -1));
 
-        jLabel_datos.setText("jLabel7");
-        getContentPane().add(jLabel_datos, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 240, -1, -1));
+        lblDatos.setText("jLabel7");
+        getContentPane().add(lblDatos, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 240, -1, -1));
 
-        jLabel_direccion.setText("jLabel8");
-        getContentPane().add(jLabel_direccion, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 280, -1, -1));
+        lblDireccion.setText("jLabel8");
+        getContentPane().add(lblDireccion, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 280, -1, -1));
 
-        jLabel_celular.setText("jLabel9");
-        getContentPane().add(jLabel_celular, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 320, -1, -1));
+        lblCelular.setText("jLabel9");
+        getContentPane().add(lblCelular, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 320, -1, -1));
 
-        jLabel_cargo.setText("jLabel10");
-        getContentPane().add(jLabel_cargo, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 360, -1, -1));
+        lblCargo.setText("jLabel10");
+        getContentPane().add(lblCargo, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 360, -1, -1));
 
-        jLabel_dni.setText("jLabel11");
-        getContentPane().add(jLabel_dni, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 400, -1, -1));
+        lblDni.setText("jLabel11");
+        getContentPane().add(lblDni, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 400, -1, -1));
 
         admin_image.setText("foto");
         getContentPane().add(admin_image, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 80, 130, 120));
@@ -82,7 +75,31 @@ public class Admin_Menu_Perfil extends javax.swing.JInternalFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    public JLabel getAdmin_image() {
+        return admin_image;
+    }
 
+    public JLabel getLblCargo() {
+        return lblCargo;
+    }
+
+    public JLabel getLblCelular() {
+        return lblCelular;
+    }
+
+    public JLabel getLblDatos() {
+        return lblDatos;
+    }
+
+    public JLabel getLblDireccion() {
+        return lblDireccion;
+    }
+
+    public JLabel getLblDni() {
+        return lblDni;
+    }
+
+    
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel admin_image;
     private javax.swing.JLabel jLabel1;
@@ -91,10 +108,10 @@ public class Admin_Menu_Perfil extends javax.swing.JInternalFrame {
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
-    private javax.swing.JLabel jLabel_cargo;
-    private javax.swing.JLabel jLabel_celular;
-    private javax.swing.JLabel jLabel_datos;
-    private javax.swing.JLabel jLabel_direccion;
-    private javax.swing.JLabel jLabel_dni;
+    private javax.swing.JLabel lblCargo;
+    private javax.swing.JLabel lblCelular;
+    private javax.swing.JLabel lblDatos;
+    private javax.swing.JLabel lblDireccion;
+    private javax.swing.JLabel lblDni;
     // End of variables declaration//GEN-END:variables
 }

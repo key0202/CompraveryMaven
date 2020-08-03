@@ -25,9 +25,7 @@ public class ControladorAlmacenero {
     }
 
     public void InitController() {       
-        
-        
-        
+      
     }
 
 }

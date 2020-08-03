@@ -10,6 +10,7 @@ public class Producto {
     private Blob imagen;
     private String categoria;
     private Proveedor proveedor;
+    private byte[] foto;
     
 
     public Producto() {
@@ -71,6 +72,16 @@ public class Producto {
     public void setProveedor(Proveedor proveedor) {
         this.proveedor = proveedor;
     }
+
+    public byte[] getFoto() {
+        return foto;
+    }
+
+    public void setFoto(byte[] foto) {
+        this.foto = foto;
+    }
+    
+    
     
     
     

@@ -35,7 +35,7 @@
       </Properties>
       <Constraints>
         <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-          <AbsoluteConstraints x="0" y="40" width="130" height="105"/>
+          <AbsoluteConstraints x="0" y="80" width="130" height="100"/>
         </Constraint>
       </Constraints>
     </Component>
@@ -50,7 +50,7 @@
       </Properties>
       <Constraints>
         <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-          <AbsoluteConstraints x="0" y="140" width="130" height="105"/>
+          <AbsoluteConstraints x="0" y="190" width="130" height="110"/>
         </Constraint>
       </Constraints>
     </Component>
@@ -65,7 +65,7 @@
       </Properties>
       <Constraints>
         <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-          <AbsoluteConstraints x="0" y="240" width="130" height="105"/>
+          <AbsoluteConstraints x="0" y="310" width="130" height="110"/>
         </Constraint>
       </Constraints>
     </Component>
@@ -89,7 +89,7 @@
     <Container class="javax.swing.JDesktopPane" name="jDesktopPane1">
       <Constraints>
         <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-          <AbsoluteConstraints x="130" y="0" width="650" height="410"/>
+          <AbsoluteConstraints x="130" y="0" width="540" height="440"/>
         </Constraint>
       </Constraints>
 

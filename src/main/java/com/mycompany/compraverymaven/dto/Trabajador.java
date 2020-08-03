@@ -59,8 +59,6 @@ public class Trabajador extends Persona {
         this.tienda = tienda;
     }
     
-    
-    
-    
+  
     
 }

@@ -6,7 +6,7 @@ public class Persona {
     private String direccion;
     private String dni;
     private String usuario;
-    private String celular;    
+    private String celular;
 
     public Persona(Integer id, String nombre, String direccion, String dni, String usuario, String celular) {
         this.id = id;
@@ -66,6 +66,11 @@ public class Persona {
 
     public void setCelular(String celular) {
         this.celular = celular;
+    }
+
+    @Override
+    public String toString() {
+        return nombre ;
     }
     
     

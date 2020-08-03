@@ -6,9 +6,7 @@ import java.util.List;
 
 public interface DaoTrabajador {
 
-    default Trabajador login(String user, String pass) {
-        throw new UnsupportedOperationException("No implementado");
-    }
+    public Trabajador login(String user, String pass);
 
     default List<DetalleOrdenProducto> verCompraProveedor(ComprasTiendaProveedor id) {
         throw new UnsupportedOperationException("No implementado");
@@ -80,6 +78,9 @@ public interface DaoTrabajador {
 
     default void asignar_repartidor(Integer id_pedido, Integer id_repartidor) {
         throw new UnsupportedOperationException("No implementado");
+    }
+    default public String getMessage(){
+        throw new UnsupportedOperationException("No implementado"); 
     }
 
 }

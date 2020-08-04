@@ -1,6 +1,7 @@
 package com.mycompany.compraverymaven.dto;
 
 public class Persona {
+
     private Integer id;
     private String nombre;
     private String direccion;
@@ -18,8 +19,8 @@ public class Persona {
     }
 
     public Persona() {
-    }    
-    
+    }
+
     public Integer getId() {
         return id;
     }
@@ -68,11 +69,4 @@ public class Persona {
         this.celular = celular;
     }
 
-    @Override
-    public String toString() {
-        return nombre ;
-    }
-    
-    
-    
 }

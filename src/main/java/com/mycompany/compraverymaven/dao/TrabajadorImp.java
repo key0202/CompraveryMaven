@@ -40,7 +40,7 @@ public class TrabajadorImp implements DaoTrabajador{
     }
     //Registro de trabajadores:
     @Override
-  public void registrar_empleado(Trabajador trabajador) {
+  public String registrar_empleado(Trabajador trabajador) {
        try{
             Connection cn=conecta.conexionDB();
             CallableStatement procedur=cn.prepareCall("{call SP_AgregarTrabajador(?,?,?,?,?,?,?}");
@@ -49,13 +49,14 @@ public class TrabajadorImp implements DaoTrabajador{
             procedur.setString(3,trabajador.getDireccion());
             procedur.setString(4,trabajador.getCelular());
             procedur.setString(5,trabajador.getCargo());           
-            procedur.setDate(6,Date.valueOf(trabajador.getFecha_ingreso()));
-            procedur.setDate(7,Date.valueOf(trabajador.getFecha_cese()));
+            procedur.setString(6,trabajador.getFecha_ingreso().toString());
+            procedur.setString(7,trabajador.getFecha_cese().toString());
             
             ResultSet rs=procedur.executeQuery();
         }catch(Exception e){
-            e.getMessage();
+           mensaje=e.getMessage();
         }
+       return mensaje;
   }
        
    

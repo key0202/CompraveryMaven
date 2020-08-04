@@ -20,7 +20,7 @@ public interface DaoTrabajador {
         throw new UnsupportedOperationException("No implementado");
     }
 
-    default void registrar_empleado(Trabajador trabajador) {
+    default String registrar_empleado(Trabajador trabajador) {
         throw new UnsupportedOperationException("No implementado");
     }
 

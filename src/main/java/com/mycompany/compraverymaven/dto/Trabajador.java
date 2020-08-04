@@ -58,7 +58,7 @@ public class Trabajador extends Persona {
     public void setTienda(Tienda tienda) {
         this.tienda = tienda;
     }
+
     
-  
-    
+ 
 }

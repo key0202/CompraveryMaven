@@ -85,7 +85,7 @@ public class Admin_Menu_Empleados extends javax.swing.JInternalFrame {
         jLabel1.setText("Cargo  :");
         jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 130, 100, -1));
 
-        cmbCargoEmpleado.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Seleccione un cargo", "Almacenero", "Repartidor" }));
+        cmbCargoEmpleado.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Seleccione cargo", "Administrador", "Repartidor", "Almacenero" }));
         cmbCargoEmpleado.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 cmbCargoEmpleadoActionPerformed(evt);

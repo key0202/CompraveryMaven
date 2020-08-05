@@ -85,5 +85,8 @@ public interface DaoTrabajador {
     default List<Proveedor> Cargar_comboProveedores(){
          throw new UnsupportedOperationException("No implementado"); 
     }
+    default List<Producto> Cargar_categoriaProducto(){
+         throw new UnsupportedOperationException("No implementado"); 
+    }
 
 }

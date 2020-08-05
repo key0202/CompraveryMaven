@@ -1,6 +1,7 @@
 package com.mycompany.compraverymaven.dto;
 
 public class Empresa {
+
     private Integer id;
     private String razonsocial;
     private String ruc;
@@ -80,10 +81,14 @@ public class Empresa {
 
     @Override
     public String toString() {
-        return  razonsocial;
+        StringBuilder informacion = new StringBuilder();
+        informacion.append("Id:").append(id)
+                .append("\nRazon social: ").append(razonsocial)
+                .append("\nruc: ").append(ruc)
+                .append("\nDireccion: ").append(direccion)
+                .append("\nTelefono: ").append(telefono).
+                append("\nCorreo:").append(correo);
+        return informacion.toString();
     }
-    
-    
-    
-    
+
 }

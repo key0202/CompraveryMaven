@@ -145,6 +145,29 @@ public class TrabajadorImp implements DaoTrabajador{
         }
         return resultado;
     }
+    //Metodo para cargar el comboBox con las categorias de productos
+    @Override
+    public List<Producto> Cargar_categoriaProducto(){
+        List<Producto>categoria=null;
+        try{
+            Connection cn=conecta.conexionDB();
+            CallableStatement procedure=cn.prepareCall("{call SP_ListarCategorias()}");
+            ResultSet rs=procedure.executeQuery();
+            categoria=new ArrayList<>();
+            while(rs.next()){
+                Producto produc=new Producto();
+                produc.setCategoria(rs.getString(1));
+                categoria.add(produc);
+            }
+            rs.close();
+            
+        }catch(Exception e){
+            e.getMessage();
+        }
+        return categoria;
+    }
+    //Metodo para mostrar los trabajadores por cargos
+    @Override
     public List<Trabajador> listar_trabajadores(String cargo){
         List<Trabajador>mis_empleados=null;
         try{
@@ -169,4 +192,31 @@ public class TrabajadorImp implements DaoTrabajador{
         }
         return mis_empleados;
     }
+    //Metodo para mostrar los proveedores por alguna categoria de producto:
+    @Override
+    public List<Proveedor> mostrar_proveedores(String categoria){
+        List<Proveedor>mis_proveedores=null;
+        try{
+            Connection cn=conecta.conexionDB();
+            CallableStatement procedur=cn.prepareCall("{(call SP_ListarProveedores(?)}");
+            procedur.setString(1, categoria);
+            ResultSet rs=procedur.executeQuery();
+            mis_proveedores=new ArrayList<>();
+            while(rs.next()){
+                Proveedor prove=new Proveedor();
+                prove.setId(rs.getInt(1));
+                prove.setRazonsocial(rs.getString(2));
+                prove.setRuc(rs.getString(3));
+                prove.setDireccion(rs.getString(4));
+                prove.setTelefono(rs.getString(5));
+                prove.setCorreo(rs.getString(6));
+                mis_proveedores.add(prove);
+            }
+            rs.close();
+        }catch(Exception e){
+            e.getMessage();
+        }
+        return mis_proveedores;
+    }
+    
 }

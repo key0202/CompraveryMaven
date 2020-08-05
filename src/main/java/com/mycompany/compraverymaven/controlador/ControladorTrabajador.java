@@ -24,6 +24,7 @@ import javax.swing.JInternalFrame;
 import javax.swing.JOptionPane;
 import javax.swing.filechooser.FileNameExtensionFilter;
 import javax.swing.plaf.basic.BasicInternalFrameUI;
+import javax.swing.table.DefaultTableModel;
 
 public class ControladorTrabajador {
 
@@ -34,6 +35,8 @@ public class ControladorTrabajador {
 
     private Trabajador trabajador = null;
     private Integer cantidadProveedor;
+    private Integer cantidadCategoria;
+    private Integer cantidadCargos;
 
     private final Admin_Menu_Almacen admin_menu_almacen = new Admin_Menu_Almacen();
     private final Admin_Menu_AtencionPedido admin_menu_atencionpedido = new Admin_Menu_AtencionPedido();
@@ -92,12 +95,13 @@ public class ControladorTrabajador {
         admin_menu_comprasestado.getBtnImprimir().addActionListener(e -> reporteexcel("comprasestado"));
 
         admin_menu_empleados.getBtnAgregarEmpleado().addActionListener(e -> abrir_frame("anadirempleado"));
-       // admin_menu_empleados.getCmbCargoEmpleado().addActionListener(e -> comboconsulta("empleados"));
-       
+        admin_menu_empleados.getCmbCargoEmpleado().addItemListener(e -> comboconsulta("empleados"));
+
         admin_menu_ofertasprecios.getBtnGuardar().addActionListener(e -> actualizar("producto"));
         admin_menu_ofertasprecios.getBtnGuardarOferta().addActionListener(e -> guardaroferta());
 
-        admin_menu_proveedores.getBtnAgregarProovedor().addActionListener(e -> abrir_frame("anadirproveedor"));
+       admin_menu_proveedores.getBtnAgregarProovedor().addActionListener(e -> abrir_frame("anadirproveedor"));
+       admin_menu_proveedores.getCmbCategoria().addActionListener(e -> comboconsulta("proveedores"));
 
         admin_menu_proveedores_compras.getBtnAgregar().addActionListener(e -> agregarproductoAtabla());
         admin_menu_proveedores_compras.getBtnComprar().addActionListener(e -> comprarproductos());
@@ -105,31 +109,6 @@ public class ControladorTrabajador {
         admin_menu_ventas.getBtnGenerarResumen().addActionListener(e -> reporteexcel("ventas"));
 
     }
-    
-    
-  /*
-    private void comboconsulta(String ventana) {
-
-        switch (ventana) {
-
-            case "empleados":
-                for (int i = 0; i <= cantidad_salones; i++) {
-                    if (notita.getCmbSalones().getSelectedIndex() == i) {
-                        limpiar_tabla(ventana);
-                        notita.getBtnExportar().setEnabled(false);
-                        notita.getCmbTipoNota().setSelectedIndex(0);
-                        if (i == 0) {
-                            notita.getCmbTipoNota().setEnabled(false);
-                        } else {
-                            notita.getCmbTipoNota().setEnabled(true);
-                        }
-                    }
-                }
-                break;
-          
-        }
-
-    }*/
 
     private void anadir(String opcion) {
         //crear un nuevo registro
@@ -193,7 +172,6 @@ public class ControladorTrabajador {
                 admin_anadir_productos.getCmbCategoria().setSelectedIndex(0);
                 admin_anadir_productos.getTxtruta().setText("");
                 admin_anadir_productos.getLblImagen().setText("");
-              
 
                 break;
             case "proveedores":
@@ -276,6 +254,7 @@ public class ControladorTrabajador {
         } catch (NullPointerException e) {
             JOptionPane.showMessageDialog(null, "INTENTE NUEVAMENTE", "ERROR DE LOGIN",
                     JOptionPane.ERROR_MESSAGE);
+           
         }
 
     }
@@ -286,8 +265,10 @@ public class ControladorTrabajador {
         admin_menu_perfil.getLblDni().setText(trabajador.getDni());
         admin_menu_perfil.getLblCelular().setText(trabajador.getCelular());
         admin_menu_perfil.getLblCargo().setText(trabajador.getCargo());
+        
+        //admin_menu_empleados.getCmbCargoEmpleado().setSelectedIndex(0);
 
-        //cargando los comboBox de los otros frames:
+        //cargando los comboBox con los proveedores:
         String opcion = "Seleccione un proveedor";
         admin_anadir_productos.getCmbProveedor().removeAll();
         admin_anadir_productos.getCmbProveedor().addItem(opcion);
@@ -295,9 +276,159 @@ public class ControladorTrabajador {
         List<Proveedor> prove = daotrabajador.Cargar_comboProveedores();
         cantidadProveedor = prove.size();
         for (int i = 0; i < cantidadProveedor; i++) {
-            admin_anadir_productos.getCmbProveedor().addItem(String.valueOf(prove.get(i)));
+            // admin_anadir_productos.getCmbProveedor().addItem(String.valueOf(prove.get(i)));
+            admin_anadir_productos.getCmbProveedor().addItem(prove.get(i).getRazonsocial());
         }
-        
+
+        //cargando los comboBox de categoriaProductos:
+       String catego = "Seleccione una categoria";
+        admin_menu_proveedores.getCmbCategoria().removeAll();
+        admin_menu_ventas.getCmbCategoria().removeAll();
+        admin_menu_ofertasprecios.getCmbCategoria().removeAll();
+        admin_menu_proveedores.getCmbCategoria().addItem(catego);
+        admin_menu_ventas.getCmbCategoria().addItem(catego);
+        admin_menu_ofertasprecios.getCmbCategoria().addItem(catego);
+
+        List<Producto> produc = daotrabajador.Cargar_categoriaProducto();
+        cantidadCategoria = produc.size();
+        for (int i = 0; i < cantidadCategoria; i++) {
+            admin_menu_proveedores.getCmbCategoria().addItem(produc.get(i).getCategoria());
+            admin_menu_ventas.getCmbCategoria().addItem(produc.get(i).getCategoria());
+            admin_menu_ofertasprecios.getCmbCategoria().addItem(produc.get(i).getCategoria());
+        }
+
+        //codigo abel:
+       /* admin_menu_empleados.getCmbCargoEmpleado().removeAll();
+        admin_menu_empleados.getCmbCargoEmpleado().addItem("Seleccione una opción");
+        admin_menu_empleados.getCmbCargoEmpleado().addItem("Administrador");
+        admin_menu_empleados.getCmbCargoEmpleado().addItem("Almacenero");
+        admin_menu_empleados.getCmbCargoEmpleado().addItem("Repartidor");
+        cantidadCargos = admin_menu_empleados.getCmbCargoEmpleado().getItemCount();*/
+
+
+    }
+
+    //Codigo Abel:
+    private void comboconsulta(String opcion) {
+
+        switch (opcion) {
+            case "empleados":
+
+                if (admin_menu_empleados.getCmbCargoEmpleado().getSelectedIndex() == 0) {
+                    limpiar_tabla(opcion);
+                } else {
+                    cargar_tabla(opcion);
+                }
+
+                break;
+            case "proveedores":
+                
+                    if (admin_menu_proveedores.getCmbCategoria().getSelectedIndex() == 0) { 
+                        limpiar_tabla(opcion);                                                             
+                    } else {
+                        cargar_tabla(opcion);
+                    
+                }
+              
+                break;
+          
+
+            case "asistencias":
+//                for (int i = 0; i <= cantidad_salones; i++) {
+//                    if (listita.getCmbSalon().getSelectedIndex() == 0) {
+//                        listita.getBtnExportar().setEnabled(false);
+//                    } else {
+//                                               
+//                        listita.getBtnExportar().setEnabled(true);
+//                        cargar_tabla(ventana);
+//                    }
+//                }
+                break;
+            default:
+                break;
+        }
+
+    }
+
+    private void cargar_tabla(String opcion) {
+        switch (opcion) {
+            case "empleados":
+                String cargo = admin_menu_empleados.getCmbCargoEmpleado().getSelectedItem().toString();
+                List<Trabajador> trab = daotrabajador.listar_trabajadores(cargo);
+                DefaultTableModel modelo_local = (DefaultTableModel) admin_menu_empleados.getTablaEmpleados().getModel();
+                modelo_local.setNumRows(0);
+                trab.forEach((i) -> {
+                    modelo_local.addRow(new Object[]{
+                        i.getNombre(),
+                        i.getDni(),
+                        i.getCelular(),
+                        i.getDireccion(),
+                        i.getFecha_ingreso(),
+                        i.getFecha_cese()
+                    });
+                });
+                break;
+            case "proveedores":
+                
+                String catego = admin_menu_proveedores.getCmbCategoria().getSelectedItem().toString();
+                List<Proveedor> traba2 = daotrabajador.mostrar_proveedores(catego);
+                DefaultTableModel modelo_local2 = (DefaultTableModel) admin_menu_proveedores.getTablaProveedores().getModel();
+                modelo_local2.setNumRows(0);
+                traba2.forEach((i) -> {
+                    modelo_local2.addRow(new Object[]{
+                        i.getId(),
+                        i.getRazonsocial(),
+                        i.getRuc(),
+                        i.getDireccion(),
+                        i.getTelefono(),
+                        i.getCorreo()
+                    });
+                });
+
+                break;
+            case "opcion3":
+
+                break;
+            default:
+                throw new AssertionError();
+        }
+
+    }
+
+    private void limpiar_tabla(String opcion) {
+        DefaultTableModel modelillo = new DefaultTableModel();
+        while (modelillo.getRowCount() > 0) {
+            modelillo.removeRow(0);
+        }
+
+        switch (opcion) {
+            case "empleados":
+                modelillo.addColumn("Nombre y Apellidos");
+                modelillo.addColumn("DNI");
+                modelillo.addColumn("Celular");
+                modelillo.addColumn("Direccion");
+                modelillo.addColumn("Fecha_ingreso");
+                modelillo.addColumn("Fecha_cese");
+
+                admin_menu_empleados.getTablaEmpleados().setModel(modelillo);
+
+                break;
+            case "proveedores":
+                modelillo.addColumn("Id");
+                modelillo.addColumn("Razon Social");
+                modelillo.addColumn("RUC");
+                modelillo.addColumn("Direccion");
+                modelillo.addColumn("Telefono");
+                modelillo.addColumn("Correo");
+                admin_menu_proveedores.getTablaProveedores().setModel(modelillo);
+
+                break;
+            case "opcion3":
+
+                break;
+            default:
+                throw new AssertionError();
+        }
 
     }
 
@@ -317,7 +448,6 @@ public class ControladorTrabajador {
 
                 cargarFrame(admin_menu_empleados, admin_menu.getJdpContenedor());
                 admin_menu_empleados.setVisible(true);
-                
 
                 break;
             case "ofertas":

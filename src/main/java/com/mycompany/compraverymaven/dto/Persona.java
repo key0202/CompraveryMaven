@@ -68,5 +68,13 @@ public class Persona {
     public void setCelular(String celular) {
         this.celular = celular;
     }
+      public String getPersona() {
+        StringBuilder informacion = new StringBuilder();
+        informacion.append("nombre: ").append(nombre)
+                .append("\ncelular: ").append(celular)
+                .append("\nDni: ").append(dni)
+                .append("\nDireccion: ").append(direccion);                       
+        return informacion.toString();
+    }
 
 }

@@ -3,6 +3,8 @@ import com.mycompany.compraverymaven.biblioteca.*;
 import com.mycompany.compraverymaven.dto.*;
 import java.sql.*;
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -43,7 +45,7 @@ public class TrabajadorImp implements DaoTrabajador{
   public String registrar_empleado(Trabajador trabajador) {
        try{
             Connection cn=conecta.conexionDB();
-            CallableStatement procedur=cn.prepareCall("{call SP_AgregarTrabajador(?,?,?,?,?,?,?}");
+            CallableStatement procedur=cn.prepareCall("{call SP_AgregarTrabajador(?,?,?,?,?,?,?)}");
             procedur.setString(1,trabajador.getNombre());
             procedur.setString(2,trabajador.getDni());
             procedur.setString(3,trabajador.getDireccion());
@@ -66,7 +68,7 @@ public class TrabajadorImp implements DaoTrabajador{
     public void registrar_proveedor(Proveedor proveedor){
         try{
             Connection cn=conecta.conexionDB();
-            CallableStatement procedur=cn.prepareCall("{call SP_AgregarProveedor(?,?,?,?,?}");
+            CallableStatement procedur=cn.prepareCall("{call SP_AgregarProveedor(?,?,?,?,?)}");
             procedur.setString(1,proveedor.getRazonsocial());
             procedur.setString(2,proveedor.getRuc());
             procedur.setString(3,proveedor.getDireccion());
@@ -81,15 +83,15 @@ public class TrabajadorImp implements DaoTrabajador{
     //Tarea del administrador para añadir productos
     @Override
     public void registrar_producto(Producto producto){
-        Proveedor provedorcito=new Proveedor();
+       
         try{
             Connection cn=conecta.conexionDB();
             CallableStatement procedur=cn.prepareCall("{call SP_AgregarProducto(?,?,?,?,?)}");
-            procedur.setString(1,String.valueOf(producto.getProveedor()));
+            procedur.setString(1,producto.getProveedor());
             procedur.setString(2,producto.getNombre());
             procedur.setString(3,producto.getDescripcion());
             procedur.setString(4,producto.getCategoria());
-            procedur.setBlob(5,producto.getImagen());
+            procedur.setBytes(5,producto.getImagen());
             ResultSet rs=procedur.executeQuery();
             
         }catch(Exception e){
@@ -122,5 +124,49 @@ public class TrabajadorImp implements DaoTrabajador{
      @Override
     public String getMessage() {
         return mensaje;
+    }
+    //Metodo para cargar el comboBox con los proveedores
+    @Override
+    public List<Proveedor> Cargar_comboProveedores(){
+        List<Proveedor>resultado=null;
+        try{
+            Connection cn=conecta.conexionDB();
+            CallableStatement procedure=cn.prepareCall("{call SP_ComboBox_Proveedores()}");
+            ResultSet rs=procedure.executeQuery();
+            resultado=new ArrayList<>();
+            while(rs.next()){
+                Proveedor provedorcito=new Proveedor();
+                provedorcito.setRazonsocial(rs.getString(1));
+                resultado.add(provedorcito);
+            }
+            rs.close();
+        }catch(Exception e){
+            e.getMessage();
+        }
+        return resultado;
+    }
+    public List<Trabajador> listar_trabajadores(String cargo){
+        List<Trabajador>mis_empleados=null;
+        try{
+            Connection cn=conecta.conexionDB();
+            CallableStatement procedur=cn.prepareCall("{call SP_ListarEmpleados(?)}");
+            procedur.setString(1,cargo);
+            ResultSet rs=procedur.executeQuery();
+            mis_empleados=new ArrayList<>();
+            while(rs.next()){
+                Trabajador trabajador=new Trabajador();
+                trabajador.setNombre(rs.getString(1));
+                trabajador.setDni(rs.getString(2));
+                trabajador.setCelular(rs.getString(3));
+                trabajador.setDireccion(rs.getString(4));
+                trabajador.setFecha_ingreso(LocalDate.parse(rs.getString(5)));
+                trabajador.setFecha_cese(LocalDate.parse(rs.getString(6)));
+                mis_empleados.add(trabajador);
+            }
+            rs.close();
+        }catch(Exception e){
+            e.getMessage();
+        }
+        return mis_empleados;
     }
 }

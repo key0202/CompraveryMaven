@@ -82,5 +82,8 @@ public interface DaoTrabajador {
     default public String getMessage(){
         throw new UnsupportedOperationException("No implementado"); 
     }
+    default List<Proveedor> Cargar_comboProveedores(){
+         throw new UnsupportedOperationException("No implementado"); 
+    }
 
 }

@@ -77,6 +77,11 @@ public class Empresa {
     public void setEmpleado(Trabajador empleado) {
         this.empleado = empleado;
     }
+
+    @Override
+    public String toString() {
+        return  razonsocial;
+    }
     
     
     

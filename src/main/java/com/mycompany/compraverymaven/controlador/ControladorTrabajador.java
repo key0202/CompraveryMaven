@@ -2,15 +2,27 @@ package com.mycompany.compraverymaven.controlador;
 
 import com.mycompany.compraverymaven.vista.*;
 import com.mycompany.compraverymaven.dao.*;
+import com.mycompany.compraverymaven.dto.Producto;
+import com.mycompany.compraverymaven.dto.Proveedor;
 import com.mycompany.compraverymaven.dto.Trabajador;
 import java.awt.Dimension;
+import java.awt.image.BufferedImage;
 import java.beans.PropertyVetoException;
+import java.io.ByteArrayInputStream;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.InputStream;
 import java.sql.Date;
 import java.text.SimpleDateFormat;
 import java.time.LocalDate;
+import java.util.List;
+import javax.imageio.ImageIO;
+import javax.swing.ImageIcon;
 import javax.swing.JDesktopPane;
+import javax.swing.JFileChooser;
 import javax.swing.JInternalFrame;
 import javax.swing.JOptionPane;
+import javax.swing.filechooser.FileNameExtensionFilter;
 import javax.swing.plaf.basic.BasicInternalFrameUI;
 
 public class ControladorTrabajador {
@@ -21,6 +33,7 @@ public class ControladorTrabajador {
     private final Admin_Login admin_login;
 
     private Trabajador trabajador = null;
+    private Integer cantidadProveedor;
 
     private final Admin_Menu_Almacen admin_menu_almacen = new Admin_Menu_Almacen();
     private final Admin_Menu_AtencionPedido admin_menu_atencionpedido = new Admin_Menu_AtencionPedido();
@@ -49,15 +62,15 @@ public class ControladorTrabajador {
 
     public void InitController() {
 
-       admin_anadir_empleados.getBtnAgregar().addActionListener(e -> anadir("empleados"));     
-       admin_anadir_empleados.getBtnRegresar().addActionListener(e -> regresar("empleados"));
+        admin_anadir_empleados.getBtnAgregar().addActionListener(e -> anadir("empleados"));
+        admin_anadir_empleados.getBtnRegresar().addActionListener(e -> regresar("empleados"));
 
-        admin_anadir_productos.getBtnRegresar().addActionListener(e -> anadir("producto"));
-        admin_anadir_productos.getBtnAgregar().addActionListener(e -> regresar("producto"));
+        admin_anadir_productos.getBtnRegresar().addActionListener(e -> regresar("producto"));
+        admin_anadir_productos.getBtnAgregar().addActionListener(e -> anadir("producto"));
         admin_anadir_productos.getBtnImagen().addActionListener(e -> cargarimagen());
 
-        admin_anadir_proveedores.getBtnAgregar().addActionListener(e -> regresar("proveedores"));
-        admin_anadir_proveedores.getBtnRegresar().addActionListener(e -> anadir("proveedores"));
+        admin_anadir_proveedores.getBtnAgregar().addActionListener(e -> anadir("proveedores"));
+        admin_anadir_proveedores.getBtnRegresar().addActionListener(e -> regresar("proveedores"));
 
         admin_login.getBtnIniciarSesion().addActionListener(e -> login());
 
@@ -79,7 +92,8 @@ public class ControladorTrabajador {
         admin_menu_comprasestado.getBtnImprimir().addActionListener(e -> reporteexcel("comprasestado"));
 
         admin_menu_empleados.getBtnAgregarEmpleado().addActionListener(e -> abrir_frame("anadirempleado"));
-
+       // admin_menu_empleados.getCmbCargoEmpleado().addActionListener(e -> comboconsulta("empleados"));
+       
         admin_menu_ofertasprecios.getBtnGuardar().addActionListener(e -> actualizar("producto"));
         admin_menu_ofertasprecios.getBtnGuardarOferta().addActionListener(e -> guardaroferta());
 
@@ -91,13 +105,38 @@ public class ControladorTrabajador {
         admin_menu_ventas.getBtnGenerarResumen().addActionListener(e -> reporteexcel("ventas"));
 
     }
+    
+    
+  /*
+    private void comboconsulta(String ventana) {
+
+        switch (ventana) {
+
+            case "empleados":
+                for (int i = 0; i <= cantidad_salones; i++) {
+                    if (notita.getCmbSalones().getSelectedIndex() == i) {
+                        limpiar_tabla(ventana);
+                        notita.getBtnExportar().setEnabled(false);
+                        notita.getCmbTipoNota().setSelectedIndex(0);
+                        if (i == 0) {
+                            notita.getCmbTipoNota().setEnabled(false);
+                        } else {
+                            notita.getCmbTipoNota().setEnabled(true);
+                        }
+                    }
+                }
+                break;
+          
+        }
+
+    }*/
 
     private void anadir(String opcion) {
         //crear un nuevo registro
         switch (opcion) {
             case "empleados":
                 Trabajador registrar_empleados = new Trabajador();
-                
+
                 registrar_empleados.setNombre(admin_anadir_empleados.getTxtApellidos().getText());
                 registrar_empleados.setDni(admin_anadir_empleados.getTxtDNI().getText());
                 registrar_empleados.setDireccion(admin_anadir_empleados.getTxtDireccion().getText());
@@ -112,7 +151,7 @@ public class ControladorTrabajador {
 
                 JOptionPane.showMessageDialog(null, "Empleado registrado correctamente");
                 daotrabajador.registrar_empleado(registrar_empleados);
-                
+
                 admin_anadir_empleados.getTxtApellidos().setText("");
                 admin_anadir_empleados.getTxtDNI().setText("");
                 admin_anadir_empleados.getTxtDireccion().setText("");
@@ -123,12 +162,56 @@ public class ControladorTrabajador {
 
                 System.out.println(registrar_empleados.toString());
 
-              
                 break;
             case "producto":
+                Producto producto_nuevo = new Producto();
+
+                producto_nuevo.setNombre(admin_anadir_productos.getTxtNombreProducto().getText());
+                producto_nuevo.setDescripcion(admin_anadir_productos.getTxaDescripcion().getText());
+                producto_nuevo.setProveedor(admin_anadir_productos.getCmbProveedor().getSelectedItem().toString());
+
+                producto_nuevo.setCategoria(admin_anadir_productos.getCmbCategoria().getSelectedItem().toString());
+
+                File ruta = new File(admin_anadir_productos.getTxtruta().getText());
+
+                try {
+
+                    byte[] icono = new byte[(int) ruta.length()];
+                    InputStream input = new FileInputStream(ruta);
+                    input.read(icono);
+                    producto_nuevo.setImagen(icono);
+
+                } catch (Exception ex) {
+                    JOptionPane.showMessageDialog(null, "No se ha guardado la imagen");
+                }
+                JOptionPane.showMessageDialog(null, "Producto registrado correctamente");
+                daotrabajador.registrar_producto(producto_nuevo);
+                //borrando los datos para el proximo ingreso:
+                admin_anadir_productos.getTxtNombreProducto().setText("");
+                admin_anadir_productos.getTxaDescripcion().setText("");
+                admin_anadir_productos.getCmbProveedor().setSelectedIndex(0);
+                admin_anadir_productos.getCmbCategoria().setSelectedIndex(0);
+                admin_anadir_productos.getTxtruta().setText("");
+                admin_anadir_productos.getLblImagen().setText("");
+              
 
                 break;
             case "proveedores":
+                Proveedor proveedorcito = new Proveedor();
+                proveedorcito.setRazonsocial(admin_anadir_proveedores.getTxtRazonSocial().getText());
+                proveedorcito.setDireccion(admin_anadir_proveedores.getTxtDireccion().getText());
+                proveedorcito.setTelefono(admin_anadir_proveedores.getTxtTelefono().getText());
+                proveedorcito.setCorreo(admin_anadir_proveedores.getTxtCorreo().getText());
+                proveedorcito.setRuc(admin_anadir_proveedores.getTxtRUC().getText());
+
+                JOptionPane.showMessageDialog(null, "Proveedor registrado correctamente");
+                daotrabajador.registrar_proveedor(proveedorcito);
+
+                admin_anadir_proveedores.getTxtRazonSocial().setText("");
+                admin_anadir_proveedores.getTxtDireccion().setText("");
+                admin_anadir_proveedores.getTxtTelefono().setText("");
+                admin_anadir_proveedores.getTxtCorreo().setText("");
+                admin_anadir_proveedores.getTxtRUC().setText("");
 
                 break;
             default:
@@ -136,18 +219,20 @@ public class ControladorTrabajador {
         }
 
     }
-  
 
     private void regresar(String opcion) {
         //todos los que usen este metodo van a retornar al menu principal
         switch (opcion) {
             case "empleados":
+                admin_anadir_empleados.dispose();
 
                 break;
             case "producto":
+                admin_anadir_productos.dispose();
 
                 break;
             case "proveedores":
+                admin_anadir_proveedores.dispose();
 
                 break;
             default:
@@ -158,6 +243,16 @@ public class ControladorTrabajador {
 
     private void cargarimagen() {
         //asignar una imagen para el producto
+        JFileChooser j = new JFileChooser();
+        FileNameExtensionFilter fil = new FileNameExtensionFilter("JPG, PNG & GIF", "jpg", "png", "gif");
+        j.setFileFilter(fil);
+
+        int s = j.showOpenDialog(admin_anadir_productos);
+        if (s == JFileChooser.APPROVE_OPTION) {
+            String ruta = j.getSelectedFile().getAbsolutePath();
+            admin_anadir_productos.getTxtruta().setText(ruta);
+            admin_anadir_productos.getLblImagen().setIcon(new ImageIcon(ruta));
+        }
 
     }
 
@@ -191,6 +286,19 @@ public class ControladorTrabajador {
         admin_menu_perfil.getLblDni().setText(trabajador.getDni());
         admin_menu_perfil.getLblCelular().setText(trabajador.getCelular());
         admin_menu_perfil.getLblCargo().setText(trabajador.getCargo());
+
+        //cargando los comboBox de los otros frames:
+        String opcion = "Seleccione un proveedor";
+        admin_anadir_productos.getCmbProveedor().removeAll();
+        admin_anadir_productos.getCmbProveedor().addItem(opcion);
+
+        List<Proveedor> prove = daotrabajador.Cargar_comboProveedores();
+        cantidadProveedor = prove.size();
+        for (int i = 0; i < cantidadProveedor; i++) {
+            admin_anadir_productos.getCmbProveedor().addItem(String.valueOf(prove.get(i)));
+        }
+        
+
     }
 
     private void abrir_internal(String opcion) {
@@ -209,6 +317,7 @@ public class ControladorTrabajador {
 
                 cargarFrame(admin_menu_empleados, admin_menu.getJdpContenedor());
                 admin_menu_empleados.setVisible(true);
+                
 
                 break;
             case "ofertas":
@@ -218,12 +327,16 @@ public class ControladorTrabajador {
 
                 break;
             case "proveedores":
+                cargarFrame(admin_menu_proveedores, admin_menu.getJdpContenedor());
+                admin_menu_proveedores.setVisible(true);
 
                 break;
             case "ventas":
 
                 break;
             case "productos":
+
+                admin_anadir_productos.setVisible(true);
 
                 break;
             default:
@@ -244,6 +357,7 @@ public class ControladorTrabajador {
 
                 break;
             case "anadirproveedor":
+                admin_anadir_proveedores.setVisible(true);
 
                 break;
             default:

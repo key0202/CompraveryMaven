@@ -198,7 +198,7 @@ public class TrabajadorImp implements DaoTrabajador{
         List<Proveedor>mis_proveedores=null;
         try{
             Connection cn=conecta.conexionDB();
-            CallableStatement procedur=cn.prepareCall("{(call SP_ListarProveedores(?)}");
+            CallableStatement procedur=cn.prepareCall("{call SP_ListarProveedores(?)}");
             procedur.setString(1, categoria);
             ResultSet rs=procedur.executeQuery();
             mis_proveedores=new ArrayList<>();

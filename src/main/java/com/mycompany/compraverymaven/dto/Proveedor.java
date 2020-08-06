@@ -4,7 +4,7 @@ public class Proveedor extends Empresa{
 
     @Override
     public String toString() {
-        return super.toString();
+        return super.getEmpresa();
     }
     
     

@@ -79,11 +79,11 @@ public class Empresa {
         this.empleado = empleado;
     }
 
-    @Override
-    public String toString() {
+  
+    public String getEmpresa() {
         StringBuilder informacion = new StringBuilder();
         informacion.append("Id:").append(id)
-                .append("\nRazon social: ").append(razonsocial)
+                .append("\nRazon social:").append(razonsocial)
                 .append("\nruc: ").append(ruc)
                 .append("\nDireccion: ").append(direccion)
                 .append("\nTelefono: ").append(telefono).

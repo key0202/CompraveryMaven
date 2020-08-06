@@ -107,6 +107,7 @@ public class ControladorTrabajador {
         admin_menu_proveedores_compras.getBtnComprar().addActionListener(e -> comprarproductos());
 
         admin_menu_ventas.getBtnGenerarResumen().addActionListener(e -> reporteexcel("ventas"));
+        
 
     }
 

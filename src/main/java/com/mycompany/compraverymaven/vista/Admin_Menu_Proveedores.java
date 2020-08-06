@@ -2,6 +2,7 @@ package com.mycompany.compraverymaven.vista;
 
 import javax.swing.JButton;
 import javax.swing.JComboBox;
+import javax.swing.JMenuItem;
 import javax.swing.JTable;
 
 public class Admin_Menu_Proveedores extends javax.swing.JInternalFrame {
@@ -22,6 +23,8 @@ public class Admin_Menu_Proveedores extends javax.swing.JInternalFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jPopupMenu1 = new javax.swing.JPopupMenu();
+        jMenuProductosProveedor = new javax.swing.JMenuItem();
         jPanel1 = new javax.swing.JPanel();
         jPanel2 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
@@ -32,26 +35,37 @@ public class Admin_Menu_Proveedores extends javax.swing.JInternalFrame {
         jLabel2 = new javax.swing.JLabel();
         btnAgregarProovedor = new javax.swing.JButton();
 
+        jMenuProductosProveedor.setText("Comprar productos");
+        jPopupMenu1.add(jMenuProductosProveedor);
+
         jPanel2.setBackground(new java.awt.Color(255, 255, 255));
         jPanel2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel1.setText("Categoría");
         jPanel2.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(22, 117, -1, -1));
 
-        cmbCategoria.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
         jPanel2.add(cmbCategoria, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 110, 200, -1));
 
         tablaProveedores.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null}
             },
             new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4"
+                "Razon Social", "Ruc", "Direccion", "Telefono", "Correo"
             }
-        ));
+        ) {
+            Class[] types = new Class [] {
+                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
+            };
+
+            public Class getColumnClass(int columnIndex) {
+                return types [columnIndex];
+            }
+        });
+        tablaProveedores.setComponentPopupMenu(jPopupMenu1);
         jScrollPane1.setViewportView(tablaProveedores);
 
         jPanel2.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(22, 212, 494, 156));
@@ -119,6 +133,10 @@ public class Admin_Menu_Proveedores extends javax.swing.JInternalFrame {
         return btnAgregarProovedor;
     }
 
+    public JMenuItem getjMenuProductosProveedor() {
+        return jMenuProductosProveedor;
+    }
+
 
     public JComboBox<String> getCmbCategoria() {
         return cmbCategoria;
@@ -135,9 +153,11 @@ public class Admin_Menu_Proveedores extends javax.swing.JInternalFrame {
     private javax.swing.JComboBox<String> cmbCategoria;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JMenuItem jMenuProductosProveedor;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
+    private javax.swing.JPopupMenu jPopupMenu1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable tablaProveedores;
     // End of variables declaration//GEN-END:variables

@@ -1,5 +1,13 @@
 package com.mycompany.compraverymaven.vista;
 
+
+import javax.swing.JDesktopPane;
+
+/**
+ *
+ * @author DAVID
+ */
+
 public class Almacenero_Menu extends javax.swing.JFrame {
 
     /**
@@ -29,23 +37,27 @@ public class Almacenero_Menu extends javax.swing.JFrame {
 
         jButton1.setText("PERFIL");
         jButton1.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
-        getContentPane().add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 40, 130, 105));
+        getContentPane().add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 80, 130, 100));
 
         jButton2.setText("INVENTARIO");
         jButton2.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
-        getContentPane().add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 140, 130, 105));
+        getContentPane().add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 190, 130, 110));
 
         jButton3.setText("CERRAR SESION");
         jButton3.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
-        getContentPane().add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 240, 130, 105));
+        getContentPane().add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 310, 130, 110));
 
         jSeparator1.setOrientation(javax.swing.SwingConstants.VERTICAL);
         jSeparator1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 255)));
         getContentPane().add(jSeparator1, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 0, 0, 410));
-        getContentPane().add(jDesktopPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 0, 650, 410));
+        getContentPane().add(jDesktopPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 0, 540, 440));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    public JDesktopPane getjDesktopPane1() {
+        return jDesktopPane1;
+    }
 
     /**
      * @param args the command line arguments

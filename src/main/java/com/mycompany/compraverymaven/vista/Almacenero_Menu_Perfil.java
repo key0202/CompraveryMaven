@@ -5,6 +5,8 @@
  */
 package com.mycompany.compraverymaven.vista;
 
+import javax.swing.JLabel;
+
 /**
  *
  * @author DAVID
@@ -18,6 +20,27 @@ public class Almacenero_Menu_Perfil extends javax.swing.JInternalFrame {
         initComponents();
     }
 
+    public JLabel getLblDni() {
+        return lblDni;
+    }
+
+    public JLabel getLblCargo() {
+        return lblCargo;
+    }
+
+    public JLabel getLblCell() {
+        return lblCell;
+    }
+
+    public JLabel getLblDireccion() {
+        return lblDireccion;
+    }
+
+    public JLabel getLblName() {
+        return lblName;
+    }
+    
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -29,17 +52,18 @@ public class Almacenero_Menu_Perfil extends javax.swing.JInternalFrame {
 
         jLabel1 = new javax.swing.JLabel();
         almacenero_image = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
-        jLabel5 = new javax.swing.JLabel();
+        lblNa = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
-        jLabel_celular = new javax.swing.JLabel();
-        jLabel_direccion = new javax.swing.JLabel();
-        jLabel_apellido = new javax.swing.JLabel();
-        jLabel_nombre = new javax.swing.JLabel();
+        lblCell = new javax.swing.JLabel();
+        lblDireccion = new javax.swing.JLabel();
+        lblName = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
-        jLabel_cargo = new javax.swing.JLabel();
+        lblCargo = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
+        lblDni = new javax.swing.JLabel();
 
+        setPreferredSize(new java.awt.Dimension(430, 300));
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel1.setFont(new java.awt.Font("Dialog", 1, 24)); // NOI18N
@@ -47,37 +71,27 @@ public class Almacenero_Menu_Perfil extends javax.swing.JInternalFrame {
         getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 30, -1, -1));
 
         almacenero_image.setText("foto");
-        getContentPane().add(almacenero_image, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 80, 130, 120));
+        getContentPane().add(almacenero_image, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 70, 130, 120));
 
-        jLabel2.setText("Nombre:");
-        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 240, -1, -1));
-
-        jLabel5.setText("Apellidos:");
-        getContentPane().add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 280, -1, -1));
+        lblNa.setText("Nombre:");
+        getContentPane().add(lblNa, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 220, -1, -1));
 
         jLabel3.setText("Direccion:");
-        getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 320, -1, -1));
+        getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 290, -1, -1));
 
         jLabel4.setText("Celular:");
-        getContentPane().add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 360, -1, -1));
-
-        jLabel_celular.setText("jLabel9");
-        getContentPane().add(jLabel_celular, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 360, -1, -1));
-
-        jLabel_direccion.setText("jLabel8");
-        getContentPane().add(jLabel_direccion, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 320, -1, -1));
-
-        jLabel_apellido.setText("jLabel6");
-        getContentPane().add(jLabel_apellido, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 280, -1, -1));
-
-        jLabel_nombre.setText("jLabel6");
-        getContentPane().add(jLabel_nombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 240, -1, -1));
+        getContentPane().add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 320, -1, -1));
+        getContentPane().add(lblCell, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 320, 150, 20));
+        getContentPane().add(lblDireccion, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 290, 150, 20));
+        getContentPane().add(lblName, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 220, 150, 20));
 
         jLabel6.setText("Cargo:");
-        getContentPane().add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 400, -1, -1));
+        getContentPane().add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 350, -1, -1));
+        getContentPane().add(lblCargo, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 350, 150, 20));
 
-        jLabel_cargo.setText("jLabel10");
-        getContentPane().add(jLabel_cargo, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 400, -1, -1));
+        jLabel2.setText("Dni:");
+        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 250, -1, -1));
+        getContentPane().add(lblDni, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 250, 150, 20));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -89,12 +103,12 @@ public class Almacenero_Menu_Perfil extends javax.swing.JInternalFrame {
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
-    private javax.swing.JLabel jLabel_apellido;
-    private javax.swing.JLabel jLabel_cargo;
-    private javax.swing.JLabel jLabel_celular;
-    private javax.swing.JLabel jLabel_direccion;
-    private javax.swing.JLabel jLabel_nombre;
+    private javax.swing.JLabel lblCargo;
+    private javax.swing.JLabel lblCell;
+    private javax.swing.JLabel lblDireccion;
+    private javax.swing.JLabel lblDni;
+    private javax.swing.JLabel lblNa;
+    private javax.swing.JLabel lblName;
     // End of variables declaration//GEN-END:variables
 }

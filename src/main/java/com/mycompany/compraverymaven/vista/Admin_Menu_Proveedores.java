@@ -3,6 +3,7 @@ package com.mycompany.compraverymaven.vista;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JMenuItem;
+import javax.swing.JPopupMenu;
 import javax.swing.JTable;
 
 public class Admin_Menu_Proveedores extends javax.swing.JInternalFrame {
@@ -23,7 +24,7 @@ public class Admin_Menu_Proveedores extends javax.swing.JInternalFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jPopupMenu1 = new javax.swing.JPopupMenu();
+        jpmProveedores = new javax.swing.JPopupMenu();
         jMenuProductosProveedor = new javax.swing.JMenuItem();
         jPanel1 = new javax.swing.JPanel();
         jPanel2 = new javax.swing.JPanel();
@@ -36,7 +37,7 @@ public class Admin_Menu_Proveedores extends javax.swing.JInternalFrame {
         btnAgregarProovedor = new javax.swing.JButton();
 
         jMenuProductosProveedor.setText("Comprar productos");
-        jPopupMenu1.add(jMenuProductosProveedor);
+        jpmProveedores.add(jMenuProductosProveedor);
 
         jPanel2.setBackground(new java.awt.Color(255, 255, 255));
         jPanel2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -65,7 +66,7 @@ public class Admin_Menu_Proveedores extends javax.swing.JInternalFrame {
                 return types [columnIndex];
             }
         });
-        tablaProveedores.setComponentPopupMenu(jPopupMenu1);
+        tablaProveedores.setComponentPopupMenu(jpmProveedores);
         jScrollPane1.setViewportView(tablaProveedores);
 
         jPanel2.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(22, 212, 494, 156));
@@ -146,6 +147,10 @@ public class Admin_Menu_Proveedores extends javax.swing.JInternalFrame {
         return tablaProveedores;
     }
 
+    public JPopupMenu getJpmProveedores() {
+        return jpmProveedores;
+    }
+
     
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -157,8 +162,8 @@ public class Admin_Menu_Proveedores extends javax.swing.JInternalFrame {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
-    private javax.swing.JPopupMenu jPopupMenu1;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JPopupMenu jpmProveedores;
     private javax.swing.JTable tablaProveedores;
     // End of variables declaration//GEN-END:variables
 }

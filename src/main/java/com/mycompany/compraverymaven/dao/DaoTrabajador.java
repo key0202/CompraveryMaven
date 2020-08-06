@@ -79,14 +79,23 @@ public interface DaoTrabajador {
     default void asignar_repartidor(Integer id_pedido, Integer id_repartidor) {
         throw new UnsupportedOperationException("No implementado");
     }
-    default public String getMessage(){
-        throw new UnsupportedOperationException("No implementado"); 
-    }
-    default List<Proveedor> Cargar_comboProveedores(){
-         throw new UnsupportedOperationException("No implementado"); 
-    }
-    default List<Producto> Cargar_categoriaProducto(){
-         throw new UnsupportedOperationException("No implementado"); 
+
+    default public String getMessage() {
+        throw new UnsupportedOperationException("No implementado");
     }
 
+    default List<Proveedor> Cargar_comboProveedores() {
+        throw new UnsupportedOperationException("No implementado");
+    }
+
+    default List<Producto> Cargar_categoriaProducto() {
+        throw new UnsupportedOperationException("No implementado");
+    }
+
+     default Integer ordencompramasuno() {
+        throw new UnsupportedOperationException("No implementado");
+    }   
+    
+    
+    
 }

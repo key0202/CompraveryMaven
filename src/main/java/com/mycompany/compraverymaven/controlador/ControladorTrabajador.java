@@ -2,6 +2,7 @@ package com.mycompany.compraverymaven.controlador;
 
 import com.mycompany.compraverymaven.vista.*;
 import com.mycompany.compraverymaven.dao.*;
+import com.mycompany.compraverymaven.dto.ComprasTiendaProveedor;
 import com.mycompany.compraverymaven.dto.Producto;
 import com.mycompany.compraverymaven.dto.Proveedor;
 import com.mycompany.compraverymaven.dto.Trabajador;
@@ -36,7 +37,9 @@ public class ControladorTrabajador {
     private Trabajador trabajador = null;
     private Integer cantidadProveedor;
     private Integer cantidadCategoria;
+    private Integer cantidadProductoProveedor;
     //private Integer cantidadCargos;
+    DefaultTableModel modelillos = new DefaultTableModel();
 
     private final Admin_Menu_Almacen admin_menu_almacen = new Admin_Menu_Almacen();
     private final Admin_Menu_AtencionPedido admin_menu_atencionpedido = new Admin_Menu_AtencionPedido();
@@ -93,6 +96,7 @@ public class ControladorTrabajador {
         admin_menu_atencionpedido.getBtnImprimir().addActionListener(e -> reportepdf("pedidos"));
 
         admin_menu_comprasestado.getBtnImprimir().addActionListener(e -> reporteexcel("comprasestado"));
+        admin_menu_comprasestado.getCmbEstadoPedido().addActionListener(e -> comboconsulta("mis_compras"));
 
         admin_menu_empleados.getBtnAgregarEmpleado().addActionListener(e -> abrir_frame("anadirempleado"));
         admin_menu_empleados.getCmbCargoEmpleado().addItemListener(e -> comboconsulta("empleados"));
@@ -102,12 +106,14 @@ public class ControladorTrabajador {
         admin_menu_ofertasprecios.getBtnGuardarOferta().addActionListener(e -> guardaroferta());
 
         admin_menu_proveedores.getBtnAgregarProovedor().addActionListener(e -> abrir_frame("anadirproveedor"));
+        admin_menu_proveedores.getjMenuProductosProveedor().addActionListener(e -> abrir_internal("ordencompra"));
 
         admin_menu_proveedores_compras.getBtnAgregar().addActionListener(e -> agregarproductoAtabla());
         admin_menu_proveedores_compras.getBtnComprar().addActionListener(e -> comprarproductos());
+        admin_menu_proveedores_compras.getCmbCategoria().addActionListener(e -> comboconsulta("productos"));
+        admin_menu_proveedores_compras.getBtnImporte().addActionListener(e -> ImporteCalculado());
 
         admin_menu_ventas.getBtnGenerarResumen().addActionListener(e -> reporteexcel("ventas"));
-        
 
     }
 
@@ -126,27 +132,43 @@ public class ControladorTrabajador {
                 break;
 
             case "proveedores":
-          
-                 if (admin_menu_proveedores.getCmbCategoria().getSelectedIndex() == 0) {
-                        limpiar_tabla(opcion);
-                    } else {
-                        cargar_tabla(opcion);
-                    }
-                 
-             
-                   
+
+                if (admin_menu_proveedores.getCmbCategoria().getSelectedIndex() == 0) {
+                    limpiar_tabla(opcion);
+                } else {
+                    cargar_tabla(opcion);
+                }
+
                 break;
 
-            case "asistencias":
-//                for (int i = 0; i <= cantidad_salones; i++) {
-//                    if (listita.getCmbSalon().getSelectedIndex() == 0) {
-//                        listita.getBtnExportar().setEnabled(false);
-//                    } else {
-//                                               
-//                        listita.getBtnExportar().setEnabled(true);
-//                        cargar_tabla(ventana);
-//                    }
-//                }
+            case "productos":
+
+                String prov = (String) admin_menu_proveedores.getTablaProveedores().
+                        getModel().getValueAt(admin_menu_proveedores.getTablaProveedores().
+                                getSelectedRow(), 0);
+                if (admin_menu_proveedores_compras.getCmbCategoria().getSelectedIndex() != 0) {
+                    admin_menu_proveedores_compras.getCmbProducto().setSelectedIndex(0);
+                    admin_menu_proveedores_compras.getCmbProducto().setEnabled(true);
+                    String categoSeleccion = admin_menu_proveedores_compras.getCmbCategoria().getSelectedItem().toString();
+                    List<Producto> productos = daotrabajador.Cargar_producto_catego_proveedor(prov, categoSeleccion);
+                    cantidadProductoProveedor = productos.size();
+
+                    for (int i = 0; i < cantidadProductoProveedor; i++) {
+                        admin_menu_proveedores_compras.getCmbProducto().addItem(productos.get(i).getNombre());
+                    }
+
+                    admin_menu_proveedores_compras.getBtnAgregar().setEnabled(true);
+                }
+
+                break;
+
+            case "mis_compras":
+                if (admin_menu_comprasestado.getCmbEstadoPedido().getSelectedIndex() == 0) {
+                    limpiar_tabla(opcion);
+                } else {
+                    cargar_tabla(opcion);
+                }
+
                 break;
             default:
                 break;
@@ -215,13 +237,21 @@ public class ControladorTrabajador {
             admin_menu_ofertasprecios.getCmbCategoria().addItem(produc.get(i).getCategoria());
         }
 
-        //codigo abel:
-        /* admin_menu_empleados.getCmbCargoEmpleado().removeAll();
-        admin_menu_empleados.getCmbCargoEmpleado().addItem("Seleccione una opción");
-        admin_menu_empleados.getCmbCargoEmpleado().addItem("Administrador");
-        admin_menu_empleados.getCmbCargoEmpleado().addItem("Almacenero");
-        admin_menu_empleados.getCmbCargoEmpleado().addItem("Repartidor");
-        cantidadCargos = admin_menu_empleados.getCmbCargoEmpleado().getItemCount();*/
+        //Agregar columna a la tabla menu_compras_admin:
+        modelillos.addColumn("Producto");
+        modelillos.addColumn("Cantidad");
+        modelillos.addColumn("Precio c/u");
+        modelillos.addColumn("importe");
+        admin_menu_proveedores_compras.getTablaProductosCompras().setModel(modelillos);
+
+        //Agregar columnas a la tabla menu_comprasEstado:
+        DefaultTableModel modelilla = new DefaultTableModel();
+        modelilla.addColumn("N°Orden Compra");
+        modelilla.addColumn("Proveedor");
+        modelilla.addColumn("Fecha Pedido");
+        modelilla.addColumn("Fecha Entrada");
+        admin_menu_comprasestado.getTablaComprasEstado().setModel(modelilla);
+
     }
 
     private void anadir(String opcion) {
@@ -368,13 +398,13 @@ public class ControladorTrabajador {
                 break;
             case "proveedores":
 
-                String catego = admin_menu_proveedores.getCmbCategoria().getSelectedItem().toString();               
+                String catego = admin_menu_proveedores.getCmbCategoria().getSelectedItem().toString();
                 List<Proveedor> traba2 = daotrabajador.mostrar_proveedores(catego);
-               
+
                 DefaultTableModel modelo_local2 = (DefaultTableModel) admin_menu_proveedores.getTablaProveedores().getModel();
                 modelo_local2.setNumRows(0);
                 traba2.forEach((i) -> {
-                    modelo_local2.addRow(new Object[]{                        
+                    modelo_local2.addRow(new Object[]{
                         i.getRazonsocial(),
                         i.getRuc(),
                         i.getDireccion(),
@@ -384,7 +414,20 @@ public class ControladorTrabajador {
                 });
 
                 break;
-            case "opcion3":
+            case "mis_compras":
+                String estd = admin_menu_comprasestado.getCmbEstadoPedido().getSelectedItem().toString();
+                List<ComprasTiendaProveedor> resolviendo = daotrabajador.ver_estado_orden_compra(estd);
+
+                DefaultTableModel model_local3 = (DefaultTableModel) admin_menu_comprasestado.getTablaComprasEstado().getModel();
+                model_local3.setNumRows(0);
+                resolviendo.forEach((i) -> {
+                    model_local3.addRow(new Object[]{
+                        i.getId(),
+                        i.getProveedor(),
+                        i.getFecha_compra(),
+                        i.getFecha_ingresar()
+                    });
+                });
 
                 break;
             default:
@@ -398,7 +441,6 @@ public class ControladorTrabajador {
         while (modelillo.getRowCount() > 0) {
             modelillo.removeRow(0);
         }
-
         switch (opcion) {
             case "empleados":
                 modelillo.addColumn("Nombre y Apellidos");
@@ -420,7 +462,12 @@ public class ControladorTrabajador {
                 admin_menu_proveedores.getTablaProveedores().setModel(modelillo);
 
                 break;
-            case "opcion3":
+            case "mis_compras":
+                modelillo.addColumn("N°Orden Compra");
+                modelillo.addColumn("Proveedor");
+                modelillo.addColumn("Fecha Pedido");
+                modelillo.addColumn("Fecha Entrada");
+                admin_menu_comprasestado.getTablaComprasEstado().setModel(modelillo);
 
                 break;
             default:
@@ -439,6 +486,8 @@ public class ControladorTrabajador {
 
                 break;
             case "compras":
+                cargarFrame(admin_menu_comprasestado, admin_menu.getJdpContenedor());
+                admin_menu_comprasestado.setVisible(true);
 
                 break;
             case "empleados":
@@ -451,12 +500,13 @@ public class ControladorTrabajador {
 
                 break;
             case "perfil":
+                cargarFrame(admin_menu_perfil, admin_menu.getJdpContenedor());
+                admin_menu_perfil.setVisible(true);
 
                 break;
             case "proveedores":
                 cargarFrame(admin_menu_proveedores, admin_menu.getJdpContenedor());
                 admin_menu_proveedores.setVisible(true);
-  
 
                 break;
             case "ventas":
@@ -467,9 +517,61 @@ public class ControladorTrabajador {
                 admin_anadir_productos.setVisible(true);
 
                 break;
+            case "ordencompra":
+
+                try {
+                    String catego = "Seleccione una categoria";
+                    admin_menu_proveedores_compras.getCmbCategoria().removeAllItems();
+                    admin_menu_proveedores_compras.getCmbCategoria().addItem(catego);
+
+                    Integer orden = daotrabajador.ordencompramasuno();
+                    String prov = (String) admin_menu_proveedores.getTablaProveedores().
+                            getModel().getValueAt(admin_menu_proveedores.getTablaProveedores().
+                                    getSelectedRow(), 0);
+                    System.out.println(LocalDate.now().toString());
+
+                    String ruc = (String) admin_menu_proveedores.getTablaProveedores().
+                            getModel().getValueAt(admin_menu_proveedores.getTablaProveedores().
+                                    getSelectedRow(), 1);
+
+                    //Visualizar en un nuevo frame los datos elegidos por medio del popup menu
+                    cargarFrame(admin_menu_proveedores_compras, admin_menu.getJdpContenedor());
+
+                    obtenerFecha();
+
+                    //Para cargar el comboBox con las categorias de producto:
+                    List<Producto> produc = daotrabajador.Cargar_categorias_Proveedor(prov);
+                    cantidadCategoria = produc.size();
+                    for (int i = 0; i < cantidadCategoria; i++) {
+
+                        admin_menu_proveedores_compras.getCmbCategoria().addItem(produc.get(i).getCategoria());
+                    }
+                    String produC = "Seleccione un producto";
+                    admin_menu_proveedores_compras.getCmbProducto().removeAllItems();
+                    admin_menu_proveedores_compras.getCmbProducto().addItem(produC);
+                    admin_menu_proveedores_compras.getCmbProducto().setEnabled(false);
+
+                    admin_menu_proveedores_compras.getTxtNumeroOrdenCompra().setText(orden.toString());
+                    admin_menu_proveedores_compras.getTxtProveedor().setText(prov);
+                    //  admin_menu_proveedores_compras.getTxtFechaCompra().setText(fecha_compra);
+                    admin_menu_proveedores_compras.getTxtRUC().setText(ruc);
+                } catch (Exception e) {
+                    System.out.println(e.getMessage());
+                }
+
+                break;
             default:
                 throw new AssertionError();
         }
+
+    }
+
+    //Metodo para cargar la fecha en el frame de menu_proveedores_compra
+    private void obtenerFecha() {
+        LocalDate myObj = LocalDate.now();
+        admin_menu_proveedores_compras.getTxtFechaCompra().setText(String.valueOf(myObj));
+        //      listita.getjXFechaza().setDate(Date.valueOf(LocalDate.now()));
+        admin_menu_proveedores_compras.getjXFechaActual().setDate(Date.valueOf(LocalDate.now()));
 
     }
 
@@ -545,12 +647,49 @@ public class ControladorTrabajador {
     }
 
     private void agregarproductoAtabla() {
-        //agrega los productos seleccionados a la tabla del frame
+        String producto = admin_menu_proveedores_compras.getCmbProducto().getSelectedItem().toString();
 
+        String llenado[] = new String[1];
+
+        llenado[0] = producto;
+        modelillos.addRow(llenado);
+
+    }
+
+    private void ImporteCalculado() {
+        double acumulador = 0;
+
+        int filas = admin_menu_proveedores_compras.getTablaProductosCompras().getRowCount();
+        for (int i = 0; i < filas; i++) {
+            String impor = String.valueOf(admin_menu_proveedores_compras.getTablaProductosCompras().getValueAt(i, 3));
+            acumulador += Double.parseDouble(impor);
+        }
+        admin_menu_proveedores_compras.getTxtTotal().setText(String.valueOf(acumulador));
     }
 
     private void comprarproductos() {
         //cambia estado de orden de compra y traspasa cada detalle hacia productoinventario
+        ComprasTiendaProveedor compritas = new ComprasTiendaProveedor();
+        String ruc = admin_menu_proveedores_compras.getTxtRUC().getText();
+        SimpleDateFormat fechazaF = new SimpleDateFormat("yyyy-MM-dd");
+        String fecha2 = fechazaF.format(admin_menu_proveedores_compras.getjXFechaActual().getDate());
+        compritas.setFecha_compra(LocalDate.parse(fecha2));
+        Double importe = Double.parseDouble(admin_menu_proveedores_compras.getTxtTotal().getText());
+        daotrabajador.generar_compra_proveedor(ruc, compritas, importe);
+
+        //Para grabar los detalles de la orden de compra
+        int num_orden_compr = Integer.parseInt(admin_menu_proveedores_compras.getTxtNumeroOrdenCompra().getText());
+        int NumeFilas = admin_menu_proveedores_compras.getTablaProductosCompras().getRowCount();
+
+        for (int i = 0; i < NumeFilas; i++) {
+            Producto producto = new Producto();
+            producto.setNombre(admin_menu_proveedores_compras.getTablaProductosCompras().getValueAt(i, 0).toString());
+            Integer cantidad = Integer.parseInt(admin_menu_proveedores_compras.getTablaProductosCompras().getValueAt(i, 1).toString());
+            Double preciouni = Double.parseDouble(admin_menu_proveedores_compras.getTablaProductosCompras().getValueAt(i, 2).toString());
+            daotrabajador.detalle_orden_compra(num_orden_compr, producto, cantidad, preciouni);
+        }
+        JOptionPane.showMessageDialog(null, "Compra realizada correctamente");
+        cargarFrame(admin_menu_comprasestado, admin_menu.getJdpContenedor());
 
     }
 

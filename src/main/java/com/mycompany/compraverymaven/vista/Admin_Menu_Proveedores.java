@@ -3,6 +3,7 @@ package com.mycompany.compraverymaven.vista;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JMenuItem;
+import javax.swing.JPopupMenu;
 import javax.swing.JTable;
 
 public class Admin_Menu_Proveedores extends javax.swing.JInternalFrame {

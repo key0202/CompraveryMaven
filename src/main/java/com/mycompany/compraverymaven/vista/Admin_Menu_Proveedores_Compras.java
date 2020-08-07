@@ -1,17 +1,20 @@
 package com.mycompany.compraverymaven.vista;
 
+import java.util.Locale;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JLabel;
 import javax.swing.JTable;
+import org.jdesktop.swingx.JXDatePicker;
 
 public class Admin_Menu_Proveedores_Compras extends javax.swing.JInternalFrame {
 
     /**
      * Creates new form Admin_Menu_Proveedores_Compras
      */
-    public Admin_Menu_Proveedores_Compras() {
+    public Admin_Menu_Proveedores_Compras() {       
         initComponents();
+        jXFechaActual.setVisible(false);
     }
 
     /**
@@ -40,35 +43,28 @@ public class Admin_Menu_Proveedores_Compras extends javax.swing.JInternalFrame {
         LbFechaActual = new javax.swing.JLabel();
         txtProveedor = new javax.swing.JLabel();
         jSeparator1 = new javax.swing.JSeparator();
-        jLabel9 = new javax.swing.JLabel();
         txtTotal = new javax.swing.JLabel();
         jLabel11 = new javax.swing.JLabel();
         jLabel12 = new javax.swing.JLabel();
         txtRUC = new javax.swing.JLabel();
         btnAgregar = new javax.swing.JButton();
+        btnImporte = new javax.swing.JButton();
+        jXFechaActual = new org.jdesktop.swingx.JXDatePicker();
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         tablaProductosCompras.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
+                {},
+                {},
+                {},
+                {}
             },
             new String [] {
-                "Producto", "Cantidad", "Precio c/u", "Importe"
-            }
-        ) {
-            Class[] types = new Class [] {
-                java.lang.String.class, java.lang.Integer.class, java.lang.Double.class, java.lang.Double.class
-            };
 
-            public Class getColumnClass(int columnIndex) {
-                return types [columnIndex];
             }
-        });
+        ));
         jScrollPane1.setViewportView(tablaProductosCompras);
 
         jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 240, 510, 180));
@@ -102,7 +98,7 @@ public class Admin_Menu_Proveedores_Compras extends javax.swing.JInternalFrame {
         jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 90, -1, -1));
 
         txtNumeroOrdenCompra.setText("001");
-        jPanel1.add(txtNumeroOrdenCompra, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 90, 70, 20));
+        jPanel1.add(txtNumeroOrdenCompra, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 90, 50, 20));
 
         jLabel3.setText("Fecha Compra");
         jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 80, 100, 30));
@@ -111,15 +107,19 @@ public class Admin_Menu_Proveedores_Compras extends javax.swing.JInternalFrame {
         jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 120, -1, -1));
 
         jLabel5.setText("Categoría :");
-        jPanel1.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 180, 70, 20));
+        jPanel1.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 180, 70, 20));
 
-        jPanel1.add(cmbCategoria, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 180, 130, -1));
+        cmbCategoria.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                cmbCategoriaItemStateChanged(evt);
+            }
+        });
+        jPanel1.add(cmbCategoria, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 180, 170, -1));
 
         jLabel6.setText("Producto  :");
-        jPanel1.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 180, 60, -1));
+        jPanel1.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 180, 60, -1));
 
-        cmbProducto.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-        jPanel1.add(cmbProducto, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 180, 130, -1));
+        jPanel1.add(cmbProducto, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 180, 170, -1));
 
         btnComprar.setText("Comprar");
         jPanel1.add(btnComprar, new org.netbeans.lib.awtextra.AbsoluteConstraints(22, 476, 510, 36));
@@ -130,12 +130,7 @@ public class Admin_Menu_Proveedores_Compras extends javax.swing.JInternalFrame {
         txtProveedor.setText("Proveedor Prueba SAC");
         jPanel1.add(txtProveedor, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 120, 130, -1));
         jPanel1.add(jSeparator1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 150, 560, 10));
-
-        jLabel9.setText("Importe a pagar");
-        jPanel1.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 440, 200, -1));
-
-        txtTotal.setText("236.00");
-        jPanel1.add(txtTotal, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 440, 80, -1));
+        jPanel1.add(txtTotal, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 440, 100, 20));
 
         jLabel11.setText("S/.");
         jPanel1.add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 440, -1, -1));
@@ -147,25 +142,41 @@ public class Admin_Menu_Proveedores_Compras extends javax.swing.JInternalFrame {
         jPanel1.add(txtRUC, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 120, 110, -1));
 
         btnAgregar.setText("Agregar");
-        jPanel1.add(btnAgregar, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 180, -1, -1));
+        jPanel1.add(btnAgregar, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 210, -1, -1));
+
+        btnImporte.setText("Importe a pagar");
+        jPanel1.add(btnImporte, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 440, -1, -1));
+        jPanel1.add(jXFechaActual, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 90, -1, -1));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGap(93, 93, 93))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 524, Short.MAX_VALUE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 528, Short.MAX_VALUE)
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void cmbCategoriaItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_cmbCategoriaItemStateChanged
+        // TODO add your handling code here:
+    }//GEN-LAST:event_cmbCategoriaItemStateChanged
+
     public JButton getBtnAgregar() {
         return btnAgregar;
     }
+    
+
+    public JXDatePicker getjXFechaActual() {
+        return jXFechaActual;
+    }
+    
 
     public JButton getBtnComprar() {
         return btnComprar;
@@ -195,6 +206,11 @@ public class Admin_Menu_Proveedores_Compras extends javax.swing.JInternalFrame {
         return txtProveedor;
     }
 
+    public JButton getBtnImporte() {
+        return btnImporte;
+    }
+    
+
     public JLabel getTxtRUC() {
         return txtRUC;
     }
@@ -208,6 +224,7 @@ public class Admin_Menu_Proveedores_Compras extends javax.swing.JInternalFrame {
     private javax.swing.JLabel LbFechaActual;
     private javax.swing.JButton btnAgregar;
     private javax.swing.JButton btnComprar;
+    private javax.swing.JButton btnImporte;
     private javax.swing.JComboBox<String> cmbCategoria;
     private javax.swing.JComboBox<String> cmbProducto;
     private javax.swing.JLabel jLabel1;
@@ -218,11 +235,11 @@ public class Admin_Menu_Proveedores_Compras extends javax.swing.JInternalFrame {
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
-    private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JSeparator jSeparator1;
+    private org.jdesktop.swingx.JXDatePicker jXFechaActual;
     private javax.swing.JTable tablaProductosCompras;
     private javax.swing.JLabel txtNumeroOrdenCompra;
     private javax.swing.JLabel txtProveedor;

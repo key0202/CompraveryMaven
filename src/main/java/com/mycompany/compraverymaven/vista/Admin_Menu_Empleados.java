@@ -30,6 +30,7 @@ public class Admin_Menu_Empleados extends javax.swing.JInternalFrame {
         jLabel1 = new javax.swing.JLabel();
         cmbCargoEmpleado = new javax.swing.JComboBox<>();
         btnAgregarEmpleado = new javax.swing.JButton();
+        btnExportarExcel = new javax.swing.JButton();
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -94,7 +95,10 @@ public class Admin_Menu_Empleados extends javax.swing.JInternalFrame {
         jPanel1.add(cmbCargoEmpleado, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 130, 161, -1));
 
         btnAgregarEmpleado.setText("Añadir Empleado");
-        jPanel1.add(btnAgregarEmpleado, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 400, 520, 48));
+        jPanel1.add(btnAgregarEmpleado, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 430, 520, 48));
+
+        btnExportarExcel.setText("Generar Reporte");
+        jPanel1.add(btnExportarExcel, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 380, 520, 48));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -126,9 +130,14 @@ public class Admin_Menu_Empleados extends javax.swing.JInternalFrame {
         return tablaEmpleados;
     }
 
+    public JButton getBtnExportarExcel() {
+        return btnExportarExcel;
+    }
+
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAgregarEmpleado;
+    private javax.swing.JButton btnExportarExcel;
     private javax.swing.JComboBox<String> cmbCargoEmpleado;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;

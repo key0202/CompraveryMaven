@@ -62,18 +62,18 @@ public class Admin_Menu_ComprasEstado extends javax.swing.JInternalFrame {
         jLabel1.setText("Estado Pedido : ");
         jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(28, 132, 132, -1));
 
-        cmbEstadoPedido.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        cmbEstadoPedido.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Seleccione un estado", "pendiente", "recibido" }));
         jPanel1.add(cmbEstadoPedido, new org.netbeans.lib.awtextra.AbsoluteConstraints(187, 129, 161, -1));
 
         tablaComprasEstado.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
+                {},
+                {},
+                {},
+                {}
             },
             new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4"
+
             }
         ));
         jScrollPane1.setViewportView(tablaComprasEstado);

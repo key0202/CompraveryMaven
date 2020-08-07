@@ -102,26 +102,38 @@ public class TrabajadorImp implements DaoTrabajador {
     }
 
     //Tarea del administrador para realizar compras
-    public Integer generar_compra_proveedor(Integer ruc, LocalDate fecha_compra, Double importe) {
-        Integer id_compra = null;
+
+    @Override
+    public void generar_compra_proveedor(String ruc, ComprasTiendaProveedor fecha_compra, Double importe) {
+       
         try {
             Connection cn = conecta.conexionDB();
-            CallableStatement procedure = cn.prepareCall("{call SP_CompraProveedor(?,?,?)}");
-            procedure.setInt(1, ruc);
-            procedure.setDate(2, Date.valueOf(fecha_compra));
+            CallableStatement procedure = cn.prepareCall("{call SP_CompraProovedor(?,?,?)}");
+            procedure.setString(1, ruc);
+            procedure.setString(2, fecha_compra.getFecha_compra().toString());
             procedure.setDouble(3, importe);
             ResultSet rs = procedure.executeQuery();
-            if (rs.next()) {
-                id_compra = rs.getInt(1);
-            } else {
-                id_compra = null;
-            }
 
         } catch (Exception e) {
             e.getMessage();
         }
-        return id_compra;
+
     }
+
+    //Metodo para grabar los detalles de la compra:
+    @Override
+    public void detalle_orden_compra(Integer id_compra_proveedor, Producto producto, Integer cantidad, Double precio) {
+        try {
+            Connection cd = conecta.conexionDB();
+            CallableStatement procedur = cd.prepareCall("{call SP_GrabarDetalleCompras(?,?,?,?)}");
+            procedur.setInt(1,id_compra_proveedor);
+            procedur.setString(2,producto.getNombre());
+            procedur.setInt(3,cantidad);
+            procedur.setDouble(4,precio);
+            ResultSet rs=procedur.executeQuery();           
+        } catch (Exception e) {
+            e.getMessage();
+        }}
 
     //Tarea admi almacen:
     @Override
@@ -226,7 +238,53 @@ public class TrabajadorImp implements DaoTrabajador {
         return mis_proveedores;
     }
 
-    //Metodo para obtener el nuevo valor máximo de la orden de compra
+
+    @Override
+    public List<Producto> Cargar_categorias_Proveedor(String proveedor) {
+        List<Producto> categor_provee = null;
+        try {
+            Connection cn = conecta.conexionDB();
+            CallableStatement procedur = cn.prepareCall("{call SP_cargarCategorias_Proveedor(?)}");
+            procedur.setString(1, proveedor);
+            ResultSet rs = procedur.executeQuery();
+            categor_provee = new ArrayList<>();
+            while (rs.next()) {
+                Producto productmin = new Producto();
+                productmin.setCategoria(rs.getString(1));
+                categor_provee.add(productmin);
+            }
+            rs.close();
+        } catch (Exception e) {
+            e.getMessage();
+        }
+        return categor_provee;
+
+    }
+
+    @Override
+    public List<Producto> Cargar_producto_catego_proveedor(String proveedor, String categoria) {
+        List<Producto> list_produ = null;
+        try {
+            Connection cn = conecta.conexionDB();
+            CallableStatement procedur = cn.prepareCall("{call SP_CargarProductos_ProveeCategoria(?,?)}");
+            procedur.setString(1, proveedor);
+            procedur.setString(2, categoria);
+            ResultSet rs = procedur.executeQuery();
+            list_produ = new ArrayList<>();
+            while (rs.next()) {
+                Producto produc = new Producto();
+                produc.setNombre(rs.getString(1));
+                list_produ.add(produc);
+            }
+            rs.close();
+        } catch (Exception e) {
+            e.getMessage();
+        }
+        return list_produ;
+    }
+
+    //metodo para Obtener un Id_compra:
+
     @Override
     public Integer ordencompramasuno() {
         Integer actual = 0;
@@ -243,8 +301,34 @@ public class TrabajadorImp implements DaoTrabajador {
         } catch (Exception e) {
             e.getMessage();
         }
+        return actual + 1;
+    }
+    
+    //Metodo para ver los estados de las ordenes de compras:
+    @Override
+    public  List<ComprasTiendaProveedor> ver_estado_orden_compra(String estado){
+        List<ComprasTiendaProveedor>mis_ordenes=null;
+        try{
+            Connection cn=conecta.conexionDB();
+            CallableStatement procedur=cn.prepareCall("{call SP_VerEstadoCompras(?)}");
+            procedur.setString(1,estado);
+            ResultSet rs=procedur.executeQuery();
+            mis_ordenes=new ArrayList<>();
+            while(rs.next()){
+                ComprasTiendaProveedor compr=new ComprasTiendaProveedor();
+                compr.setId(rs.getInt(1));
+                compr.setProveedor(rs.getString(2));
+                compr.setFecha_compra(LocalDate.parse(rs.getString(3)));
+                compr.setFecha_ingresar(rs.getString(4)); 
+                mis_ordenes.add(compr);
+            }
+            rs.close();
+            
+        }catch(Exception e){
+            e.getMessage();
+        }
+      return mis_ordenes;             
 
-        return actual+1;
     }
 
 }

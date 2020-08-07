@@ -82,6 +82,7 @@ public interface DaoTrabajador {
 
     default public String getMessage() {
         throw new UnsupportedOperationException("No implementado");
+<<<<<<< HEAD
     }
 
     default List<Proveedor> Cargar_comboProveedores() {
@@ -101,7 +102,22 @@ public interface DaoTrabajador {
     }
 
     default Integer ordencompramasuno() {
+=======
+    }
+
+    default List<Proveedor> Cargar_comboProveedores() {
         throw new UnsupportedOperationException("No implementado");
     }
 
+    default List<Producto> Cargar_categoriaProducto() {
+>>>>>>> 96ec8f60e0166049e463f072de18d08a557efc09
+        throw new UnsupportedOperationException("No implementado");
+    }
+
+     default Integer ordencompramasuno() {
+        throw new UnsupportedOperationException("No implementado");
+    }   
+    
+    
+    
 }

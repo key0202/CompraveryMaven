@@ -102,6 +102,7 @@ public class TrabajadorImp implements DaoTrabajador {
     }
 
     //Tarea del administrador para realizar compras
+<<<<<<< HEAD
     @Override
     public void generar_compra_proveedor(String ruc, ComprasTiendaProveedor fecha_compra, Double importe) {
        
@@ -133,6 +134,27 @@ public class TrabajadorImp implements DaoTrabajador {
         } catch (Exception e) {
             e.getMessage();
         }
+=======
+    public Integer generar_compra_proveedor(Integer ruc, LocalDate fecha_compra, Double importe) {
+        Integer id_compra = null;
+        try {
+            Connection cn = conecta.conexionDB();
+            CallableStatement procedure = cn.prepareCall("{call SP_CompraProveedor(?,?,?)}");
+            procedure.setInt(1, ruc);
+            procedure.setDate(2, Date.valueOf(fecha_compra));
+            procedure.setDouble(3, importe);
+            ResultSet rs = procedure.executeQuery();
+            if (rs.next()) {
+                id_compra = rs.getInt(1);
+            } else {
+                id_compra = null;
+            }
+
+        } catch (Exception e) {
+            e.getMessage();
+        }
+        return id_compra;
+>>>>>>> 96ec8f60e0166049e463f072de18d08a557efc09
     }
 
     //Tarea admi almacen:
@@ -238,6 +260,7 @@ public class TrabajadorImp implements DaoTrabajador {
         return mis_proveedores;
     }
 
+<<<<<<< HEAD
     @Override
     public List<Producto> Cargar_categorias_Proveedor(String proveedor) {
         List<Producto> categor_provee = null;
@@ -283,6 +306,9 @@ public class TrabajadorImp implements DaoTrabajador {
     }
 
     //metodo para Obtener un Id_compra:
+=======
+    //Metodo para obtener el nuevo valor máximo de la orden de compra
+>>>>>>> 96ec8f60e0166049e463f072de18d08a557efc09
     @Override
     public Integer ordencompramasuno() {
         Integer actual = 0;
@@ -300,6 +326,7 @@ public class TrabajadorImp implements DaoTrabajador {
             e.getMessage();
         }
 
+<<<<<<< HEAD
         return actual + 1;
     }
     
@@ -327,6 +354,9 @@ public class TrabajadorImp implements DaoTrabajador {
             e.getMessage();
         }
       return mis_ordenes;             
+=======
+        return actual+1;
+>>>>>>> 96ec8f60e0166049e463f072de18d08a557efc09
     }
 
 }

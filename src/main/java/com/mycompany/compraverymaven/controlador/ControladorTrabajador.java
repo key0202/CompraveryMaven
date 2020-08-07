@@ -37,7 +37,11 @@ public class ControladorTrabajador {
     private Trabajador trabajador = null;
     private Integer cantidadProveedor;
     private Integer cantidadCategoria;
+<<<<<<< HEAD
     private Integer cantidadProductoProveedor;
+=======
+    private final SimpleDateFormat formatofecha = new SimpleDateFormat("yyyy-MM-dd");
+>>>>>>> 96ec8f60e0166049e463f072de18d08a557efc09
     //private Integer cantidadCargos;
     DefaultTableModel modelillos = new DefaultTableModel();
 
@@ -141,6 +145,7 @@ public class ControladorTrabajador {
 
                 break;
 
+<<<<<<< HEAD
             case "productos":
 
                 String prov = (String) admin_menu_proveedores.getTablaProveedores().
@@ -169,6 +174,18 @@ public class ControladorTrabajador {
                     cargar_tabla(opcion);
                 }
 
+=======
+            case "asistencias":
+//                for (int i = 0; i <= cantidad_salones; i++) {
+//                    if (listita.getCmbSalon().getSelectedIndex() == 0) {
+//                        listita.getBtnExportar().setEnabled(false);
+//                    } else {
+//                                               
+//                        listita.getBtnExportar().setEnabled(true);
+//                        cargar_tabla(ventana);
+//                    }
+//                }
+>>>>>>> 96ec8f60e0166049e463f072de18d08a557efc09
                 break;
             default:
                 break;
@@ -237,6 +254,7 @@ public class ControladorTrabajador {
             admin_menu_ofertasprecios.getCmbCategoria().addItem(produc.get(i).getCategoria());
         }
 
+<<<<<<< HEAD
         //Agregar columna a la tabla menu_compras_admin:
         modelillos.addColumn("Producto");
         modelillos.addColumn("Cantidad");
@@ -252,6 +270,8 @@ public class ControladorTrabajador {
         modelilla.addColumn("Fecha Entrada");
         admin_menu_comprasestado.getTablaComprasEstado().setModel(modelilla);
 
+=======
+>>>>>>> 96ec8f60e0166049e463f072de18d08a557efc09
     }
 
     private void anadir(String opcion) {
@@ -491,9 +511,7 @@ public class ControladorTrabajador {
 
                 break;
             case "empleados":
-
                 cargarFrame(admin_menu_empleados, admin_menu.getJdpContenedor());
-                admin_menu_empleados.setVisible(true);
 
                 break;
             case "ofertas":
@@ -506,7 +524,10 @@ public class ControladorTrabajador {
                 break;
             case "proveedores":
                 cargarFrame(admin_menu_proveedores, admin_menu.getJdpContenedor());
+<<<<<<< HEAD
                 admin_menu_proveedores.setVisible(true);
+=======
+>>>>>>> 96ec8f60e0166049e463f072de18d08a557efc09
 
                 break;
             case "ventas":
@@ -514,7 +535,30 @@ public class ControladorTrabajador {
                 break;
             case "productos":
 
-                admin_anadir_productos.setVisible(true);
+                break;
+            case "ordencompra":
+
+                try {
+                    Integer orden = daotrabajador.ordencompramasuno();
+                    String prov = (String) admin_menu_proveedores.getTablaProveedores().
+                            getModel().getValueAt(admin_menu_proveedores.getTablaProveedores().
+                                    getSelectedRow(), 0);
+                    System.out.println(LocalDate.now().toString());
+                     //String fecha_compra=formatofecha.format(LocalDate.now().toString());
+                    //System.out.println(fecha_compra);
+                    String ruc = (String) admin_menu_proveedores.getTablaProveedores().
+                            getModel().getValueAt(admin_menu_proveedores.getTablaProveedores().
+                                    getSelectedRow(), 1);
+
+                    cargarFrame(admin_menu_proveedores_compras, admin_menu.getJdpContenedor());
+                    //admin_menu_proveedores_compras.setVisible(true);
+                    admin_menu_proveedores_compras.getTxtNumeroOrdenCompra().setText(orden.toString());
+                    admin_menu_proveedores_compras.getTxtProveedor().setText(prov);
+                    //  admin_menu_proveedores_compras.getTxtFechaCompra().setText(fecha_compra);
+                    admin_menu_proveedores_compras.getTxtRUC().setText(ruc);
+                } catch (Exception e) {
+                    System.out.println(e.getMessage());
+                }
 
                 break;
             case "ordencompra":

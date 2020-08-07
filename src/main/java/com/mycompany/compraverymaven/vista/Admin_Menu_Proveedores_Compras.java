@@ -98,7 +98,11 @@ public class Admin_Menu_Proveedores_Compras extends javax.swing.JInternalFrame {
         jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 90, -1, -1));
 
         txtNumeroOrdenCompra.setText("001");
+<<<<<<< HEAD
         jPanel1.add(txtNumeroOrdenCompra, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 90, 50, 20));
+=======
+        jPanel1.add(txtNumeroOrdenCompra, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 90, 70, 20));
+>>>>>>> 96ec8f60e0166049e463f072de18d08a557efc09
 
         jLabel3.setText("Fecha Compra");
         jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 80, 100, 30));

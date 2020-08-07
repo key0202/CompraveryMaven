@@ -42,12 +42,9 @@ public class ControladorTrabajador {
     private Integer cantidadProductoProveedor;
 
     private final SimpleDateFormat formatofecha = new SimpleDateFormat("yyyy-MM-dd");
-<<<<<<< HEAD
-=======
 
     //private Integer cantidadCargos;
     DefaultTableModel modelillos = new DefaultTableModel();
->>>>>>> 8db002595eddd181c32365f953736d63beb53120
 
     //instanciando la clase de funciones
     Funciones fn = new Funciones();
@@ -108,12 +105,10 @@ public class ControladorTrabajador {
         admin_menu_atencionpedido.getBtnImprimir().addActionListener(e -> reportepdf("pedidos"));
         
         admin_menu_comprasestado.getBtnImprimir().addActionListener(e -> reporteexcel("comprasestado"));
-<<<<<<< HEAD
-        
-=======
+
         admin_menu_comprasestado.getCmbEstadoPedido().addActionListener(e -> comboconsulta("mis_compras"));
 
->>>>>>> 8db002595eddd181c32365f953736d63beb53120
+
         admin_menu_empleados.getBtnAgregarEmpleado().addActionListener(e -> abrir_frame("anadirempleado"));
         admin_menu_empleados.getBtnExportarExcel().addActionListener(e -> reportepdf("empleados"));
         admin_menu_empleados.getCmbCargoEmpleado().addItemListener(e -> comboconsulta("empleados"));
@@ -127,13 +122,11 @@ public class ControladorTrabajador {
         
         admin_menu_proveedores_compras.getBtnAgregar().addActionListener(e -> agregarproductoAtabla());
         admin_menu_proveedores_compras.getBtnComprar().addActionListener(e -> comprarproductos());
-<<<<<<< HEAD
-        
-=======
+
         admin_menu_proveedores_compras.getCmbCategoria().addActionListener(e -> comboconsulta("productos"));
         admin_menu_proveedores_compras.getBtnImporte().addActionListener(e -> ImporteCalculado());
 
->>>>>>> 8db002595eddd181c32365f953736d63beb53120
+
         admin_menu_ventas.getBtnGenerarResumen().addActionListener(e -> reporteexcel("ventas"));
         
     }
@@ -161,10 +154,6 @@ public class ControladorTrabajador {
                 }
                 
                 break;
-<<<<<<< HEAD
-            
-=======
-
 
             case "productos":
 
@@ -195,7 +184,7 @@ public class ControladorTrabajador {
                 }
 
 
->>>>>>> 8db002595eddd181c32365f953736d63beb53120
+
             case "asistencias":
 //                for (int i = 0; i <= cantidad_salones; i++) {
 //                    if (listita.getCmbSalon().getSelectedIndex() == 0) {
@@ -274,9 +263,6 @@ public class ControladorTrabajador {
             admin_menu_ventas.getCmbCategoria().addItem(produc.get(i).getCategoria());
             admin_menu_ofertasprecios.getCmbCategoria().addItem(produc.get(i).getCategoria());
         }
-<<<<<<< HEAD
-        
-=======
 
 
         //Agregar columna a la tabla menu_compras_admin:
@@ -294,7 +280,7 @@ public class ControladorTrabajador {
         modelilla.addColumn("Fecha Entrada");
         admin_menu_comprasestado.getTablaComprasEstado().setModel(modelilla);
 
->>>>>>> 8db002595eddd181c32365f953736d63beb53120
+
     }
     
     private void anadir(String opcion) {
@@ -457,10 +443,9 @@ public class ControladorTrabajador {
                 });
                 
                 break;
-<<<<<<< HEAD
-            case "opcion3":
-                
-=======
+
+             
+
             case "mis_compras":
                 String estd = admin_menu_comprasestado.getCmbEstadoPedido().getSelectedItem().toString();
                 List<ComprasTiendaProveedor> resolviendo = daotrabajador.ver_estado_orden_compra(estd);
@@ -476,7 +461,7 @@ public class ControladorTrabajador {
                     });
                 });
 
->>>>>>> 8db002595eddd181c32365f953736d63beb53120
+
                 break;
             default:
                 throw new AssertionError();
@@ -489,10 +474,7 @@ public class ControladorTrabajador {
         while (modelillo.getRowCount() > 0) {
             modelillo.removeRow(0);
         }
-<<<<<<< HEAD
-        
-=======
->>>>>>> 8db002595eddd181c32365f953736d63beb53120
+
         switch (opcion) {
             case "empleados":
                 modelillo.addColumn("Nombre y Apellidos");
@@ -514,10 +496,7 @@ public class ControladorTrabajador {
                 admin_menu_proveedores.getTablaProveedores().setModel(modelillo);
                 
                 break;
-<<<<<<< HEAD
-            case "opcion3":
-                
-=======
+
             case "mis_compras":
                 modelillo.addColumn("N°Orden Compra");
                 modelillo.addColumn("Proveedor");
@@ -525,7 +504,7 @@ public class ControladorTrabajador {
                 modelillo.addColumn("Fecha Entrada");
                 admin_menu_comprasestado.getTablaComprasEstado().setModel(modelillo);
 
->>>>>>> 8db002595eddd181c32365f953736d63beb53120
+
                 break;
             default:
                 throw new AssertionError();
@@ -543,13 +522,10 @@ public class ControladorTrabajador {
                 
                 break;
             case "compras":
-<<<<<<< HEAD
-                
-=======
+
                 cargarFrame(admin_menu_comprasestado, admin_menu.getJdpContenedor());
                 admin_menu_comprasestado.setVisible(true);
 
->>>>>>> 8db002595eddd181c32365f953736d63beb53120
                 break;
             case "empleados":
                 cargarFrame(admin_menu_empleados, admin_menu.getJdpContenedor());
@@ -559,35 +535,23 @@ public class ControladorTrabajador {
                 
                 break;
             case "perfil":
-<<<<<<< HEAD
-                
-                break;
-            case "proveedores":
-                cargarFrame(admin_menu_proveedores, admin_menu.getJdpContenedor());
-                
-=======
-                cargarFrame(admin_menu_perfil, admin_menu.getJdpContenedor());
-                admin_menu_perfil.setVisible(true);
 
+                
                 break;
+
             case "proveedores":
                 cargarFrame(admin_menu_proveedores, admin_menu.getJdpContenedor());
 
                 admin_menu_proveedores.setVisible(true);
 
-
->>>>>>> 8db002595eddd181c32365f953736d63beb53120
                 break;
             case "ventas":
                 
                 break;
             case "productos":
-<<<<<<< HEAD
-                
-=======
+
                 admin_anadir_productos.setVisible(true);
 
->>>>>>> 8db002595eddd181c32365f953736d63beb53120
                 break;
           
             case "ordencompra":
@@ -602,21 +566,14 @@ public class ControladorTrabajador {
                             getModel().getValueAt(admin_menu_proveedores.getTablaProveedores().
                                     getSelectedRow(), 0);
                     System.out.println(LocalDate.now().toString());
-<<<<<<< HEAD
-                    //String fecha_compra=formatofecha.format(LocalDate.now().toString());
-                    //System.out.println(fecha_compra);
-                    String ruc = (String) admin_menu_proveedores.getTablaProveedores().
-                            getModel().getValueAt(admin_menu_proveedores.getTablaProveedores().
-                                    getSelectedRow(), 1);
-                    
-=======
+
 
                     String ruc = (String) admin_menu_proveedores.getTablaProveedores().
                             getModel().getValueAt(admin_menu_proveedores.getTablaProveedores().
                                     getSelectedRow(), 1);
 
                     //Visualizar en un nuevo frame los datos elegidos por medio del popup menu
->>>>>>> 8db002595eddd181c32365f953736d63beb53120
+
                     cargarFrame(admin_menu_proveedores_compras, admin_menu.getJdpContenedor());
 
                     obtenerFecha();
@@ -647,9 +604,9 @@ public class ControladorTrabajador {
         }
         
     }
-<<<<<<< HEAD
+
     
-=======
+
 
     //Metodo para cargar la fecha en el frame de menu_proveedores_compra
     private void obtenerFecha() {
@@ -660,7 +617,6 @@ public class ControladorTrabajador {
 
     }
 
->>>>>>> 8db002595eddd181c32365f953736d63beb53120
     private void abrir_frame(String opcion) {
         //carga los frame segun la opcion
         switch (opcion) {
@@ -748,9 +704,6 @@ public class ControladorTrabajador {
         modelillos.addRow(llenado);
 
     }
-<<<<<<< HEAD
-    
-=======
 
     private void ImporteCalculado() {
         double acumulador = 0;
@@ -763,7 +716,6 @@ public class ControladorTrabajador {
         admin_menu_proveedores_compras.getTxtTotal().setText(String.valueOf(acumulador));
     }
 
->>>>>>> 8db002595eddd181c32365f953736d63beb53120
     private void comprarproductos() {
         //cambia estado de orden de compra y traspasa cada detalle hacia productoinventario
         ComprasTiendaProveedor compritas = new ComprasTiendaProveedor();

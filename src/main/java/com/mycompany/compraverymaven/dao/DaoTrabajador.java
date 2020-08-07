@@ -52,7 +52,7 @@ public interface DaoTrabajador {
         throw new UnsupportedOperationException("No implementado");
     }
 
-    default Integer generar_compra_proveedor(Integer proveedor, LocalDate fecha_compra, Double importe) {
+    default void generar_compra_proveedor(String ruc, ComprasTiendaProveedor fecha_compra, Double importe) {
         throw new UnsupportedOperationException("No implementado");
     }
 
@@ -79,8 +79,30 @@ public interface DaoTrabajador {
     default void asignar_repartidor(Integer id_pedido, Integer id_repartidor) {
         throw new UnsupportedOperationException("No implementado");
     }
-    default public String getMessage(){
-        throw new UnsupportedOperationException("No implementado"); 
+
+    default public String getMessage() {
+        throw new UnsupportedOperationException("No implementado");
+
+    }
+
+    default List<Proveedor> Cargar_comboProveedores() {
+        throw new UnsupportedOperationException("No implementado");
+    }
+
+    default List<Producto> Cargar_categoriaProducto() {
+        throw new UnsupportedOperationException("No implementado");
+    }
+
+    default List<Producto> Cargar_categorias_Proveedor(String proveedor) {
+        throw new UnsupportedOperationException("No implementado");
+    }
+
+    default List<Producto> Cargar_producto_catego_proveedor(String proveedor, String categoria) {
+        throw new UnsupportedOperationException("No implementado");
+    }
+
+    default Integer ordencompramasuno() {
+        throw new UnsupportedOperationException("No implementado");
     }
 
 }

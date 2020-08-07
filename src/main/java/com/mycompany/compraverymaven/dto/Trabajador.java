@@ -58,7 +58,15 @@ public class Trabajador extends Persona {
     public void setTienda(Tienda tienda) {
         this.tienda = tienda;
     }
-
+  public String getTrabajador() {
+        StringBuilder informacion = new StringBuilder();
+        super.getPersona();
+        informacion.append("Persona:").append(super.getPersona()).
+                append("cargo: ").append(cargo)
+                .append("\nfechaI: ").append(fecha_ingreso)
+                .append("\nfechaF: ").append(fecha_cese);                       
+        return informacion.toString();
+    }
     
  
 }

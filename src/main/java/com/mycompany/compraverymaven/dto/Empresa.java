@@ -1,6 +1,7 @@
 package com.mycompany.compraverymaven.dto;
 
 public class Empresa {
+
     private Integer id;
     private String razonsocial;
     private String ruc;
@@ -77,8 +78,17 @@ public class Empresa {
     public void setEmpleado(Trabajador empleado) {
         this.empleado = empleado;
     }
-    
-    
-    
-    
+
+  
+    public String getEmpresa() {
+        StringBuilder informacion = new StringBuilder();
+        informacion.append("Id:").append(id)
+                .append("\nRazon social:").append(razonsocial)
+                .append("\nruc: ").append(ruc)
+                .append("\nDireccion: ").append(direccion)
+                .append("\nTelefono: ").append(telefono).
+                append("\nCorreo:").append(correo);
+        return informacion.toString();
+    }
+
 }

@@ -58,16 +58,16 @@ public class Admin_Menu_Perfil extends javax.swing.JInternalFrame {
         getContentPane().add(lblDatos, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 240, -1, -1));
 
         lblDireccion.setText("jLabel8");
-        getContentPane().add(lblDireccion, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 280, -1, -1));
+        getContentPane().add(lblDireccion, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 280, -1, -1));
 
         lblCelular.setText("jLabel9");
-        getContentPane().add(lblCelular, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 320, -1, -1));
+        getContentPane().add(lblCelular, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 320, -1, -1));
 
         lblCargo.setText("jLabel10");
-        getContentPane().add(lblCargo, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 360, -1, -1));
+        getContentPane().add(lblCargo, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 360, -1, -1));
 
         lblDni.setText("jLabel11");
-        getContentPane().add(lblDni, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 400, -1, -1));
+        getContentPane().add(lblDni, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 400, -1, -1));
 
         admin_image.setText("foto");
         getContentPane().add(admin_image, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 80, 130, 120));

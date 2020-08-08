@@ -2,6 +2,7 @@ package com.mycompany.compraverymaven.vista;
 
 import javax.swing.JButton;
 import javax.swing.JComboBox;
+import javax.swing.JLabel;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
 
@@ -17,6 +18,7 @@ public class Admin_Anadir_Productos extends javax.swing.JDialog {
 
     public Admin_Anadir_Productos() {
         initComponents();
+        txtruta.setVisible(false);
     }
 
     
@@ -45,7 +47,8 @@ public class Admin_Anadir_Productos extends javax.swing.JDialog {
         btnImagen = new javax.swing.JButton();
         btnAgregar = new javax.swing.JButton();
         btnRegresar = new javax.swing.JButton();
-        jLabel6 = new javax.swing.JLabel();
+        LblImagen = new javax.swing.JLabel();
+        txtruta = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
@@ -86,31 +89,36 @@ public class Admin_Anadir_Productos extends javax.swing.JDialog {
         txaDescripcion.setRows(5);
         jScrollPane1.setViewportView(txaDescripcion);
 
-        jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 130, -1, 55));
+        jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 130, 180, 70));
 
         jLabel3.setText("Proveedor :");
         jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 210, -1, -1));
 
-        cmbProveedor.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-        jPanel1.add(cmbProveedor, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 210, 170, -1));
+        jPanel1.add(cmbProveedor, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 210, 180, -1));
 
         jLabel4.setText("Categoría :");
         jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 260, -1, -1));
 
-        cmbCategoria.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-        jPanel1.add(cmbCategoria, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 260, 170, -1));
+        cmbCategoria.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Seleccione categoria", "Bebidas", "Lacteos", "Postres" }));
+        cmbCategoria.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cmbCategoriaActionPerformed(evt);
+            }
+        });
+        jPanel1.add(cmbCategoria, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 260, 180, -1));
 
         btnImagen.setText("Selecciona Imagen");
-        jPanel1.add(btnImagen, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 340, -1, -1));
+        jPanel1.add(btnImagen, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 420, 270, -1));
 
         btnAgregar.setText("Añadir");
-        jPanel1.add(btnAgregar, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 420, 130, -1));
+        jPanel1.add(btnAgregar, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 460, 130, -1));
 
         btnRegresar.setText("Regresar");
-        jPanel1.add(btnRegresar, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 420, 130, -1));
+        jPanel1.add(btnRegresar, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 460, 130, -1));
 
-        jLabel6.setText("jLabel6");
-        jPanel1.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 310, 110, 70));
+        LblImagen.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        jPanel1.add(LblImagen, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 300, 110, 80));
+        jPanel1.add(txtruta, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 360, 120, 20));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -120,11 +128,15 @@ public class Admin_Anadir_Productos extends javax.swing.JDialog {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 459, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 500, Short.MAX_VALUE)
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void cmbCategoriaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmbCategoriaActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_cmbCategoriaActionPerformed
 
     /**
      * @param args the command line arguments
@@ -142,8 +154,16 @@ public class Admin_Anadir_Productos extends javax.swing.JDialog {
         return btnRegresar;
     }
 
+    public JLabel getTxtruta() {
+        return txtruta;
+    }
+
     public JComboBox<String> getCmbCategoria() {
         return cmbCategoria;
+    }
+
+    public JLabel getLblImagen() {
+        return LblImagen;
     }
 
     public JComboBox<String> getCmbProveedor() {
@@ -163,6 +183,7 @@ public class Admin_Anadir_Productos extends javax.swing.JDialog {
   
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel LblImagen;
     private javax.swing.JButton btnAgregar;
     private javax.swing.JButton btnImagen;
     private javax.swing.JButton btnRegresar;
@@ -173,11 +194,11 @@ public class Admin_Anadir_Productos extends javax.swing.JDialog {
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
-    private javax.swing.JLabel jLabel6;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTextArea txaDescripcion;
     private javax.swing.JTextField txtNombreProducto;
+    private javax.swing.JLabel txtruta;
     // End of variables declaration//GEN-END:variables
 }

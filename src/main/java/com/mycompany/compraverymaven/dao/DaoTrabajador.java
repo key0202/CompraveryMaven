@@ -6,9 +6,7 @@ import java.util.List;
 
 public interface DaoTrabajador {
 
-    default Trabajador login(String user, String pass) {
-        throw new UnsupportedOperationException("No implementado");
-    }
+    public Trabajador login(String user, String pass);
 
     default List<DetalleOrdenProducto> verCompraProveedor(ComprasTiendaProveedor id) {
         throw new UnsupportedOperationException("No implementado");
@@ -22,7 +20,7 @@ public interface DaoTrabajador {
         throw new UnsupportedOperationException("No implementado");
     }
 
-    default void registrar_empleado(Trabajador trabajador) {
+    default String registrar_empleado(Trabajador trabajador) {
         throw new UnsupportedOperationException("No implementado");
     }
 
@@ -34,9 +32,6 @@ public interface DaoTrabajador {
         throw new UnsupportedOperationException("No implementado");
     }
 
-    default List<ProductoInventario> ver_existencias(String estado, Producto categoria) {
-        throw new UnsupportedOperationException("No implementado");
-    }
 
     default List<ProductoInventario> ver_movimientos_almacen(String estado, Producto categoria, LocalDate fecha_inicial, LocalDate fecha_final) {
         throw new UnsupportedOperationException("No implementado");
@@ -54,7 +49,7 @@ public interface DaoTrabajador {
         throw new UnsupportedOperationException("No implementado");
     }
 
-    default Integer generar_compra_proveedor(Integer proveedor, LocalDate fecha_compra, Double importe) {
+    default void generar_compra_proveedor(String ruc, ComprasTiendaProveedor fecha_compra, Double importe) {
         throw new UnsupportedOperationException("No implementado");
     }
 
@@ -80,6 +75,43 @@ public interface DaoTrabajador {
 
     default void asignar_repartidor(Integer id_pedido, Integer id_repartidor) {
         throw new UnsupportedOperationException("No implementado");
+    }
+
+    default public String getMessage() {
+        throw new UnsupportedOperationException("No implementado");
+
+    }
+
+    default List<Proveedor> Cargar_comboProveedores() {
+        throw new UnsupportedOperationException("No implementado");
+    }
+
+    default List<Producto> Cargar_categoriaProducto() {
+        throw new UnsupportedOperationException("No implementado");
+    }
+
+    default List<Producto> Cargar_categorias_Proveedor(String proveedor) {
+        throw new UnsupportedOperationException("No implementado");
+    }
+
+    default List<Producto> Cargar_producto_catego_proveedor(String proveedor, String categoria) {
+        throw new UnsupportedOperationException("No implementado");
+    }
+
+    default Integer ordencompramasuno() {
+        throw new UnsupportedOperationException("No implementado");
+    }
+    
+    default void actualizarEstado(Integer id_ordenCompra){
+        
+    }
+    
+    default List<ProductoInventario> productoCompra_buscar(Integer id){
+        throw new UnsupportedOperationException("No implementado");
+    }
+    
+    default void grabar_productos_inventario(ProductoInventario datos){
+          throw new UnsupportedOperationException("No implementado");
     }
 
 }

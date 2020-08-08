@@ -39,6 +39,10 @@ public class ControladorAlmacenero {
         almacenero_login.setVisible(true);
     }
 
+
+          
+      
+
     public void InitController() {
 
         almacenero_login.getBtnIniciarSesion().addActionListener(e -> login());
@@ -181,6 +185,7 @@ public class ControladorAlmacenero {
                 (contenedor.width - contenido.width) / 2,
                 (contenedor.height - contenido.height) / 2);
         frame.show();
+
     }
 
 }

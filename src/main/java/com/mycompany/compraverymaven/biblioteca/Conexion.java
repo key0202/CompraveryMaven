@@ -6,7 +6,8 @@ import java.sql.SQLException;
 
 
 public class Conexion {
-    private final String URL = "jdbc:mysql://localhost:3308/compravery";
+
+    private final String URL = "jdbc:mysql://localhost:3306/compravery";
     private final String DRIVER = "com.mysql.cj.jdbc.Driver";
     private final String USER = "root";
     private final String PASS = "";

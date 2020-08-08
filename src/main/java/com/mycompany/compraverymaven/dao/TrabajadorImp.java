@@ -21,25 +21,28 @@ public class TrabajadorImp implements DaoTrabajador {
 
     @Override
     public Trabajador login(String user, String pass) {
-        Trabajador almacenero = new Trabajador();
-        try {
-            Connection cn = conecta.conexionDB();
-            CallableStatement procedur = cn.prepareCall("{call SP_LoginTrabajador(?,?)}");
-            procedur.setString(1, user);
-            procedur.setString(2, pass);
-            ResultSet rs = procedur.executeQuery();
-            if (rs.next()) {
-                almacenero.setNombre(rs.getString(1));
-                almacenero.setCelular(rs.getString(2));
-                almacenero.setCargo(rs.getString(3));
-                almacenero.setDireccion(rs.getString(4));
-                almacenero.setDni(rs.getString(5));
-            } else {
-                almacenero = null;
-                mensaje = "Error de login";
-            }
-        } catch (Exception e) {
-            Logger.getLogger(TrabajadorImp.class.getName()).log(Level.SEVERE, null, e);
+
+        Trabajador almacenero=new Trabajador();
+        try{
+           Connection cn=conecta.conexionDB();
+           CallableStatement procedur=cn.prepareCall("{call SP_LoginTrabajador(?,?)}");
+           procedur.setString(1,user);
+           procedur.setString(2, pass);
+           ResultSet rs=procedur.executeQuery();
+           if(rs.next()){
+               System.out.println("entra");
+               almacenero.setNombre(rs.getString(1));
+               almacenero.setDireccion(rs.getString(2));
+               almacenero.setCelular(rs.getString(3));
+               almacenero.setDni(rs.getString(4));
+           }else{
+               almacenero=null;           
+           }
+        }catch(Exception e){
+           e.getMessage();
+
+        
+
         }
         return almacenero;
     }

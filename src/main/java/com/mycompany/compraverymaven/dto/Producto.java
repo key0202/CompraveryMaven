@@ -18,7 +18,8 @@ public class Producto {
     //ATRIBUTOS PARA EL MANEJO DE PRECIO 
     private double precio;
     private double precioOferta;
-    private double id_pi;
+    private int id_pi;
+    private int cantidad;
 
     public Producto() {
     }
@@ -104,12 +105,21 @@ public class Producto {
     public void setPrecioOferta(double precioOferta) {
         this.precioOferta = precioOferta;
     }
-    public double getId_pi() {
+    public int getId_pi() {
         return id_pi;
     }
-    public void setId_pi(double id_pi) {
+    public void setId_pi(int id_pi) {
         this.id_pi = id_pi;
     }
+
+    public int getCantidad() {
+        return cantidad;
+    }
+
+    public void setCantidad(int cantidad) {
+        this.cantidad = cantidad;
+    }
+    
     
     
 

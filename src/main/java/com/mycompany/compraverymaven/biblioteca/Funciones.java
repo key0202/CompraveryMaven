@@ -246,21 +246,22 @@ public class Funciones {
     }
 
     public void exportarpdf3(JTable t, String norden, String proveedor, String fcompra, String ruc, String total) {
-        String producto = "";
-        String cantidad = "";
-        String preciocu = "";
-        String importe = "";
 
         int nfilas = t.getRowCount();
         // int ncolumnas = t.getColumnCount();
         List lista = new ArrayList();
         for (int i = 0; i < nfilas; i++) {
-            Pordencompra po = new Pordencompra(norden, proveedor, fcompra, ruc, 
-                    t.getValueAt(i, 0).toString(), 
-                    t.getValueAt(i, 1).toString(), 
-                    t.getValueAt(i, 2).toString(), 
-                    t.getValueAt(i, 3).toString(), total);         
-
+            String producto = t.getValueAt(i, 0).toString();
+            String cantidad = t.getValueAt(i, 1).toString();
+            String preciocu = t.getValueAt(i, 2).toString();
+            String importe = t.getValueAt(i, 3).toString();
+            System.out.println(producto +" "+ cantidad+" "+ preciocu+" "+ importe);
+            Pordencompra po = new Pordencompra(norden, proveedor, fcompra, ruc,
+                    producto,
+                    cantidad,
+                    preciocu,
+                    importe, total);
+            po.toString();
             lista.add(po);
         }
         JasperReport reporte;

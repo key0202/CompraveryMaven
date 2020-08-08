@@ -677,7 +677,7 @@ public class ControladorTrabajador {
                 String preciocu = "";
                 String importe = "";
                 String total = admin_menu_proveedores_compras.getTxtTotal().getText();
-
+                System.out.println(norden +" "+ proveedor +" "+ fcompra+" "+ruc);
                 fn.exportarpdf3(admin_menu_proveedores_compras.getTablaProductosCompras(),
                         norden,proveedor,fcompra,ruc,total);
 

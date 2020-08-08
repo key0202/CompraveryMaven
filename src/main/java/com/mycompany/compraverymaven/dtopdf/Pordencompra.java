@@ -96,6 +96,11 @@ private String total;
     public void setImporte(String importe) {
         this.importe = importe;
     }
+
+    @Override
+    public String toString() {
+        return "Pordencompra{" + "norden=" + norden + ", proveedor=" + proveedor + ", fcompra=" + fcompra + ", ruc=" + ruc + ", producto=" + producto + ", cantidad=" + cantidad + ", preciocu=" + preciocu + ", importe=" + importe + ", total=" + total + '}';
+    }
     
     
 }

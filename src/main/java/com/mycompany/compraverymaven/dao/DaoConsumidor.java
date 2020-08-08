@@ -2,14 +2,26 @@ package com.mycompany.compraverymaven.dao;
 
 import com.mycompany.compraverymaven.dto.*;
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
 
 public interface DaoConsumidor {
 
-    default Consumidor login(String usuario, String clave) {
+    default  public Consumidor login(String usuario, String password) {
         throw new UnsupportedOperationException("No implementado");
     }
-
+    
+    default public ArrayList<Producto> Listar_Productos(){
+        throw new UnsupportedOperationException("No implementado");
+    }
+    
+    default  public ArrayList<Producto> Buscar_Productos(String nombreProducto){
+        throw new UnsupportedOperationException("No implementado");
+    }
+    
+    default public String getMessage(){
+        throw new UnsupportedOperationException("No implementado");
+    }
     default List<ProductoInventario> BuscarProducto(String nombre) {
         throw new UnsupportedOperationException("No implementado");
     }

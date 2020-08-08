@@ -5,6 +5,10 @@
  */
 package com.mycompany.compraverymaven.vista;
 
+import javax.swing.JButton;
+import javax.swing.JTable;
+import javax.swing.JTextField;
+
 /**
  *
  * @author DAVID
@@ -18,6 +22,27 @@ public class Almacenero_Menu_Inventario extends javax.swing.JInternalFrame {
         initComponents();
     }
 
+    public JButton getBtn_buscar() {
+        return btn_buscar;
+    }
+
+    public JButton getBtn_confirmar() {
+        return btn_confirmar;
+    }
+
+    public JButton getBtn_imprimir() {
+        return btn_imprimir;
+    }
+
+    public JTable getTbl_detalleCompras() {
+        return tbl_detalleCompras;
+    }
+
+    public JTextField getTxt_ordenCompra() {
+        return txt_ordenCompra;
+    }
+
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -29,9 +54,9 @@ public class Almacenero_Menu_Inventario extends javax.swing.JInternalFrame {
 
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
-        tf_ordencompra = new javax.swing.JTextField();
+        txt_ordenCompra = new javax.swing.JTextField();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable_inventario = new javax.swing.JTable();
+        tbl_detalleCompras = new javax.swing.JTable();
         btn_buscar = new javax.swing.JButton();
         btn_confirmar = new javax.swing.JButton();
         btn_imprimir = new javax.swing.JButton();
@@ -41,18 +66,18 @@ public class Almacenero_Menu_Inventario extends javax.swing.JInternalFrame {
 
         jLabel2.setText("Orden de Compra N°:");
 
-        jTable_inventario.setModel(new javax.swing.table.DefaultTableModel(
+        tbl_detalleCompras.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null}
+                {},
+                {},
+                {},
+                {}
             },
             new String [] {
-                "Producto", "Fecha_pedido", "cantidad", "Lote", "Fecha_vencimiento"
+
             }
         ));
-        jScrollPane1.setViewportView(jTable_inventario);
+        jScrollPane1.setViewportView(tbl_detalleCompras);
 
         btn_buscar.setText("BUSCAR");
 
@@ -67,24 +92,24 @@ public class Almacenero_Menu_Inventario extends javax.swing.JInternalFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(143, 143, 143)
+                        .addGap(69, 69, 69)
                         .addComponent(jLabel1))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(28, 28, 28)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 670, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 502, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(jLabel2)
                                 .addGap(31, 31, 31)
-                                .addComponent(tf_ordencompra, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(txt_ordenCompra, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(70, 70, 70)
                                 .addComponent(btn_buscar, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE))))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(144, 144, 144)
+                        .addGap(90, 90, 90)
                         .addComponent(btn_confirmar, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(86, 86, 86)
+                        .addGap(49, 49, 49)
                         .addComponent(btn_imprimir, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(38, Short.MAX_VALUE))
+                .addContainerGap(68, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -94,15 +119,15 @@ public class Almacenero_Menu_Inventario extends javax.swing.JInternalFrame {
                 .addGap(30, 30, 30)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
-                    .addComponent(tf_ordencompra, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txt_ordenCompra, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btn_buscar))
-                .addGap(25, 25, 25)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(36, 36, 36)
+                .addGap(30, 30, 30)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(43, 43, 43)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btn_confirmar)
                     .addComponent(btn_imprimir))
-                .addContainerGap(43, Short.MAX_VALUE))
+                .addContainerGap(25, Short.MAX_VALUE))
         );
 
         pack();
@@ -116,7 +141,7 @@ public class Almacenero_Menu_Inventario extends javax.swing.JInternalFrame {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTable_inventario;
-    private javax.swing.JTextField tf_ordencompra;
+    private javax.swing.JTable tbl_detalleCompras;
+    private javax.swing.JTextField txt_ordenCompra;
     // End of variables declaration//GEN-END:variables
 }

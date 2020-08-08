@@ -134,9 +134,7 @@ public class Admin_Menu_Proveedores_Compras extends javax.swing.JInternalFrame {
         txtProveedor.setText("Proveedor Prueba SAC");
         jPanel1.add(txtProveedor, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 120, 130, -1));
         jPanel1.add(jSeparator1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 150, 560, 10));
-
-        txtTotal.setText("236.00");
-        jPanel1.add(txtTotal, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 440, 80, -1));
+        jPanel1.add(txtTotal, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 440, 80, 20));
 
         jLabel11.setText("S/.");
         jPanel1.add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 440, -1, -1));

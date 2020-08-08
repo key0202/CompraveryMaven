@@ -8,8 +8,17 @@ public class Producto {
     private String descripcion;
     private byte[] imagen;
     private String categoria;
+
+
+    private byte[] foto;
+
     private String proveedor;
+
     
+    //ATRIBUTOS PARA EL MANEJO DE PRECIO 
+    private double precio;
+    private double precioOferta;
+    private double id_pi;
 
     public Producto() {
     }
@@ -71,10 +80,44 @@ public class Producto {
         this.proveedor = proveedor;
     }
 
+
+    public byte[] getFoto() {
+        return foto;
+    }
+
+    public void setFoto(byte[] foto) {
+        this.foto = foto;
+    }
+    
+    
+    //getter y setter aparte
+
+    public double getPrecio() {
+        return precio;
+    }
+    public void setPrecio(double precio) {
+        this.precio = precio;
+    }
+    public double getPrecioOferta() {
+        return precioOferta;
+    }
+    public void setPrecioOferta(double precioOferta) {
+        this.precioOferta = precioOferta;
+    }
+    public double getId_pi() {
+        return id_pi;
+    }
+    public void setId_pi(double id_pi) {
+        this.id_pi = id_pi;
+    }
+    
+    
+
     @Override
     public String toString() {
         return "Producto{" + "nombre=" + nombre + ", descripcion=" + descripcion + ", imagen=" + imagen + ", categoria=" + categoria + ", proveedor=" + proveedor + '}';
     }
   
+
     
 }

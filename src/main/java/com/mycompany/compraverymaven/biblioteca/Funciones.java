@@ -267,7 +267,7 @@ public class Funciones {
         JasperReport reporte;
         try {
             //Map<String,Object> hm =new HashMap<>();
-            reporte = (JasperReport) JRLoader.loadObjectFromFile("C:\\Users\\ABEL\\Documents\\MEGAsync\\UTP\\VI CICLO\\INTEGRADOR\\EXTRAS\\TAREAS\\PROYECTO 2\\AVANCE 3\\CompraveryMaven\\src\\main\\resources\\informes\\ordencompra.jasper");
+            reporte = (JasperReport) JRLoader.loadObjectFromFile("C:\\Users\\ABEL\\Documents\\MEGAsync\\UTP\\VI CICLO\\INTEGRADOR\\EXTRAS\\TAREAS\\PROYECTO 2\\A\\CompraveryMaven\\src\\main\\resources\\informes\\ordencompra.jasper");
             JasperPrint imprimir = JasperFillManager.fillReport(reporte, null, new JRBeanCollectionDataSource(lista));
             JasperViewer.viewReport(imprimir, false);
 

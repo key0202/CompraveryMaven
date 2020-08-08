@@ -187,6 +187,7 @@ public class ControladorTrabajador {
                     cargar_tabla(opcion);
                 }
 
+
             case "asistencias":
 //                for (int i = 0; i <= cantidad_salones; i++) {
 //                    if (listita.getCmbSalon().getSelectedIndex() == 0) {
@@ -197,6 +198,7 @@ public class ControladorTrabajador {
 //                        cargar_tabla(ventana);
 //                    }
 //                }
+
 
                 break;
             default:
@@ -239,7 +241,6 @@ public class ControladorTrabajador {
 
         //cargando los comboBox con los proveedores:
         String opcion = "Seleccione un proveedor";
-        admin_anadir_productos.getCmbProveedor().removeAll();
         admin_anadir_productos.getCmbProveedor().addItem(opcion);
 
         List<Proveedor> prove = daotrabajador.Cargar_comboProveedores();
@@ -316,6 +317,7 @@ public class ControladorTrabajador {
 
                 break;
             case "producto":
+
                 Producto producto_nuevo = new Producto();
 
                 producto_nuevo.setNombre(admin_anadir_productos.getTxtNombreProducto().getText());
@@ -394,6 +396,7 @@ public class ControladorTrabajador {
 
     private void cargarimagen() {
         //asignar una imagen para el producto
+       admin_anadir_productos.getTxtruta().setText("");
         JFileChooser j = new JFileChooser();
         FileNameExtensionFilter fil = new FileNameExtensionFilter("JPG, PNG & GIF", "jpg", "png", "gif");
         j.setFileFilter(fil);
@@ -521,12 +524,13 @@ public class ControladorTrabajador {
 
 
                 cargarFrame(admin_menu_comprasestado, admin_menu.getJdpContenedor());
-                admin_menu_comprasestado.setVisible(true);
+                admin_menu_comprasestado.getCmbEstadoPedido().setSelectedIndex(0);
 
 
                 break;
             case "empleados":
                 cargarFrame(admin_menu_empleados, admin_menu.getJdpContenedor());
+                admin_menu_empleados.getCmbCargoEmpleado().setSelectedIndex(0);
 
                 break;
             case "ofertas":
@@ -539,7 +543,11 @@ public class ControladorTrabajador {
             case "proveedores":
                 cargarFrame(admin_menu_proveedores, admin_menu.getJdpContenedor());
 
+                admin_menu_proveedores.getCmbCategoria().setSelectedIndex(0);
+
+
                 admin_menu_proveedores.setVisible(true);
+
 
                 break;
             case "ventas":
@@ -547,7 +555,21 @@ public class ControladorTrabajador {
                 break;
             case "productos":
 
+              
+                admin_anadir_productos.getCmbProveedor().removeAllItems();
+
                 admin_anadir_productos.setVisible(true);
+                opcion = "Seleccione un proveedor";
+                admin_anadir_productos.getCmbProveedor().addItem(opcion);
+
+                List<Proveedor> prove = daotrabajador.Cargar_comboProveedores();
+                cantidadProveedor = prove.size();
+                for (int i = 0; i < cantidadProveedor; i++) {
+                    //admin_anadir_productos.getCmbProveedor().addItem(String.valueOf(prove.get(i)));
+                    admin_anadir_productos.getCmbProveedor().addItem(prove.get(i).getRazonsocial());
+                }
+
+                admin_anadir_productos.getCmbProveedor().setSelectedIndex(0);
 
                 break;
 
@@ -578,7 +600,6 @@ public class ControladorTrabajador {
                     List<Producto> produc = daotrabajador.Cargar_categorias_Proveedor(prov);
                     cantidadCategoria = produc.size();
                     for (int i = 0; i < cantidadCategoria; i++) {
-
                         admin_menu_proveedores_compras.getCmbCategoria().addItem(produc.get(i).getCategoria());
                     }
                     String produC = "Seleccione un producto";
@@ -748,6 +769,7 @@ public class ControladorTrabajador {
         }
         JOptionPane.showMessageDialog(null, "Compra realizada correctamente");
         cargarFrame(admin_menu_comprasestado, admin_menu.getJdpContenedor());
+        admin_menu_comprasestado.getCmbEstadoPedido().setSelectedIndex(0);
 
     }
 

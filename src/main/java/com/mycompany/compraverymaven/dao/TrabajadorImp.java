@@ -21,25 +21,28 @@ public class TrabajadorImp implements DaoTrabajador {
 
     @Override
     public Trabajador login(String user, String pass) {
-        Trabajador almacenero = new Trabajador();
-        try {
-            Connection cn = conecta.conexionDB();
-            CallableStatement procedur = cn.prepareCall("{call SP_LoginTrabajador(?,?)}");
-            procedur.setString(1, user);
-            procedur.setString(2, pass);
-            ResultSet rs = procedur.executeQuery();
-            if (rs.next()) {
-                almacenero.setNombre(rs.getString(1));
-                almacenero.setCelular(rs.getString(2));
-                almacenero.setCargo(rs.getString(3));
-                almacenero.setDireccion(rs.getString(4));
-                almacenero.setDni(rs.getString(5));
-            } else {
-                almacenero = null;
-                mensaje = "Error de login";
-            }
-        } catch (Exception e) {
-            Logger.getLogger(TrabajadorImp.class.getName()).log(Level.SEVERE, null, e);
+
+        Trabajador almacenero=new Trabajador();
+        try{
+           Connection cn=conecta.conexionDB();
+           CallableStatement procedur=cn.prepareCall("{call SP_LoginTrabajador(?,?)}");
+           procedur.setString(1,user);
+           procedur.setString(2, pass);
+           ResultSet rs=procedur.executeQuery();
+           if(rs.next()){
+               System.out.println("entra");
+               almacenero.setNombre(rs.getString(1));
+               almacenero.setDireccion(rs.getString(2));
+               almacenero.setCelular(rs.getString(3));
+               almacenero.setDni(rs.getString(4));
+           }else{
+               almacenero=null;           
+           }
+        }catch(Exception e){
+           e.getMessage();
+
+        
+
         }
         return almacenero;
     }
@@ -102,10 +105,9 @@ public class TrabajadorImp implements DaoTrabajador {
     }
 
     //Tarea del administrador para realizar compras
-
     @Override
     public void generar_compra_proveedor(String ruc, ComprasTiendaProveedor fecha_compra, Double importe) {
-       
+
         try {
             Connection cn = conecta.conexionDB();
             CallableStatement procedure = cn.prepareCall("{call SP_CompraProovedor(?,?,?)}");
@@ -126,14 +128,15 @@ public class TrabajadorImp implements DaoTrabajador {
         try {
             Connection cd = conecta.conexionDB();
             CallableStatement procedur = cd.prepareCall("{call SP_GrabarDetalleCompras(?,?,?,?)}");
-            procedur.setInt(1,id_compra_proveedor);
-            procedur.setString(2,producto.getNombre());
-            procedur.setInt(3,cantidad);
-            procedur.setDouble(4,precio);
-            ResultSet rs=procedur.executeQuery();           
+            procedur.setInt(1, id_compra_proveedor);
+            procedur.setString(2, producto.getNombre());
+            procedur.setInt(3, cantidad);
+            procedur.setDouble(4, precio);
+            ResultSet rs = procedur.executeQuery();
         } catch (Exception e) {
             e.getMessage();
-        }}
+        }
+    }
 
     //Tarea admi almacen:
     @Override
@@ -238,7 +241,6 @@ public class TrabajadorImp implements DaoTrabajador {
         return mis_proveedores;
     }
 
-
     @Override
     public List<Producto> Cargar_categorias_Proveedor(String proveedor) {
         List<Producto> categor_provee = null;
@@ -284,7 +286,6 @@ public class TrabajadorImp implements DaoTrabajador {
     }
 
     //metodo para Obtener un Id_compra:
-
     @Override
     public Integer ordencompramasuno() {
         Integer actual = 0;
@@ -303,32 +304,88 @@ public class TrabajadorImp implements DaoTrabajador {
         }
         return actual + 1;
     }
-    
+
     //Metodo para ver los estados de las ordenes de compras:
     @Override
-    public  List<ComprasTiendaProveedor> ver_estado_orden_compra(String estado){
-        List<ComprasTiendaProveedor>mis_ordenes=null;
-        try{
-            Connection cn=conecta.conexionDB();
-            CallableStatement procedur=cn.prepareCall("{call SP_VerEstadoCompras(?)}");
-            procedur.setString(1,estado);
-            ResultSet rs=procedur.executeQuery();
-            mis_ordenes=new ArrayList<>();
-            while(rs.next()){
-                ComprasTiendaProveedor compr=new ComprasTiendaProveedor();
+    public List<ComprasTiendaProveedor> ver_estado_orden_compra(String estado) {
+        List<ComprasTiendaProveedor> mis_ordenes = null;
+        try {
+            Connection cn = conecta.conexionDB();
+            CallableStatement procedur = cn.prepareCall("{call SP_VerEstadoCompras(?)}");
+            procedur.setString(1, estado);
+            ResultSet rs = procedur.executeQuery();
+            mis_ordenes = new ArrayList<>();
+            while (rs.next()) {
+                ComprasTiendaProveedor compr = new ComprasTiendaProveedor();
                 compr.setId(rs.getInt(1));
                 compr.setProveedor(rs.getString(2));
                 compr.setFecha_compra(LocalDate.parse(rs.getString(3)));
-                compr.setFecha_ingresar(rs.getString(4)); 
+                compr.setFecha_ingresar(rs.getString(4));
                 mis_ordenes.add(compr);
             }
             rs.close();
+
+        } catch (Exception e) {
+            e.getMessage();
+        }
+        return mis_ordenes;
+
+    }
+
+    //Almacenero
+    @Override
+    public void actualizarEstado(Integer id_ordenCompra) {
+        try {
+            Connection cn = conecta.conexionDB();
+            CallableStatement procedure = cn.prepareCall("{call SP_ActualizarEstado(?)}");
+            procedure.setInt(1, id_ordenCompra);
+            ResultSet rs = procedure.executeQuery();
+        } catch (Exception e) {
+            e.getMessage();
+        }
+    }
+
+    
+    //Chequear este metodo:
+    @Override
+    public List<ProductoInventario> productoCompra_buscar(Integer id) {
+        List<ProductoInventario> misproductos = null;
+        try {
+            Connection cn = conecta.conexionDB();
+            CallableStatement procedur = cn.prepareCall("{call SP_Almacen_verDetalleCompras(?)}");
+            procedur.setInt(1, id);
+            ResultSet rs = procedur.executeQuery();           
+            misproductos = new ArrayList<>();
+            while(rs.next()){
+                ProductoInventario productito=new ProductoInventario();
+                productito.setId(rs.getInt(1));
+                productito.setNombre(rs.getString(2));
+                productito.setFecha_compra(LocalDate.parse(rs.getString(3)));
+                productito.setStock(rs.getInt(4));
+                misproductos.add(productito);
+            }
+            rs.close();
+        } catch (Exception e) {
+            e.getMessage();
+        }
+        return misproductos;
+    }
+    
+    @Override
+    public void grabar_productos_inventario(ProductoInventario datos){    
+        try{
+            Connection cn=conecta.conexionDB();
+            CallableStatement procedur=cn.prepareCall("{call SP_IngresarProducoInventario(?,?,?,?)}");
+            procedur.setInt(1,datos.getId());
+            procedur.setString(2,datos.getLote());
+            procedur.setInt(3,datos.getStock());
+            procedur.setDate(4,Date.valueOf(datos.getFecha_vencimiento()));
+            ResultSet rs=procedur.executeQuery();
             
         }catch(Exception e){
             e.getMessage();
         }
-      return mis_ordenes;             
-
+    
     }
 
 }

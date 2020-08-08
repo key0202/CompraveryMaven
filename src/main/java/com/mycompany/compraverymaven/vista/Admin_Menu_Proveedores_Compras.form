@@ -272,12 +272,9 @@
           </Constraints>
         </Component>
         <Component class="javax.swing.JLabel" name="txtTotal">
-          <Properties>
-            <Property name="text" type="java.lang.String" value="236.00"/>
-          </Properties>
           <Constraints>
             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-              <AbsoluteConstraints x="450" y="440" width="80" height="-1"/>
+              <AbsoluteConstraints x="450" y="440" width="80" height="20"/>
             </Constraint>
           </Constraints>
         </Component>

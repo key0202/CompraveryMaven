@@ -1,6 +1,7 @@
 package com.mycompany.compraverymaven.vista;
 
 
+import javax.swing.JButton;
 import javax.swing.JDesktopPane;
 
 /**
@@ -26,31 +27,31 @@ public class Almacenero_Menu extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
-        jButton3 = new javax.swing.JButton();
+        btnPerfil = new javax.swing.JButton();
+        btnInventario = new javax.swing.JButton();
+        btnClose = new javax.swing.JButton();
         jSeparator1 = new javax.swing.JSeparator();
         jDesktopPane1 = new javax.swing.JDesktopPane();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jButton1.setText("PERFIL");
-        jButton1.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
-        getContentPane().add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 80, 130, 100));
+        btnPerfil.setText("PERFIL");
+        btnPerfil.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        getContentPane().add(btnPerfil, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 60, 130, 100));
 
-        jButton2.setText("INVENTARIO");
-        jButton2.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
-        getContentPane().add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 190, 130, 110));
+        btnInventario.setText("INVENTARIO");
+        btnInventario.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        getContentPane().add(btnInventario, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 160, 130, 100));
 
-        jButton3.setText("CERRAR SESION");
-        jButton3.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
-        getContentPane().add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 310, 130, 110));
+        btnClose.setText("CERRAR SESION");
+        btnClose.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        getContentPane().add(btnClose, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 260, 130, 110));
 
         jSeparator1.setOrientation(javax.swing.SwingConstants.VERTICAL);
         jSeparator1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 255)));
         getContentPane().add(jSeparator1, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 0, 0, 410));
-        getContentPane().add(jDesktopPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 0, 540, 440));
+        getContentPane().add(jDesktopPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 0, 540, 370));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -63,10 +64,22 @@ public class Almacenero_Menu extends javax.swing.JFrame {
      * @param args the command line arguments
      */
 
+    public JButton getBtnInventario() {
+        return btnInventario;
+    }
+
+    public JButton getBtnPerfil() {
+        return btnPerfil;
+    }
+
+    public JButton getBtnClose() {
+        return btnClose;
+    }
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
+    private javax.swing.JButton btnClose;
+    private javax.swing.JButton btnInventario;
+    private javax.swing.JButton btnPerfil;
     private javax.swing.JDesktopPane jDesktopPane1;
     private javax.swing.JSeparator jSeparator1;
     // End of variables declaration//GEN-END:variables

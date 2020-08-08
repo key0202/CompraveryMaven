@@ -32,7 +32,6 @@ public interface DaoTrabajador {
         throw new UnsupportedOperationException("No implementado");
     }
 
-
     default List<ProductoInventario> ver_movimientos_almacen(String estado, Producto categoria, LocalDate fecha_inicial, LocalDate fecha_final) {
         throw new UnsupportedOperationException("No implementado");
     }
@@ -101,17 +100,24 @@ public interface DaoTrabajador {
     default Integer ordencompramasuno() {
         throw new UnsupportedOperationException("No implementado");
     }
-    
-    default void actualizarEstado(Integer id_ordenCompra){
-        
-    }
-    
-    default List<ProductoInventario> productoCompra_buscar(Integer id){
-        throw new UnsupportedOperationException("No implementado");
-    }
-    
-    default void grabar_productos_inventario(ProductoInventario datos){
-          throw new UnsupportedOperationException("No implementado");
+
+    default void actualizarEstado(Integer id_ordenCompra) {
+
     }
 
+    default List<ProductoInventario> productoCompra_buscar(Integer id) {
+        throw new UnsupportedOperationException("No implementado");
+    }
+
+    default void grabar_productos_inventario(ProductoInventario datos) {
+        throw new UnsupportedOperationException("No implementado");
+    }
+
+    default List<OrdenCompraConsumidor> verordenespendientes() {
+        throw new UnsupportedOperationException("No implementado");
+    }
+
+    default List<DetalleCompraConsumidor> verdetallesconsumidor(Integer idorden) {
+        throw new UnsupportedOperationException("No implementado");
+    }
 }

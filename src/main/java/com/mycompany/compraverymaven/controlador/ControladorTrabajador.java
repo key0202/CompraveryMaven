@@ -4,6 +4,7 @@ import com.mycompany.compraverymaven.biblioteca.Funciones;
 import com.mycompany.compraverymaven.vista.*;
 import com.mycompany.compraverymaven.dao.*;
 import com.mycompany.compraverymaven.dto.ComprasTiendaProveedor;
+import com.mycompany.compraverymaven.dto.OrdenCompraConsumidor;
 import com.mycompany.compraverymaven.dto.Producto;
 import com.mycompany.compraverymaven.dto.Proveedor;
 import com.mycompany.compraverymaven.dto.Trabajador;
@@ -17,6 +18,7 @@ import java.io.InputStream;
 import java.sql.Date;
 import java.text.SimpleDateFormat;
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
 import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
@@ -43,10 +45,8 @@ public class ControladorTrabajador {
 
     private final SimpleDateFormat formatofecha = new SimpleDateFormat("yyyy-MM-dd");
 
-
     //private Integer cantidadCargos;
     DefaultTableModel modelillos = new DefaultTableModel();
-
 
     //instanciando la clase de funciones
     Funciones fn = new Funciones();
@@ -104,10 +104,10 @@ public class ControladorTrabajador {
         admin_menu_almacen.getBtnBuscar().addActionListener(e -> buscarproducto());
         admin_menu_almacen.getBtnGenerarReporte().addActionListener(e -> reporteexcel("almacen"));
 
-        admin_menu_atencionpedido.getBtnImprimir().addActionListener(e -> reportepdf("pedidos"));
+        admin_menu_atencionpedido.getBtnImprimir().addActionListener(e -> reportetxt("pedidospendientes"));
 
         admin_menu_comprasestado.getBtnImprimir().addActionListener(e -> reporteexcel("comprasestado"));
-   
+
         admin_menu_comprasestado.getCmbEstadoPedido().addActionListener(e -> comboconsulta("mis_compras"));
 
         admin_menu_comprasestado.getCmbEstadoPedido().addActionListener(e -> comboconsulta("mis_compras"));
@@ -125,7 +125,7 @@ public class ControladorTrabajador {
 
         admin_menu_proveedores_compras.getBtnAgregar().addActionListener(e -> agregarproductoAtabla());
         admin_menu_proveedores_compras.getBtnComprar().addActionListener(e -> comprarproductos());
-       
+
         admin_menu_proveedores_compras.getBtnImprimir().addActionListener(e -> reportepdf("ordencompra"));
 
         admin_menu_proveedores_compras.getCmbCategoria().addActionListener(e -> comboconsulta("productos"));
@@ -156,10 +156,10 @@ public class ControladorTrabajador {
                 } else {
                     cargar_tabla(opcion);
                 }
-                
+
                 break;
 
-              case "productos":
+            case "productos":
 
                 String prov = (String) admin_menu_proveedores.getTablaProveedores().
                         getModel().getValueAt(admin_menu_proveedores.getTablaProveedores().
@@ -187,7 +187,6 @@ public class ControladorTrabajador {
                     cargar_tabla(opcion);
                 }
 
-
             case "asistencias":
 //                for (int i = 0; i <= cantidad_salones; i++) {
 //                    if (listita.getCmbSalon().getSelectedIndex() == 0) {
@@ -198,7 +197,6 @@ public class ControladorTrabajador {
 //                        cargar_tabla(ventana);
 //                    }
 //                }
-
 
                 break;
             default:
@@ -396,7 +394,7 @@ public class ControladorTrabajador {
 
     private void cargarimagen() {
         //asignar una imagen para el producto
-       admin_anadir_productos.getTxtruta().setText("");
+        admin_anadir_productos.getTxtruta().setText("");
         JFileChooser j = new JFileChooser();
         FileNameExtensionFilter fil = new FileNameExtensionFilter("JPG, PNG & GIF", "jpg", "png", "gif");
         j.setFileFilter(fil);
@@ -518,14 +516,13 @@ public class ControladorTrabajador {
 
                 break;
             case "pedidos":
-
+                cargarFrame(admin_menu_atencionpedido, admin_menu.getJdpContenedor());
+                productospendientes();
                 break;
             case "compras":
 
-
                 cargarFrame(admin_menu_comprasestado, admin_menu.getJdpContenedor());
                 admin_menu_comprasestado.getCmbEstadoPedido().setSelectedIndex(0);
-
 
                 break;
             case "empleados":
@@ -545,9 +542,7 @@ public class ControladorTrabajador {
 
                 admin_menu_proveedores.getCmbCategoria().setSelectedIndex(0);
 
-
                 admin_menu_proveedores.setVisible(true);
-
 
                 break;
             case "ventas":
@@ -555,7 +550,6 @@ public class ControladorTrabajador {
                 break;
             case "productos":
 
-              
                 admin_anadir_productos.getCmbProveedor().removeAllItems();
 
                 admin_anadir_productos.setVisible(true);
@@ -585,7 +579,6 @@ public class ControladorTrabajador {
                             getModel().getValueAt(admin_menu_proveedores.getTablaProveedores().
                                     getSelectedRow(), 0);
                     System.out.println(LocalDate.now().toString());
-
 
                     String ruc = (String) admin_menu_proveedores.getTablaProveedores().
                             getModel().getValueAt(admin_menu_proveedores.getTablaProveedores().
@@ -698,9 +691,31 @@ public class ControladorTrabajador {
                 String preciocu = "";
                 String importe = "";
                 String total = admin_menu_proveedores_compras.getTxtTotal().getText();
-                System.out.println(norden +" "+ proveedor +" "+ fcompra+" "+ruc);
+                System.out.println(norden + " " + proveedor + " " + fcompra + " " + ruc);
                 fn.exportarpdf3(admin_menu_proveedores_compras.getTablaProductosCompras(),
-                        norden,proveedor,fcompra,ruc,total);
+                        norden, proveedor, fcompra, ruc, total);
+
+                break;
+            default:
+                throw new AssertionError();
+        }
+    }
+
+    private void reportetxt(String opcion) {
+        //genera un excel segun la tabla enviada
+
+        switch (opcion) {
+            case "pedidospendientes":                
+                String datos = admin_menu_atencionpedido.getTxtaPedidosPendientes().getText();
+                fn.exportartxt(datos);
+                break;
+            case "comprasestado":
+
+                break;
+            case "ventas":
+
+                break;
+            case "empleados":
 
                 break;
             default:
@@ -770,6 +785,21 @@ public class ControladorTrabajador {
         JOptionPane.showMessageDialog(null, "Compra realizada correctamente");
         cargarFrame(admin_menu_comprasestado, admin_menu.getJdpContenedor());
         admin_menu_comprasestado.getCmbEstadoPedido().setSelectedIndex(0);
+
+    }
+
+    private void productospendientes() {
+        List<OrdenCompraConsumidor> ordenes = daotrabajador.verordenespendientes();
+
+        Integer nordenes = ordenes.size();
+        StringBuilder datos = new StringBuilder();
+        for (int i = 0; i < nordenes - 1; i++) {
+            datos.append(ordenes);
+
+        }
+        String a = datos.toString().replace(",", "").replace("[", "").replace("]", "").trim();
+        // String d=a.substring(1,a.length()-1);
+        admin_menu_atencionpedido.getTxtaPedidosPendientes().setText(a);
 
     }
 

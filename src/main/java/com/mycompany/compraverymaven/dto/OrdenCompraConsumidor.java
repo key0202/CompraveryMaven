@@ -10,6 +10,8 @@ public class OrdenCompraConsumidor {
     private LocalDate fecha_compra;
     private String estado;
     private Double importe_total;
+    private String nombreconsumidor;
+    private String direccion;
 
     public OrdenCompraConsumidor() {
     }
@@ -70,4 +72,37 @@ public class OrdenCompraConsumidor {
     public void setImporte_total(Double importe_total) {
         this.importe_total = importe_total;
     }
+
+    public String getNombreconsumidor() {
+        return nombreconsumidor;
+    }
+
+    public void setNombreconsumidor(String nombreconsumidor) {
+        this.nombreconsumidor = nombreconsumidor;
+    }
+
+    public String getDireccion() {
+        return direccion;
+    }
+
+    public void setDireccion(String direccion) {
+        this.direccion = direccion;
+    }
+
+    @Override
+    public String toString() {
+        return  "\nId compra:\n " + id + 
+                "\nImporte_total:\n " + importe_total + 
+                "\nCliente:\n " + nombreconsumidor + 
+                "\nDireccion:\n " + direccion+
+                "\n---------------------";
+    }
+    
+        public String textos() {
+        return  "\nId compra:\n " + id + 
+                "\nFecha:\n " + fecha_compra.toString() + 
+                "\nImporte_total:\n " + importe_total + 
+                "\n---------------------";
+    }
+    
 }

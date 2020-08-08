@@ -3,6 +3,7 @@ package com.mycompany.compraverymaven.dto;
 public class DetalleCompraConsumidor {
 
     private Integer id;
+    private Integer id_productoinventario;
     private Integer cantidad;
     private ProductoInventario productoinventario;
     private Double subtotal;
@@ -48,4 +49,15 @@ public class DetalleCompraConsumidor {
     public void setSubtotal(Double subtotal) {
         this.subtotal = subtotal;
     }
+
+    public Integer getId_productoinventario() {
+        return id_productoinventario;
+    }
+
+    public void setId_productoinventario(Integer id_productoinventario) {
+        this.id_productoinventario = id_productoinventario;
+    }
+    
+    
+    
 }

@@ -1,6 +1,10 @@
 
 package com.mycompany.compraverymaven.vista;
 
+import javax.swing.JButton;
+import javax.swing.JTextArea;
+import org.jdesktop.swingx.JXDatePicker;
+
 
 public class Consumidor_HistorialPedidos extends javax.swing.JInternalFrame {
 
@@ -9,6 +13,21 @@ public class Consumidor_HistorialPedidos extends javax.swing.JInternalFrame {
         initComponents();
     }
 
+    public JButton getBtn_buscar() {
+        return btn_buscar;
+    }
+
+    public JXDatePicker getJdate_fechafinal() {
+        return jdate_fechafinal;
+    }
+
+    public JXDatePicker getJdate_fechainicial() {
+        return jdate_fechainicial;
+    }
+
+    public JTextArea getTxta_historial() {
+        return txta_historial;
+    }
 
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents

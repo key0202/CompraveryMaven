@@ -4,6 +4,7 @@ import com.mycompany.compraverymaven.biblioteca.formatoTablaListarProductos;
 import com.mycompany.compraverymaven.vista.*;
 import com.mycompany.compraverymaven.dao.*;
 import com.mycompany.compraverymaven.dto.Consumidor;
+import com.mycompany.compraverymaven.dto.OrdenCompraConsumidor;
 import com.mycompany.compraverymaven.dto.Producto;
 import java.awt.Dimension;
 import java.awt.event.MouseAdapter;
@@ -12,7 +13,10 @@ import java.awt.image.BufferedImage;
 import java.beans.PropertyVetoException;
 import java.io.ByteArrayInputStream;
 import java.io.InputStream;
+import java.text.SimpleDateFormat;
+import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.List;
 import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
 import javax.swing.JDesktopPane;
@@ -37,6 +41,7 @@ public class ControladorConsumidor {
     //DTOS PARA EL MANEJO DE DATOS
     private Consumidor consumidor = null;
     private Producto producto = null;
+    private Integer idconsumidor;
 
     //VISTAS DE LOS INTERNAL FRAMES
     private final Consumidor_BusquedaSeleccionProducto consumidor_BusquedaSeleccionProducto = new Consumidor_BusquedaSeleccionProducto();
@@ -81,14 +86,17 @@ public class ControladorConsumidor {
                 int codigo = (int) tabla.getValueAt(clic, 0);
                 String nombre = "" + tabla.getValueAt(clic, 1);
                 double precio = (double) tabla.getValueAt(clic, 2);
-               // String marca = "" + tabla.getValueAt(clic, 3);
-                
+                // String marca = "" + tabla.getValueAt(clic, 3);
+
                 consumidor_BusquedaSeleccionProducto.getTxtnombre_producto().setText(nombre);
                 consumidor_BusquedaSeleccionProducto.getTextoPrecio().setText(String.valueOf(precio));
-                
+
             }
 
         });
+
+        //BOTONES DEL LA VISTA Historial de pedidos
+        consumidor_historialpedidos.getBtn_buscar().addActionListener(e -> mostrarHistorial());
 
     }
 
@@ -101,6 +109,7 @@ public class ControladorConsumidor {
             consumidor = daoconsumidor.login(usuario, password);
 
             if (consumidor != null) {
+                idconsumidor = consumidor.getId();
                 consumidor_login.dispose();
                 consumidor_menu.setVisible(true);
                 inicio_total();
@@ -293,6 +302,27 @@ public class ControladorConsumidor {
 
     //METODO DEL BOTON HISTORIAL DE PEDIDOS
     public void mostrarHistorial() {
+        //Integer id;
+        SimpleDateFormat formater = new SimpleDateFormat("yyyy-MM-dd");
+        //formater.format(jXDatePicker1.getDate());
+
+       // LocalDate fecha1 = formater.format(consumidor_historialpedidos.getJdate_fechainicial().getDate());
+
+        LocalDate fecha1 = LocalDate.parse(consumidor_historialpedidos.getJdate_fechainicial().toString());
+        LocalDate fecha2 = LocalDate.parse(consumidor_historialpedidos.getJdate_fechafinal().toString());
+
+        List<OrdenCompraConsumidor> resultados = daoconsumidor.verordenesconsumidor(idconsumidor, fecha1, fecha2);
+
+        Integer nordenes = resultados.size();
+        StringBuilder datos = new StringBuilder();
+        for (int i = 0; i < nordenes - 1; i++) {
+            OrdenCompraConsumidor oc = resultados.get(i);
+            // oc.textos();
+            datos.append(oc.textos());
+
+        }
+        String a = datos.toString().replace(",", "").replace("[", "").replace("]", "").trim();
+        consumidor_historialpedidos.getTxta_historial().setText(a);
 
     }
 

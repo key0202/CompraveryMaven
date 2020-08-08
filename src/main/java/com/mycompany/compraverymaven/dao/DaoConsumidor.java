@@ -7,21 +7,22 @@ import java.util.List;
 
 public interface DaoConsumidor {
 
-    default  public Consumidor login(String usuario, String password) {
+    default public Consumidor login(String usuario, String password) {
         throw new UnsupportedOperationException("No implementado");
     }
-    
-    default public ArrayList<Producto> Listar_Productos(){
+
+    default public ArrayList<Producto> Listar_Productos() {
         throw new UnsupportedOperationException("No implementado");
     }
-    
-    default  public ArrayList<Producto> Buscar_Productos(String nombreProducto){
+
+    default public ArrayList<Producto> Buscar_Productos(String nombreProducto) {
         throw new UnsupportedOperationException("No implementado");
     }
-    
-    default public String getMessage(){
+
+    default public String getMessage() {
         throw new UnsupportedOperationException("No implementado");
     }
+
     default List<ProductoInventario> BuscarProducto(String nombre) {
         throw new UnsupportedOperationException("No implementado");
     }
@@ -54,6 +55,10 @@ public interface DaoConsumidor {
     }
 
     default Void registrarConsumidor(Consumidor consumidor) {
+        throw new UnsupportedOperationException("No implementado");
+    }
+
+    default List<OrdenCompraConsumidor> verordenesconsumidor(Integer id, LocalDate fecha1, LocalDate fecha2) {
         throw new UnsupportedOperationException("No implementado");
     }
 

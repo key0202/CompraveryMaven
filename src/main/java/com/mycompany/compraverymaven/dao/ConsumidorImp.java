@@ -2,14 +2,18 @@ package com.mycompany.compraverymaven.dao;
 
 import com.mycompany.compraverymaven.biblioteca.Conexion;
 import com.mycompany.compraverymaven.dto.Consumidor;
+import com.mycompany.compraverymaven.dto.OrdenCompraConsumidor;
 import com.mycompany.compraverymaven.dto.Producto;
 import java.sql.CallableStatement;
 import java.sql.Connection;
+import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 
 public class ConsumidorImp implements DaoConsumidor {
 
@@ -39,6 +43,7 @@ public class ConsumidorImp implements DaoConsumidor {
                 consumidor.setCelular(rs.getString(2));
                 consumidor.setDireccion(rs.getString(3));
                 consumidor.setDni(rs.getString(4));
+                consumidor.setId(rs.getInt(5));
             } else {
                 consumidor = null;
             }
@@ -83,9 +88,9 @@ public class ConsumidorImp implements DaoConsumidor {
     @Override
     public ArrayList<Producto> Buscar_Productos(String nombreProducto) {
         ArrayList<Producto> list = new ArrayList<Producto>();
-        
-        Connection cn =null;
-        CallableStatement procedur =null;
+
+        Connection cn = null;
+        CallableStatement procedur = null;
         ResultSet rs = null;
         try {
             cn = conecta.conexionDB();
@@ -93,7 +98,7 @@ public class ConsumidorImp implements DaoConsumidor {
             procedur.setString(1, nombreProducto);
             rs = procedur.executeQuery();
             while (rs.next()) {
-                 Producto producto = new Producto();
+                Producto producto = new Producto();
                 producto.setId(rs.getInt(1));
                 producto.setFoto(rs.getBytes(2));
                 producto.setNombre(rs.getString(3));
@@ -119,7 +124,7 @@ public class ConsumidorImp implements DaoConsumidor {
         return list;
     }
 
-   /*
+    /*
     public Producto getDatosProducto ( int id_producto){
         Producto producto = null;
         
@@ -148,7 +153,6 @@ public class ConsumidorImp implements DaoConsumidor {
         
         return producto;
     }*/
-    
     public void registroDetalleCompraConsumidor() {
 
     }
@@ -161,6 +165,33 @@ public class ConsumidorImp implements DaoConsumidor {
     public String getMessage() {
 
         return mensaje;
+    }
+
+    @Override
+    public List<OrdenCompraConsumidor> verordenesconsumidor(Integer id, LocalDate fecha1, LocalDate fecha2) {
+        List<OrdenCompraConsumidor> variable = null;
+        try {
+            Connection cn = conecta.conexionDB();
+            CallableStatement procedur = cn.prepareCall("{call SP_HistorialPedidosConsumidor(?,?,?)}");
+            procedur.setInt(0,id);
+            procedur.setDate(1, Date.valueOf(fecha1));
+            procedur.setDate(2, Date.valueOf(fecha2));
+            try (ResultSet rs = procedur.executeQuery()) {
+                variable = new ArrayList<>();
+                while (rs.next()) {
+                    OrdenCompraConsumidor compr = new OrdenCompraConsumidor();
+                    compr.setId(rs.getInt(1));
+                    compr.setFecha_compra(LocalDate.parse(rs.getDate(2).toString()));
+                    compr.setImporte_total(Double.parseDouble(rs.getString(3)));
+                    variable.add(compr);
+                }
+            }
+
+        } catch (Exception e) {
+            e.getMessage();
+        }
+        return variable;
+
     }
 
 }

@@ -5,6 +5,7 @@ import com.mycompany.compraverymaven.dtopdf.Pordencompra;
 import java.awt.Desktop;
 import java.io.File;
 import java.io.FileOutputStream;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.io.InputStream;
 import java.sql.Date;
@@ -275,4 +276,25 @@ public class Funciones {
         }
 
     }
+    
+        public void exportartxt(String str) {
+        if (!str.equals("")) {
+            try {
+                JFileChooser archivo = new JFileChooser();
+                archivo.showSaveDialog(archivo);
+                if (archivo.getSelectedFile() != null) {
+                    try (FileWriter guardado = new FileWriter(archivo.getSelectedFile()+".txt")) {
+                        guardado.write(str);
+                        JOptionPane.showMessageDialog(null, "El archivo fue guardado con éxito en la ruta establecida");
+                    }
+                }
+            } catch (IOException ex) {
+                JOptionPane.showMessageDialog(null, ex.getMessage());
+            }
+        } else {
+            JOptionPane.showMessageDialog(null, "No hay datos para guardar");
+        }
+
+    }
+    
 }

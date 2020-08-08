@@ -1,16 +1,19 @@
 package com.mycompany.compraverymaven.dto;
 
-import java.sql.Blob;
 
 public class Producto {
 
     private Integer id;
     private String nombre;
     private String descripcion;
-    private Blob imagen;
+    private byte[] imagen;
     private String categoria;
-    private Proveedor proveedor;
+
+
     private byte[] foto;
+
+    private String proveedor;
+
     
     //ATRIBUTOS PARA EL MANEJO DE PRECIO 
     private double precio;
@@ -20,7 +23,7 @@ public class Producto {
     public Producto() {
     }
 
-    public Producto(Integer id, String nombre, String descripcion, Blob imagen, String categoria, Proveedor proveedor) {
+    public Producto(Integer id, String nombre, String descripcion, byte[] imagen, String categoria, String proveedor) {
         this.id = id;
         this.nombre = nombre;
         this.descripcion = descripcion;
@@ -53,11 +56,11 @@ public class Producto {
         this.descripcion = descripcion;
     }
 
-    public Blob getImagen() {
+    public byte[] getImagen() {
         return imagen;
     }
 
-    public void setImagen(Blob imagen) {
+    public void setImagen(byte[] imagen) {
         this.imagen = imagen;
     }
 
@@ -69,13 +72,14 @@ public class Producto {
         this.categoria = categoria;
     }
 
-    public Proveedor getProveedor() {
+    public String getProveedor() {
         return proveedor;
     }
 
-    public void setProveedor(Proveedor proveedor) {
+    public void setProveedor(String proveedor) {
         this.proveedor = proveedor;
     }
+
 
     public byte[] getFoto() {
         return foto;
@@ -108,5 +112,12 @@ public class Producto {
     }
     
     
+
+    @Override
+    public String toString() {
+        return "Producto{" + "nombre=" + nombre + ", descripcion=" + descripcion + ", imagen=" + imagen + ", categoria=" + categoria + ", proveedor=" + proveedor + '}';
+    }
+  
+
     
 }

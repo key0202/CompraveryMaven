@@ -96,7 +96,6 @@ public class Admin_Menu_OfertasPrecios extends javax.swing.JInternalFrame {
         jLabel2.setText("Categoria :");
         jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 110, 70, -1));
 
-        cmbCategoria.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
         jPanel1.add(cmbCategoria, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 110, 170, -1));
 
         jLabel3.setText("Producto Seleccionado");

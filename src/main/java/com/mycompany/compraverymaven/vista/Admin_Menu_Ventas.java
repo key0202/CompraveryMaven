@@ -90,7 +90,6 @@ public class Admin_Menu_Ventas extends javax.swing.JInternalFrame {
         jLabel4.setText("Categoría : ");
         jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 120, -1, -1));
 
-        cmbCategoria.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
         jPanel1.add(cmbCategoria, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 120, 140, -1));
 
         btnGenerarResumen.setText("Generar Resumen de Ventas");

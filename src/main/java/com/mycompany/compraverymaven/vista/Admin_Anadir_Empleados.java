@@ -34,13 +34,11 @@ public class Admin_Anadir_Empleados extends javax.swing.JDialog {
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
-        jLabel5 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
         btnAgregar = new javax.swing.JButton();
         btnRegresar = new javax.swing.JButton();
         jLabel8 = new javax.swing.JLabel();
-        txtNombre = new javax.swing.JTextField();
         txtApellidos = new javax.swing.JTextField();
         txtDNI = new javax.swing.JTextField();
         txtDireccion = new javax.swing.JTextField();
@@ -55,15 +53,13 @@ public class Admin_Anadir_Empleados extends javax.swing.JDialog {
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
 
-        jLabel1.setText("Apellidos");
+        jLabel1.setText("Nombre y Apellido:");
 
         jLabel2.setText("Dirección");
 
         jLabel3.setText("Celular");
 
         jLabel4.setText("Cargo");
-
-        jLabel5.setText("Nombre");
 
         jLabel6.setText("Fecha inicio");
 
@@ -118,7 +114,6 @@ public class Admin_Anadir_Empleados extends javax.swing.JDialog {
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(51, 51, 51)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel5)
                             .addComponent(jLabel1)
                             .addComponent(jLabel8)
                             .addComponent(jLabel2)
@@ -128,26 +123,21 @@ public class Admin_Anadir_Empleados extends javax.swing.JDialog {
                             .addComponent(jLabel7))
                         .addGap(30, 30, 30)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(txtNombre, javax.swing.GroupLayout.DEFAULT_SIZE, 116, Short.MAX_VALUE)
                             .addComponent(txtApellidos)
                             .addComponent(txtDNI)
                             .addComponent(txtDireccion)
                             .addComponent(txtCelular)
                             .addComponent(txtCargo)
-                            .addComponent(fechaFinal, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(fechaFinal, javax.swing.GroupLayout.DEFAULT_SIZE, 116, Short.MAX_VALUE)
                             .addComponent(fechaInicio, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
-                .addContainerGap(34, Short.MAX_VALUE))
+                .addContainerGap(27, Short.MAX_VALUE))
             .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(29, 29, 29)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel5)
-                    .addComponent(txtNombre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
+                .addGap(67, 67, 67)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(txtApellidos, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel1))
@@ -243,9 +233,7 @@ public class Admin_Anadir_Empleados extends javax.swing.JDialog {
     /**
      * @param args the command line arguments
      */
-    public JTextField getTxtNombre() {
-        return txtNombre;
-    }
+  
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -257,7 +245,6 @@ public class Admin_Anadir_Empleados extends javax.swing.JDialog {
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
@@ -269,6 +256,5 @@ public class Admin_Anadir_Empleados extends javax.swing.JDialog {
     private javax.swing.JTextField txtCelular;
     private javax.swing.JTextField txtDNI;
     private javax.swing.JTextField txtDireccion;
-    private javax.swing.JTextField txtNombre;
     // End of variables declaration//GEN-END:variables
 }

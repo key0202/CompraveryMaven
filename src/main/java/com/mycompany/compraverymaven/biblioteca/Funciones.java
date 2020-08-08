@@ -1,6 +1,7 @@
 package com.mycompany.compraverymaven.biblioteca;
 
 import com.mycompany.compraverymaven.dtopdf.Pempleados;
+import com.mycompany.compraverymaven.dtopdf.Pordencompra;
 import java.awt.Desktop;
 import java.io.File;
 import java.io.FileOutputStream;
@@ -221,7 +222,7 @@ public class Funciones {
 
     public void exportarpdf2(JTable t) {
         int nfilas = t.getRowCount();
-       // int ncolumnas = t.getColumnCount();
+        // int ncolumnas = t.getColumnCount();
         List lista = new ArrayList();
         for (int i = 0; i < nfilas; i++) {
             Pempleados p = new Pempleados(t.getValueAt(i, 0).toString(),
@@ -234,13 +235,43 @@ public class Funciones {
         }
         JasperReport reporte;
         try {
-            reporte = (JasperReport) JRLoader.loadObjectFromFile("C:\\Users\\ABEL\\Documents\\MEGAsync\\UTP\\VI CICLO\\INTEGRADOR\\EXTRAS\\TAREAS\\PROYECTO 2\\AVANCE 3\\CompraveryMaven\\src\\main\\resources\\informes\\empleado.jasper");
-            JasperPrint imprimir = JasperFillManager.fillReport(reporte, null,new JRBeanCollectionDataSource(lista));
-            JasperViewer.viewReport(imprimir,false);
-            
+            //Map<String,Object> hm =new HashMap<>();
+            reporte = (JasperReport) JRLoader.loadObjectFromFile("C:\\Users\\ABEL\\Documents\\MEGAsync\\UTP\\VI CICLO\\INTEGRADOR\\EXTRAS\\TAREAS\\PROYECTO 2\\AVANCE 3\\CompraveryMaven\\src\\main\\resources\\informes\\empleado3.jasper");
+            JasperPrint imprimir = JasperFillManager.fillReport(reporte, null, new JRBeanCollectionDataSource(lista));
+            JasperViewer.viewReport(imprimir, false);
+
         } catch (JRException e) {
         }
 
     }
 
+    public void exportarpdf3(JTable t, String norden, String proveedor, String fcompra, String ruc, String total) {
+        String producto = "";
+        String cantidad = "";
+        String preciocu = "";
+        String importe = "";
+
+        int nfilas = t.getRowCount();
+        // int ncolumnas = t.getColumnCount();
+        List lista = new ArrayList();
+        for (int i = 0; i < nfilas; i++) {
+            Pordencompra po = new Pordencompra(norden, proveedor, fcompra, ruc, 
+                    t.getValueAt(i, 0).toString(), 
+                    t.getValueAt(i, 1).toString(), 
+                    t.getValueAt(i, 2).toString(), 
+                    t.getValueAt(i, 3).toString(), total);         
+
+            lista.add(po);
+        }
+        JasperReport reporte;
+        try {
+            //Map<String,Object> hm =new HashMap<>();
+            reporte = (JasperReport) JRLoader.loadObjectFromFile("C:\\Users\\ABEL\\Documents\\MEGAsync\\UTP\\VI CICLO\\INTEGRADOR\\EXTRAS\\TAREAS\\PROYECTO 2\\AVANCE 3\\CompraveryMaven\\src\\main\\resources\\informes\\ordencompra.jasper");
+            JasperPrint imprimir = JasperFillManager.fillReport(reporte, null, new JRBeanCollectionDataSource(lista));
+            JasperViewer.viewReport(imprimir, false);
+
+        } catch (JRException e) {
+        }
+
+    }
 }

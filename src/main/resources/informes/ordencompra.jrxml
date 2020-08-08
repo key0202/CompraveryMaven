@@ -9,7 +9,6 @@
 	<field name="proveedor" class="java.lang.String"/>
 	<field name="fcompra" class="java.lang.String"/>
 	<field name="ruc" class="java.lang.String"/>
-	<field name="categoria" class="java.lang.String"/>
 	<field name="producto" class="java.lang.String"/>
 	<field name="cantidad" class="java.lang.String"/>
 	<field name="preciocu" class="java.lang.String"/>

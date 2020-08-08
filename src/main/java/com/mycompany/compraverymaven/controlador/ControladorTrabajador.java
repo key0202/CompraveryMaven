@@ -43,8 +43,10 @@ public class ControladorTrabajador {
 
     private final SimpleDateFormat formatofecha = new SimpleDateFormat("yyyy-MM-dd");
 
+
     //private Integer cantidadCargos;
     DefaultTableModel modelillos = new DefaultTableModel();
+
 
     //instanciando la clase de funciones
     Funciones fn = new Funciones();
@@ -105,6 +107,8 @@ public class ControladorTrabajador {
         admin_menu_atencionpedido.getBtnImprimir().addActionListener(e -> reportepdf("pedidos"));
 
         admin_menu_comprasestado.getBtnImprimir().addActionListener(e -> reporteexcel("comprasestado"));
+   
+        admin_menu_comprasestado.getCmbEstadoPedido().addActionListener(e -> comboconsulta("mis_compras"));
 
         admin_menu_comprasestado.getCmbEstadoPedido().addActionListener(e -> comboconsulta("mis_compras"));
 
@@ -121,6 +125,7 @@ public class ControladorTrabajador {
 
         admin_menu_proveedores_compras.getBtnAgregar().addActionListener(e -> agregarproductoAtabla());
         admin_menu_proveedores_compras.getBtnComprar().addActionListener(e -> comprarproductos());
+       
         admin_menu_proveedores_compras.getBtnImprimir().addActionListener(e -> reportepdf("ordencompra"));
 
         admin_menu_proveedores_compras.getCmbCategoria().addActionListener(e -> comboconsulta("productos"));
@@ -151,10 +156,10 @@ public class ControladorTrabajador {
                 } else {
                     cargar_tabla(opcion);
                 }
-
+                
                 break;
 
-            case "productos":
+              case "productos":
 
                 String prov = (String) admin_menu_proveedores.getTablaProveedores().
                         getModel().getValueAt(admin_menu_proveedores.getTablaProveedores().
@@ -517,8 +522,10 @@ public class ControladorTrabajador {
                 break;
             case "compras":
 
+
                 cargarFrame(admin_menu_comprasestado, admin_menu.getJdpContenedor());
                 admin_menu_comprasestado.getCmbEstadoPedido().setSelectedIndex(0);
+
 
                 break;
             case "empleados":
@@ -578,6 +585,7 @@ public class ControladorTrabajador {
                             getModel().getValueAt(admin_menu_proveedores.getTablaProveedores().
                                     getSelectedRow(), 0);
                     System.out.println(LocalDate.now().toString());
+
 
                     String ruc = (String) admin_menu_proveedores.getTablaProveedores().
                             getModel().getValueAt(admin_menu_proveedores.getTablaProveedores().
@@ -691,7 +699,7 @@ public class ControladorTrabajador {
                 String preciocu = "";
                 String importe = "";
                 String total = admin_menu_proveedores_compras.getTxtTotal().getText();
-
+                System.out.println(norden +" "+ proveedor +" "+ fcompra+" "+ruc);
                 fn.exportarpdf3(admin_menu_proveedores_compras.getTablaProductosCompras(),
                         norden,proveedor,fcompra,ruc,total);
 

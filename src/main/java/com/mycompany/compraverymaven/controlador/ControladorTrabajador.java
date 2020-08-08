@@ -600,7 +600,6 @@ public class ControladorTrabajador {
                     List<Producto> produc = daotrabajador.Cargar_categorias_Proveedor(prov);
                     cantidadCategoria = produc.size();
                     for (int i = 0; i < cantidadCategoria; i++) {
-
                         admin_menu_proveedores_compras.getCmbCategoria().addItem(produc.get(i).getCategoria());
                     }
                     String produC = "Seleccione un producto";

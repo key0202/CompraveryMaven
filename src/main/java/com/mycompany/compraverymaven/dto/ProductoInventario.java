@@ -2,7 +2,7 @@ package com.mycompany.compraverymaven.dto;
 
 import java.time.LocalDate;
 
-public class ProductoInventario extends Producto{
+public class ProductoInventario extends Producto {
 
     private Integer id;
     private Integer stock;
@@ -12,8 +12,9 @@ public class ProductoInventario extends Producto{
     private LocalDate fecha_vencimiento;
     private Oferta oferta;
     private DetalleOrdenProducto detalleordenproducto;
+    private LocalDate fecha_compra;
 
-    public ProductoInventario(Integer id, Integer stock, Double precioventa, String lote, LocalDate fecha_ingreso, LocalDate fecha_vencimiento, Oferta oferta, DetalleOrdenProducto detalleordenproducto) {
+    public ProductoInventario(Integer id, Integer stock, Double precioventa, String lote, LocalDate fecha_ingreso, LocalDate fecha_vencimiento, Oferta oferta, DetalleOrdenProducto detalleordenproducto, LocalDate fecha_compra) {
         this.id = id;
         this.stock = stock;
         this.precioventa = precioventa;
@@ -22,6 +23,7 @@ public class ProductoInventario extends Producto{
         this.fecha_vencimiento = fecha_vencimiento;
         this.oferta = oferta;
         this.detalleordenproducto = detalleordenproducto;
+        this.fecha_compra = fecha_compra;
     }
 
     public ProductoInventario() {
@@ -33,6 +35,14 @@ public class ProductoInventario extends Producto{
 
     public void setId(Integer id) {
         this.id = id;
+    }
+
+    public LocalDate getFecha_compra() {
+        return fecha_compra;
+    }
+
+    public void setFecha_compra(LocalDate fecha_compra) {
+        this.fecha_compra = fecha_compra;
     }
 
     public Integer getStock() {
@@ -89,6 +99,21 @@ public class ProductoInventario extends Producto{
 
     public void setDetalleordenproducto(DetalleOrdenProducto detalleordenproducto) {
         this.detalleordenproducto = detalleordenproducto;
+    }
+
+    @Override
+    public String toString() {
+        StringBuilder informacion = new StringBuilder();
+        informacion.append("Id:").append(id).
+                append("\nStock: ").append(stock)
+                .append("\nPrecioVenta: ").append(precioventa)
+                .append("\nLote: ").append(lote)
+                .append("\nFechaIngreso:").append(fecha_ingreso)
+                .append("\nFechaVencimiento:").append(fecha_vencimiento)
+                .append("\nOferta").append(oferta)
+                .append("\nDetalleOrdenProd").append(detalleordenproducto)
+                .append("\nFechaCompra").append(fecha_compra);
+        return informacion.toString();
     }
 
 }

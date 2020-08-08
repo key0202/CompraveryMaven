@@ -49,6 +49,7 @@ public class Admin_Menu_Proveedores_Compras extends javax.swing.JInternalFrame {
         btnAgregar = new javax.swing.JButton();
         BtnImporte = new javax.swing.JButton();
         jXFechaActual = new org.jdesktop.swingx.JXDatePicker();
+        btnImprimir = new javax.swing.JButton();
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -125,7 +126,7 @@ public class Admin_Menu_Proveedores_Compras extends javax.swing.JInternalFrame {
         jPanel1.add(cmbProducto, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 180, 130, -1));
 
         btnComprar.setText("Comprar");
-        jPanel1.add(btnComprar, new org.netbeans.lib.awtextra.AbsoluteConstraints(22, 476, 510, 36));
+        jPanel1.add(btnComprar, new org.netbeans.lib.awtextra.AbsoluteConstraints(22, 476, 400, 36));
 
         LbFechaActual.setText("04/04/2020");
         jPanel1.add(LbFechaActual, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 80, 80, 30));
@@ -150,6 +151,9 @@ public class Admin_Menu_Proveedores_Compras extends javax.swing.JInternalFrame {
         BtnImporte.setText("Importe");
         jPanel1.add(BtnImporte, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 440, -1, -1));
         jPanel1.add(jXFechaActual, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 90, -1, -1));
+
+        btnImprimir.setText("Imprimir");
+        jPanel1.add(btnImprimir, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 480, 90, -1));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -194,7 +198,7 @@ public class Admin_Menu_Proveedores_Compras extends javax.swing.JInternalFrame {
         return tablaProductosCompras;
     }
 
-    public JLabel getTxtFechaCompra() {
+    public JLabel getLbFechaActual() {
         return LbFechaActual;
     }
 
@@ -213,6 +217,10 @@ public class Admin_Menu_Proveedores_Compras extends javax.swing.JInternalFrame {
     public JLabel getTxtTotal() {
         return txtTotal;
     }
+
+    public JButton getBtnImprimir() {
+        return btnImprimir;
+    }
     
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -220,6 +228,7 @@ public class Admin_Menu_Proveedores_Compras extends javax.swing.JInternalFrame {
     private javax.swing.JLabel LbFechaActual;
     private javax.swing.JButton btnAgregar;
     private javax.swing.JButton btnComprar;
+    private javax.swing.JButton btnImprimir;
     private javax.swing.JComboBox<String> cmbCategoria;
     private javax.swing.JComboBox<String> cmbProducto;
     private javax.swing.JLabel jLabel1;

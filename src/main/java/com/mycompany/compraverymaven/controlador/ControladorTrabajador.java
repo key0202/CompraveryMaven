@@ -1,5 +1,6 @@
 package com.mycompany.compraverymaven.controlador;
 
+import com.mycompany.compraverymaven.biblioteca.Funciones;
 import com.mycompany.compraverymaven.vista.*;
 import com.mycompany.compraverymaven.dao.*;
 import com.mycompany.compraverymaven.dto.ComprasTiendaProveedor;
@@ -45,6 +46,10 @@ public class ControladorTrabajador {
     //private Integer cantidadCargos;
     DefaultTableModel modelillos = new DefaultTableModel();
 
+    //instanciando la clase de funciones
+    Funciones fn = new Funciones();
+
+    //private Integer cantidadCargos;
     private final Admin_Menu_Almacen admin_menu_almacen = new Admin_Menu_Almacen();
     private final Admin_Menu_AtencionPedido admin_menu_atencionpedido = new Admin_Menu_AtencionPedido();
     private final Admin_Menu_ComprasEstado admin_menu_comprasestado = new Admin_Menu_ComprasEstado();
@@ -100,9 +105,11 @@ public class ControladorTrabajador {
         admin_menu_atencionpedido.getBtnImprimir().addActionListener(e -> reportepdf("pedidos"));
 
         admin_menu_comprasestado.getBtnImprimir().addActionListener(e -> reporteexcel("comprasestado"));
+
         admin_menu_comprasestado.getCmbEstadoPedido().addActionListener(e -> comboconsulta("mis_compras"));
 
         admin_menu_empleados.getBtnAgregarEmpleado().addActionListener(e -> abrir_frame("anadirempleado"));
+        admin_menu_empleados.getBtnExportarExcel().addActionListener(e -> reportepdf("empleados"));
         admin_menu_empleados.getCmbCargoEmpleado().addItemListener(e -> comboconsulta("empleados"));
         admin_menu_proveedores.getCmbCategoria().addActionListener(e -> comboconsulta("proveedores"));
 
@@ -114,6 +121,8 @@ public class ControladorTrabajador {
 
         admin_menu_proveedores_compras.getBtnAgregar().addActionListener(e -> agregarproductoAtabla());
         admin_menu_proveedores_compras.getBtnComprar().addActionListener(e -> comprarproductos());
+        admin_menu_proveedores_compras.getBtnImprimir().addActionListener(e -> reportepdf("ordencompra"));
+
         admin_menu_proveedores_compras.getCmbCategoria().addActionListener(e -> comboconsulta("productos"));
         admin_menu_proveedores_compras.getBtnImporte().addActionListener(e -> ImporteCalculado());
 
@@ -172,6 +181,19 @@ public class ControladorTrabajador {
                 } else {
                     cargar_tabla(opcion);
                 }
+
+
+            case "asistencias":
+//                for (int i = 0; i <= cantidad_salones; i++) {
+//                    if (listita.getCmbSalon().getSelectedIndex() == 0) {
+//                        listita.getBtnExportar().setEnabled(false);
+//                    } else {
+//                                               
+//                        listita.getBtnExportar().setEnabled(true);
+//                        cargar_tabla(ventana);
+//                    }
+//                }
+
 
                 break;
             default:
@@ -419,6 +441,7 @@ public class ControladorTrabajador {
                 });
 
                 break;
+
             case "mis_compras":
                 String estd = admin_menu_comprasestado.getCmbEstadoPedido().getSelectedItem().toString();
                 List<ComprasTiendaProveedor> resolviendo = daotrabajador.ver_estado_orden_compra(estd);
@@ -446,6 +469,7 @@ public class ControladorTrabajador {
         while (modelillo.getRowCount() > 0) {
             modelillo.removeRow(0);
         }
+
         switch (opcion) {
             case "empleados":
                 modelillo.addColumn("Nombre y Apellidos");
@@ -467,6 +491,7 @@ public class ControladorTrabajador {
                 admin_menu_proveedores.getTablaProveedores().setModel(modelillo);
 
                 break;
+
             case "mis_compras":
                 modelillo.addColumn("N°Orden Compra");
                 modelillo.addColumn("Proveedor");
@@ -491,6 +516,7 @@ public class ControladorTrabajador {
 
                 break;
             case "compras":
+
                 cargarFrame(admin_menu_comprasestado, admin_menu.getJdpContenedor());
                 admin_menu_comprasestado.getCmbEstadoPedido().setSelectedIndex(0);
 
@@ -504,21 +530,27 @@ public class ControladorTrabajador {
 
                 break;
             case "perfil":
-                cargarFrame(admin_menu_perfil, admin_menu.getJdpContenedor());
-                admin_menu_perfil.setVisible(true);
 
                 break;
+
             case "proveedores":
                 cargarFrame(admin_menu_proveedores, admin_menu.getJdpContenedor());
+
                 admin_menu_proveedores.getCmbCategoria().setSelectedIndex(0);
+
+
+                admin_menu_proveedores.setVisible(true);
+
 
                 break;
             case "ventas":
 
                 break;
             case "productos":
+
               
                 admin_anadir_productos.getCmbProveedor().removeAllItems();
+
                 admin_anadir_productos.setVisible(true);
                 opcion = "Seleccione un proveedor";
                 admin_anadir_productos.getCmbProveedor().addItem(opcion);
@@ -586,7 +618,7 @@ public class ControladorTrabajador {
     //Metodo para cargar la fecha en el frame de menu_proveedores_compra
     private void obtenerFecha() {
         LocalDate myObj = LocalDate.now();
-        admin_menu_proveedores_compras.getTxtFechaCompra().setText(String.valueOf(myObj));
+        admin_menu_proveedores_compras.getLbFechaActual().setText(String.valueOf(myObj));
         //      listita.getjXFechaza().setDate(Date.valueOf(LocalDate.now()));
         admin_menu_proveedores_compras.getjXFechaActual().setDate(Date.valueOf(LocalDate.now()));
 
@@ -620,6 +652,7 @@ public class ControladorTrabajador {
 
     private void reporteexcel(String opcion) {
         //genera un excel segun la tabla enviada
+
         switch (opcion) {
             case "almacen":
 
@@ -630,6 +663,12 @@ public class ControladorTrabajador {
             case "ventas":
 
                 break;
+            case "empleados":
+                fn.exportarexcel(admin_menu_empleados.getTablaEmpleados());
+                InputStream plantilla = Ejecutable_Trabajador.class.getClassLoader().getResourceAsStream("informes/empleados.jrxml");
+                fn.exportarpdf(plantilla);
+
+                break;
             default:
                 throw new AssertionError();
         }
@@ -638,7 +677,23 @@ public class ControladorTrabajador {
     private void reportepdf(String opcion) {
         //genera un reporte en pdf
         switch (opcion) {
-            case "pedidos":
+            case "empleados":
+                fn.exportarpdf2(admin_menu_empleados.getTablaEmpleados());
+
+                break;
+            case "ordencompra":
+                String norden = admin_menu_proveedores_compras.getTxtNumeroOrdenCompra().getText();
+                String proveedor = admin_menu_proveedores_compras.getTxtProveedor().getText();
+                String fcompra = admin_menu_proveedores_compras.getLbFechaActual().getText();
+                String ruc = admin_menu_proveedores_compras.getTxtRUC().getText();
+                String producto = "";
+                String cantidad = "";
+                String preciocu = "";
+                String importe = "";
+                String total = admin_menu_proveedores_compras.getTxtTotal().getText();
+
+                fn.exportarpdf3(admin_menu_proveedores_compras.getTablaProductosCompras(),
+                        norden,proveedor,fcompra,ruc,total);
 
                 break;
             default:

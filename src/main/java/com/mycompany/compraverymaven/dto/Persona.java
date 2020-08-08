@@ -67,6 +67,11 @@ public class Persona {
     public void setCelular(String celular) {
         this.celular = celular;
     }
+
+    @Override
+    public String toString() {
+        return "Persona{" + "id=" + id + ", nombre=" + nombre + ", direccion=" + direccion + ", dni=" + dni + ", celular=" + celular + '}';
+    }
     
     
     

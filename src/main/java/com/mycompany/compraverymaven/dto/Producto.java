@@ -12,6 +12,10 @@ public class Producto {
     private Proveedor proveedor;
     private byte[] foto;
     
+    //ATRIBUTOS PARA EL MANEJO DE PRECIO 
+    private double precio;
+    private double precioOferta;
+    private double id_pi;
 
     public Producto() {
     }
@@ -82,6 +86,26 @@ public class Producto {
     }
     
     
+    //getter y setter aparte
+
+    public double getPrecio() {
+        return precio;
+    }
+    public void setPrecio(double precio) {
+        this.precio = precio;
+    }
+    public double getPrecioOferta() {
+        return precioOferta;
+    }
+    public void setPrecioOferta(double precioOferta) {
+        this.precioOferta = precioOferta;
+    }
+    public double getId_pi() {
+        return id_pi;
+    }
+    public void setId_pi(double id_pi) {
+        this.id_pi = id_pi;
+    }
     
     
     

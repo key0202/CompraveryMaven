@@ -9,113 +9,128 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.HashMap;
 
-public class ConsumidorImp implements DaoConsumidor{
+public class ConsumidorImp implements DaoConsumidor {
+
     private final Conexion conecta;
     private String mensaje;
 
     public ConsumidorImp() {
         this.conecta = new Conexion();
     }
-    
-    public Consumidor login(String usuario, String clave) {
-        Consumidor consumidor = new Consumidor ();
-        try{
-           Connection cn=conecta.conexionDB();
-           CallableStatement procedur=cn.prepareCall("{call SP_LoginConsumidor(?,?)}");
-           procedur.setString(1,usuario);
-           procedur.setString(2, clave);
-           ResultSet rs=procedur.executeQuery();
-           if(rs.next()){
-               consumidor.setNombre(rs.getString(1));
-               consumidor.setDireccion(rs.getString(2));
-               consumidor.setCelular(rs.getString(3));
-               consumidor.setDni(rs.getString(4));
-           }else{
-               consumidor=null;           
-           }
-        }catch(Exception e){
-           e.getMessage();
+
+    @Override
+    public Consumidor login(String usuario, String password) {
+        Consumidor consumidor = null;
+        try {
+            Connection cn = conecta.conexionDB();
+            CallableStatement procedur = cn.prepareCall("{call SP_LoginConsumidor(?,?)}");
+            procedur.setString(1, usuario);
+            procedur.setString(2, password);
+            procedur.execute();
+
+            ResultSet rs = procedur.executeQuery();
+            consumidor = new Consumidor();
+
+            if (rs.next()) {
+
+                consumidor.setNombre(rs.getString(1));
+                consumidor.setCelular(rs.getString(2));
+                consumidor.setDireccion(rs.getString(3));
+                consumidor.setDni(rs.getString(4));
+            } else {
+                consumidor = null;
+            }
+        } catch (Exception e) {
+            mensaje = e.getMessage();
         }
-        
+
         return consumidor;
-      
+
     }
-    
-    public ArrayList<Producto> Listar_Productos(){
+
+    @Override
+    public ArrayList<Producto> Listar_Productos() {
+        //  HashMap<Producto,String > claveValor ;
         ArrayList<Producto> list = new ArrayList<Producto>();
-        
-    
-        try{
-            Connection cn=conecta.conexionDB();
-           CallableStatement procedur=cn.prepareCall("{call SP_LoginConsumidor(?,?)}");
-           ResultSet rs=procedur.executeQuery();
-            while(rs.next()){
+
+        try {
+            Connection cn = conecta.conexionDB();
+            CallableStatement procedur = cn.prepareCall("{call SP_listarProductos}");
+            ResultSet rs = procedur.executeQuery();
+            while (rs.next()) {
                 Producto producto = new Producto();
                 producto.setId(rs.getInt(1));
+                producto.setFoto(rs.getBytes(2));
                 producto.setNombre(rs.getString(3));
-                producto.setCategoria(rs.getString(4));
-                producto.setFoto(rs.getBytes(5));
-                producto.setDescripcion(rs.getString(6));
+                producto.setDescripcion(rs.getString(4));
+                producto.setPrecio(rs.getDouble(5));
+                //   producto.setFoto(rs.getBytes(1));
+
                 list.add(producto);
-            }
-        }catch(SQLException ex){
+            }//Id_producto
+        } catch (SQLException ex) {
             System.out.println(ex.getMessage());
-        }catch(Exception ex){
+        } catch (Exception ex) {
             System.out.println(ex.getMessage());
         }
-        
+
         return list;
-        
+
     }
-    
-    public ArrayList<Producto> Buscar_Productos(String nombreProducto){
+
+    @Override
+    public ArrayList<Producto> Buscar_Productos(String nombreProducto) {
         ArrayList<Producto> list = new ArrayList<Producto>();
         
-        String sql = "SELECT * FROM producto;";
-        Connection cn = null;
+        Connection cn =null;
+        CallableStatement procedur =null;
         ResultSet rs = null;
-        CallableStatement procedur = null;
-        try{
-            cn=conecta.conexionDB();
-           procedur=cn.prepareCall("{call SP_buscarProductos(?)}");
-           procedur.setString(1, nombreProducto);
-          rs=procedur.executeQuery();
-            while(rs.next()){
-                Producto producto = new Producto();
+        try {
+            cn = conecta.conexionDB();
+            procedur = cn.prepareCall("{call SP_buscarProductos(?)}");
+            procedur.setString(1, nombreProducto);
+            rs = procedur.executeQuery();
+            while (rs.next()) {
+                 Producto producto = new Producto();
                 producto.setId(rs.getInt(1));
+                producto.setFoto(rs.getBytes(2));
                 producto.setNombre(rs.getString(3));
-                producto.setCategoria(rs.getString(4));
-                producto.setFoto(rs.getBytes(5));
-                producto.setDescripcion(rs.getString(6));
+                producto.setDescripcion(rs.getString(4));
+                producto.setPrecio(rs.getDouble(5));
+                producto.setId_pi(rs.getInt(6));
+                //   producto.setFoto(rs.getBytes(1));
+
                 list.add(producto);
             }
-        }catch(SQLException ex){
+        } catch (SQLException ex) {
             System.out.println(ex.getMessage());
-        }catch(Exception ex){
+        } catch (Exception ex) {
             System.out.println(ex.getMessage());
-        }finally{
-            try{
+        } finally {
+            try {
                 procedur.close();
                 rs.close();
                 cn.close();
-            }catch(Exception ex){}
+            } catch (Exception ex) {
+            }
         }
         return list;
-    } 
-    
-    
-    public void registroDetalleCompraConsumidor (){
-        
     }
-    
-    
-    
-    public void registraOrdenCompraConsumidor(){
-        
+
+    public void registroDetalleCompraConsumidor() {
+
     }
-    
-    
-    
-    
+
+    public void registraOrdenCompraConsumidor() {
+
+    }
+
+    @Override
+    public String getMessage() {
+
+        return mensaje;
+    }
+
 }

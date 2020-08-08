@@ -23,6 +23,7 @@ public class TrabajadorImp implements DaoTrabajador{
            procedur.setString(2, pass);
            ResultSet rs=procedur.executeQuery();
            if(rs.next()){
+               System.out.println("entra");
                almacenero.setNombre(rs.getString(1));
                almacenero.setDireccion(rs.getString(2));
                almacenero.setCelular(rs.getString(3));

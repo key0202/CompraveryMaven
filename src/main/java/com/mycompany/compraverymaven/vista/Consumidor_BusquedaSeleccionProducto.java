@@ -157,6 +157,16 @@ public class Consumidor_BusquedaSeleccionProducto extends javax.swing.JInternalF
     public static String getIS_ICON_PROPERTY() {
         return IS_ICON_PROPERTY;
     }
+
+    public JLabel getTxtFecha() {
+        return txtFecha;
+    }
+
+    public JLabel getTxtnombre_producto() {
+        return txtnombre_producto;
+    }
+    
+    
     
     
 
@@ -182,6 +192,8 @@ public class Consumidor_BusquedaSeleccionProducto extends javax.swing.JInternalF
         btnAgregarCarrito = new javax.swing.JButton();
         jPanel2 = new javax.swing.JPanel();
         jLabel10 = new javax.swing.JLabel();
+        jLabel4 = new javax.swing.JLabel();
+        txtFecha = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
         txtPrecioOferta = new javax.swing.JLabel();
@@ -190,6 +202,7 @@ public class Consumidor_BusquedaSeleccionProducto extends javax.swing.JInternalF
         jLabel9 = new javax.swing.JLabel();
         jLabel11 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
+        txtnombre_producto = new javax.swing.JLabel();
 
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
@@ -225,7 +238,7 @@ public class Consumidor_BusquedaSeleccionProducto extends javax.swing.JInternalF
         jPanel3.add(jSeparator1, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 80, 10, 440));
 
         jLabel2.setText("Producto Seleccionado");
-        jPanel3.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(620, 70, 130, 20));
+        jPanel3.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 70, 130, 20));
 
         txtDescripcion.setColumns(20);
         txtDescripcion.setRows(5);
@@ -256,6 +269,10 @@ public class Consumidor_BusquedaSeleccionProducto extends javax.swing.JInternalF
         jLabel10.setText("SELECCIÓN DE PRODUCTOS");
         jPanel2.add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 10, -1, -1));
 
+        jLabel4.setText("Fecha :");
+        jPanel2.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(760, 10, 50, 30));
+        jPanel2.add(txtFecha, new org.netbeans.lib.awtextra.AbsoluteConstraints(830, 10, 80, 30));
+
         jPanel3.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 920, 50));
 
         jLabel6.setText("Descripción");
@@ -277,6 +294,7 @@ public class Consumidor_BusquedaSeleccionProducto extends javax.swing.JInternalF
 
         jLabel3.setText("Unidades");
         jPanel3.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(660, 420, -1, -1));
+        jPanel3.add(txtnombre_producto, new org.netbeans.lib.awtextra.AbsoluteConstraints(690, 70, 140, 20));
 
         getContentPane().add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 920, 570));
 
@@ -293,6 +311,7 @@ public class Consumidor_BusquedaSeleccionProducto extends javax.swing.JInternalF
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel9;
@@ -307,8 +326,10 @@ public class Consumidor_BusquedaSeleccionProducto extends javax.swing.JInternalF
     private javax.swing.JLabel textoOferta;
     private javax.swing.JLabel textoPrecio;
     private javax.swing.JTextArea txtDescripcion;
+    private javax.swing.JLabel txtFecha;
     private javax.swing.JTextField txtNombreProducto;
     private javax.swing.JLabel txtPrecio;
     private javax.swing.JLabel txtPrecioOferta;
+    private javax.swing.JLabel txtnombre_producto;
     // End of variables declaration//GEN-END:variables
 }

@@ -119,6 +119,36 @@ public class ConsumidorImp implements DaoConsumidor {
         return list;
     }
 
+   /*
+    public Producto getDatosProducto ( int id_producto){
+        Producto producto = null;
+        
+        try {
+            Connection cn = conecta.conexionDB();
+            CallableStatement procedur = cn.prepareCall("{call SP_LoginConsumidor(?,?)}");
+            procedur.setInt(1, id_producto );
+            procedur.execute();
+            ResultSet rs = procedur.executeQuery();
+            
+            producto = new Producto();
+            if (rs.next()) {
+
+                producto.setNombre(rs.getString(1));
+                producto.setCelular(rs.getString(2));
+                producto.setDireccion(rs.getString(3));
+                producto.setDni(rs.getString(4));
+            } else {
+                producto = null;
+            }
+            
+            
+        } catch (Exception e) {
+        }
+        
+        
+        return producto;
+    }*/
+    
     public void registroDetalleCompraConsumidor() {
 
     }

@@ -6,6 +6,7 @@ import com.mycompany.compraverymaven.dao.*;
 import com.mycompany.compraverymaven.dto.Consumidor;
 import com.mycompany.compraverymaven.dto.Producto;
 import java.awt.Dimension;
+import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.image.BufferedImage;
 import java.beans.PropertyVetoException;
@@ -70,8 +71,25 @@ public class ControladorConsumidor {
 
         //BOTONES DEL LA VISTA Consumidor_BusquedaSeleccionProducto
         consumidor_BusquedaSeleccionProducto.getBtnBuscarProducto().addActionListener(e -> mostrarProductosBuscados());
-//https://es.stackoverflow.com/questions/23145/problema-mouselistener-y-jtable
-        consumidor_BusquedaSeleccionProducto.getTablaProductos().addMouseListener(e -> seleccionarProducto());
+
+        consumidor_BusquedaSeleccionProducto.getTablaProductos().addMouseListener(new MouseAdapter() {
+
+            public void mouseClicked(MouseEvent e) {
+                JTable tabla = consumidor_BusquedaSeleccionProducto.getTablaProductos();
+                int clic = tabla.rowAtPoint(e.getPoint());
+
+                int codigo = (int) tabla.getValueAt(clic, 0);
+                String nombre = "" + tabla.getValueAt(clic, 1);
+                double precio = (double) tabla.getValueAt(clic, 2);
+               // String marca = "" + tabla.getValueAt(clic, 3);
+                
+                consumidor_BusquedaSeleccionProducto.getTxtnombre_producto().setText(nombre);
+                consumidor_BusquedaSeleccionProducto.getTextoPrecio().setText(String.valueOf(precio));
+                
+            }
+
+        });
+
     }
 
     //METODO DEL BOTON BTNINGRESAR  LA VISTA LOGIN_CONSUMIDOR 
@@ -199,14 +217,13 @@ public class ControladorConsumidor {
         dt.addColumn("precio");
         dt.addColumn("Foto");
 
-        Producto producto = new Producto();
+        producto = new Producto();
         ArrayList<Producto> list = daoconsumidor.Listar_Productos();
 
         //Si no hay búsqueda de productos es Listar_Productos sino Buscar_Productos
         if (nombrePro == null) {
             list = daoconsumidor.Listar_Productos();
         } else {
-            
             list = daoconsumidor.Buscar_Productos(nombrePro);
         }
 
@@ -234,14 +251,14 @@ public class ControladorConsumidor {
             tabla.setRowHeight(60);
         }
     }
-    
+
     //Limpiar tabla
-    public void limpiarTabla (JTable tabla){
+    public void limpiarTabla(JTable tabla) {
         DefaultTableModel modelillo = new DefaultTableModel();
         while (modelillo.getRowCount() > 0) {
             modelillo.removeRow(0);
         }
-        
+
         tabla.setModel(modelillo);
     }
 
@@ -256,21 +273,18 @@ public class ControladorConsumidor {
         visualizarProductos(consumidor_BusquedaSeleccionProducto.getTablaProductos(), nombreProducto);
 
     }
-    
-    public void seleccionarProducto(MouseEvent e) {
-        
+
+    public void seleccionarProducto() {
+
     }
-    
 
     public void mostrarProductosBuscados() {
         limpiarTabla(consumidor_BusquedaSeleccionProducto.getTablaProductos());
-        
+
         String nombrePro = consumidor_BusquedaSeleccionProducto.getTxtNombreProducto().getText().trim();
-        visualizarProductos( consumidor_BusquedaSeleccionProducto.getTablaProductos() , nombrePro);
-        
+        visualizarProductos(consumidor_BusquedaSeleccionProducto.getTablaProductos(), nombrePro);
+
     }
-    
-    
 
     //METODO DEL BOTON CARRITO DE LA VISTA CONSUMIDOR_MENU
     public void mostrarCarrito() {

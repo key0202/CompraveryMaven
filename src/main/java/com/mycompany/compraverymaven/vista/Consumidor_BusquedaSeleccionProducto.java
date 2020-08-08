@@ -165,6 +165,12 @@ public class Consumidor_BusquedaSeleccionProducto extends javax.swing.JInternalF
     public JLabel getTxtnombre_producto() {
         return txtnombre_producto;
     }
+
+    public JLabel getTxtIdProInv() {
+        return txtIdProInv;
+    }
+    
+    
     
     
     
@@ -203,6 +209,7 @@ public class Consumidor_BusquedaSeleccionProducto extends javax.swing.JInternalF
         jLabel11 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         txtnombre_producto = new javax.swing.JLabel();
+        txtIdProInv = new javax.swing.JLabel();
 
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
@@ -238,7 +245,7 @@ public class Consumidor_BusquedaSeleccionProducto extends javax.swing.JInternalF
         jPanel3.add(jSeparator1, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 80, 10, 440));
 
         jLabel2.setText("Producto Seleccionado");
-        jPanel3.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 70, 130, 20));
+        jPanel3.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 60, 130, 30));
 
         txtDescripcion.setColumns(20);
         txtDescripcion.setRows(5);
@@ -294,7 +301,8 @@ public class Consumidor_BusquedaSeleccionProducto extends javax.swing.JInternalF
 
         jLabel3.setText("Unidades");
         jPanel3.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(660, 420, -1, -1));
-        jPanel3.add(txtnombre_producto, new org.netbeans.lib.awtextra.AbsoluteConstraints(690, 70, 140, 20));
+        jPanel3.add(txtnombre_producto, new org.netbeans.lib.awtextra.AbsoluteConstraints(690, 60, 200, 30));
+        jPanel3.add(txtIdProInv, new org.netbeans.lib.awtextra.AbsoluteConstraints(560, 180, 40, 20));
 
         getContentPane().add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 920, 570));
 
@@ -327,6 +335,7 @@ public class Consumidor_BusquedaSeleccionProducto extends javax.swing.JInternalF
     private javax.swing.JLabel textoPrecio;
     private javax.swing.JTextArea txtDescripcion;
     private javax.swing.JLabel txtFecha;
+    private javax.swing.JLabel txtIdProInv;
     private javax.swing.JTextField txtNombreProducto;
     private javax.swing.JLabel txtPrecio;
     private javax.swing.JLabel txtPrecioOferta;

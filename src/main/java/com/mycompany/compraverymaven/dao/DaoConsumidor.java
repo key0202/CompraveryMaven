@@ -19,16 +19,29 @@ public interface DaoConsumidor {
         throw new UnsupportedOperationException("No implementado");
     }
     
+    default public Producto getDatosProducto ( int id_productoInv){
+        throw new UnsupportedOperationException("No implementado");
+    }
+    
     default public String getMessage(){
         throw new UnsupportedOperationException("No implementado");
     }
     default List<ProductoInventario> BuscarProducto(String nombre) {
         throw new UnsupportedOperationException("No implementado");
     }
+    
+    default public int obtenerUltimoId (){
+         throw new UnsupportedOperationException("No implementado");
+    }
 
     default ProductoInventario verProducto(Integer posicion) {
         throw new UnsupportedOperationException("No implementado");
     }
+    
+    default public String registroDetalleCompraConsumidor(int idConsumidor,String fechaCompra, int idProInv, int idOrdenCompra, int cant, double precio) {
+        throw new UnsupportedOperationException("No implementado");
+    }
+    
 
 //Controlador
     default void agregarProductoCarrito(Integer id, String nombre, Integer cantidad, Double precio) {

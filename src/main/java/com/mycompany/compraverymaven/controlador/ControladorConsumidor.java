@@ -5,6 +5,7 @@ import com.mycompany.compraverymaven.vista.*;
 import com.mycompany.compraverymaven.dao.*;
 import com.mycompany.compraverymaven.dto.Consumidor;
 import com.mycompany.compraverymaven.dto.Producto;
+import com.sun.org.glassfish.external.probe.provider.annotations.Probe;
 import java.awt.Dimension;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
@@ -12,7 +13,11 @@ import java.awt.image.BufferedImage;
 import java.beans.PropertyVetoException;
 import java.io.ByteArrayInputStream;
 import java.io.InputStream;
+import java.text.SimpleDateFormat;
+
+import java.util.Date;
 import java.util.ArrayList;
+import java.util.List;
 import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
 import javax.swing.JDesktopPane;
@@ -25,9 +30,6 @@ import javax.swing.table.DefaultTableModel;
 
 public class ControladorConsumidor {
 
-    //variable global Id_orden_compra_consumidor
-    public static int id = 0;
-
     //DAO PRINCIPALES
     private final DaoConsumidor daoconsumidor;
     private final DaoTrabajador daotrabajador;
@@ -37,6 +39,14 @@ public class ControladorConsumidor {
     //DTOS PARA EL MANEJO DE DATOS
     private Consumidor consumidor = null;
     private Producto producto = null;
+
+    private List<Integer> listaIdProductoInv = new ArrayList<>();
+
+    //  private List< Producto> ListaProductosElegidos
+    //variable global Id_orden_compra_consumidor
+    private List< Producto> ListaProductosElegidos = new ArrayList<>();
+
+    public static int idOrdenCom = 0;
 
     //VISTAS DE LOS INTERNAL FRAMES
     private final Consumidor_BusquedaSeleccionProducto consumidor_BusquedaSeleccionProducto = new Consumidor_BusquedaSeleccionProducto();
@@ -49,7 +59,9 @@ public class ControladorConsumidor {
         this.daotrabajador = daotrabajador;
         this.consumidor_menu = consumidor_menu;
         this.consumidor_login = consumidor_login;
+        this.idOrdenCom = daoconsumidor.obtenerUltimoId();
         InitView();
+
     }
 
     //  INICIAR EL LOGIN
@@ -78,17 +90,30 @@ public class ControladorConsumidor {
                 JTable tabla = consumidor_BusquedaSeleccionProducto.getTablaProductos();
                 int clic = tabla.rowAtPoint(e.getPoint());
 
+                int producto_inventario = listaIdProductoInv.get(clic);
+                System.out.println(producto_inventario);
                 int codigo = (int) tabla.getValueAt(clic, 0);
                 String nombre = "" + tabla.getValueAt(clic, 1);
                 double precio = (double) tabla.getValueAt(clic, 2);
-               // String marca = "" + tabla.getValueAt(clic, 3);
-                
-                consumidor_BusquedaSeleccionProducto.getTxtnombre_producto().setText(nombre);
-                consumidor_BusquedaSeleccionProducto.getTextoPrecio().setText(String.valueOf(precio));
-                
+                // String marca = "" + tabla.getValueAt(clic, 3);
+
+                producto = new Producto();
+                producto = daoconsumidor.getDatosProducto(producto_inventario);
+                System.out.println(producto);
+
+                consumidor_BusquedaSeleccionProducto.getTxtnombre_producto().setText(producto.getNombre());
+                consumidor_BusquedaSeleccionProducto.getTxtPrecio().setText(String.valueOf(producto.getPrecio()));
+                consumidor_BusquedaSeleccionProducto.getTxtDescripcion().setText(producto.getDescripcion());
+                consumidor_BusquedaSeleccionProducto.getTxtPrecioOferta().setText(String.valueOf(producto.getPrecioOferta()));
+                consumidor_BusquedaSeleccionProducto.getTxtIdProInv().setText(String.valueOf(producto.getId_pi()));
+
             }
 
         });
+
+        consumidor_BusquedaSeleccionProducto.getBtnAgregarCarrito().addActionListener(e -> agregarDetalleProductoConsumidor());
+
+        consumidor_detallePedidos.getBtnGenerarPedido().addActionListener(e -> agregarOrdenCompra());
 
     }
 
@@ -108,8 +133,9 @@ public class ControladorConsumidor {
                 System.out.println("promero " + consumidor);
                 System.out.println(usuario + " " + password);
             } else {
-                JOptionPane.showMessageDialog(null, daoconsumidor.getMessage(), "ERROR",
+                JOptionPane.showMessageDialog(null, "Usuario y/o Contraseña incorrecto", "ERROR",
                         JOptionPane.WARNING_MESSAGE);
+                System.out.println(daoconsumidor.getMessage());
             }
 
         } catch (NullPointerException es) {
@@ -200,6 +226,7 @@ public class ControladorConsumidor {
         consumidor_perfil.getTxtDireccion().setText(consumidor.getDireccion());
         consumidor_perfil.getTxtCelular().setText(consumidor.getCelular());
         consumidor_perfil.getTxtDni().setText(consumidor.getDni());
+
     }
 
     //METODO PARA MOSTRAR LOS PRODUCTOS EN LA TABLA DE LA VISTA Consumidor_BusquedaSeleccionProducto
@@ -234,6 +261,8 @@ public class ControladorConsumidor {
                 fila[0] = producto.getId();
                 fila[1] = producto.getNombre();
                 fila[2] = producto.getPrecio();
+                listaIdProductoInv.add(producto.getId_pi());
+                System.out.println("id de producto inv " + producto.getId_pi());
                 try {
                     byte[] bi = producto.getFoto();
                     BufferedImage image = null;
@@ -264,6 +293,8 @@ public class ControladorConsumidor {
 
     //BOTON PRODUCTOS DEL MENU CONSUMIDOR
     public void mostarProductos() {
+        listaIdProductoInv.clear();
+        consumidor_BusquedaSeleccionProducto.getTxtNombreProducto().setText("");
 
         abrir_internal("productos");
         Producto producto = null;
@@ -271,7 +302,14 @@ public class ControladorConsumidor {
 
         //mostrar los productos en la tabla
         visualizarProductos(consumidor_BusquedaSeleccionProducto.getTablaProductos(), nombreProducto);
+        System.out.println(listaIdProductoInv);
+        consumidor_BusquedaSeleccionProducto.getTxtFecha().setText(fechaActual());
+    }
 
+    public static String fechaActual() {
+        Date fecha = new Date();
+        SimpleDateFormat formato = new SimpleDateFormat("YYYY-MM-dd");
+        return formato.format(fecha);
     }
 
     public void seleccionarProducto() {
@@ -279,21 +317,103 @@ public class ControladorConsumidor {
     }
 
     public void mostrarProductosBuscados() {
+        listaIdProductoInv.clear();
         limpiarTabla(consumidor_BusquedaSeleccionProducto.getTablaProductos());
 
         String nombrePro = consumidor_BusquedaSeleccionProducto.getTxtNombreProducto().getText().trim();
         visualizarProductos(consumidor_BusquedaSeleccionProducto.getTablaProductos(), nombrePro);
+        System.out.println(listaIdProductoInv);
+    }
+
+    public void agregarDetalleProductoConsumidor() {
+        System.out.println("agregar");
+        int idConsumidor = consumidor.getId();
+        String nombre = consumidor.getNombre();
+        String fechaCompra = fechaActual();
+        int idProInv = Integer.valueOf(consumidor_BusquedaSeleccionProducto.getTxtIdProInv().getText());
+        int idOrdenCompra = idOrdenCom;
+        int cant = (Integer) consumidor_BusquedaSeleccionProducto.getCantidad().getValue();
+
+        double precio = Double.valueOf(consumidor_BusquedaSeleccionProducto.getTxtPrecio().getText());
+        double precioOferta = Double.valueOf(consumidor_BusquedaSeleccionProducto.getTxtPrecioOferta().getText());
+        double PrecioFinal;
+
+        if (precio == precioOferta) {
+            PrecioFinal = precio;
+        } else {
+            PrecioFinal = precioOferta;
+        }
+
+        daoconsumidor.registroDetalleCompraConsumidor(idConsumidor, fechaCompra, idProInv, idOrdenCompra, cant, PrecioFinal);
+        System.out.println(daoconsumidor.getMessage());
+        if (daoconsumidor.getMessage() == null) {
+            JOptionPane.showMessageDialog(null, "Agregado Correctamente");
+        }
+
+        Producto pro = new Producto();
+
+        pro.setNombre(consumidor_BusquedaSeleccionProducto.getTxtnombre_producto().getText());
+        pro.setPrecio(PrecioFinal);
+        pro.setCantidad(cant);
+
+        ListaProductosElegidos.add(pro);
 
     }
 
     //METODO DEL BOTON CARRITO DE LA VISTA CONSUMIDOR_MENU
     public void mostrarCarrito() {
+        abrir_internal("carrito");
+
+        //     tabla.setDefaultRenderer(Object.class, new formatoTablaListarProductos());
+        DefaultTableModel dt = new DefaultTableModel() {
+            @Override
+            public boolean isCellEditable(int row, int column) {
+                return false;
+            }
+        };
+
+        dt.addColumn("nombre");
+        dt.addColumn("precio");
+        dt.addColumn("Cantidad");
+
+        if (ListaProductosElegidos.size() > 0) {
+            for (int i = 0; i < ListaProductosElegidos.size(); i++) {
+                Object fila[] = new Object[5];
+                producto = ListaProductosElegidos.get(i);
+                fila[0] = producto.getNombre();
+                fila[1] = producto.getPrecio();
+                fila[2] = producto.getCantidad();
+
+                dt.addRow(fila);
+            }
+            consumidor_detallePedidos.getTablaPedidos().setModel(dt);
+            consumidor_detallePedidos.getTablaPedidos().setRowHeight(60);
+        }
+
+    }
+
+    public void agregarOrdenCompra() {
+
+        JTable table =consumidor_detallePedidos.getTablaPedidos();
+
+        for (int i = 0; i < table.getRowCount(); i++) {
+            int columna = 2;
+           
+            System.out.println( table.getValueAt(i, columna));
+               
+        }
+        
+
+        idOrdenCom++;
+        ListaProductosElegidos.clear();
+        
+        
 
     }
 
     //METODO DEL BOTON HISTORIAL DE PEDIDOS
     public void mostrarHistorial() {
-
+        abrir_internal("historial");
     }
 
 }

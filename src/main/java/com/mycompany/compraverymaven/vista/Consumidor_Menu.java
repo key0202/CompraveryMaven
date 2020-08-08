@@ -39,22 +39,22 @@ public class Consumidor_Menu extends javax.swing.JFrame {
         jPanel1.add(btnCarrito, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 320, 120, 60));
 
         btnHistorialPedidos.setText("Mi Historial");
-        jPanel1.add(btnHistorialPedidos, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 430, 130, 70));
+        jPanel1.add(btnHistorialPedidos, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 430, 110, 70));
 
-        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 180, 590));
+        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 180, 580));
 
         javax.swing.GroupLayout jdpInternoLayout = new javax.swing.GroupLayout(jdpInterno);
         jdpInterno.setLayout(jdpInternoLayout);
         jdpInternoLayout.setHorizontalGroup(
             jdpInternoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 810, Short.MAX_VALUE)
+            .addGap(0, 930, Short.MAX_VALUE)
         );
         jdpInternoLayout.setVerticalGroup(
             jdpInternoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 590, Short.MAX_VALUE)
+            .addGap(0, 580, Short.MAX_VALUE)
         );
 
-        getContentPane().add(jdpInterno, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 0, 810, 590));
+        getContentPane().add(jdpInterno, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 0, 930, 580));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
